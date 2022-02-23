@@ -18,7 +18,7 @@
     line-height: 1;
     font-size: 16px;
     font-weight: 400;
-    color: #333;
+    color: #000;
   }
 
   input,
@@ -32,6 +32,6 @@
 
 @layer components {
   .layout-container {
-    @apply max-w-[1170px] mx-auto px-5 lg:px-0;
+    @apply max-w-[1175px] mx-auto xl:px-0;
   }
 }
