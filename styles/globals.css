@@ -1,3 +1,37 @@
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  *,
+  ::after,
+  ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Plus Jakarta Display", sans-serif;
+    line-height: 1;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+    color: inherit;
+  }
+}
+
+@layer components {
+  .layout-container {
+    @apply max-w-[1170px] mx-auto px-5 lg:px-0;
+  }
+}
