@@ -32,6 +32,12 @@
 
 @layer components {
   .layout-container {
-    @apply max-w-[1175px] mx-auto xl:px-0;
+    @apply max-w-[1175px] mx-auto xl:px-8;
+  }
+}
+
+@layer utilities {
+  .drop-shadow-logo {
+    filter: drop-shadow(0 4px 4px rgb(0, 0, 0, 0.25));
   }
 }
