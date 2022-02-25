@@ -32,12 +32,31 @@
 
 @layer components {
   .layout-container {
-    @apply max-w-[1175px] mx-auto xl:px-8;
+    @apply max-w-[1239px] mx-auto xl:px-8;
+  }
+
+  .crossed {
+    background: linear-gradient(
+      to top left,
+      rgba(156, 163, 175, 0) 0%,
+      rgba(156, 163, 175, 0) calc(50% - 1px),
+      rgba(156, 163, 175, 1) 50%,
+      rgba(156, 163, 175, 0) calc(50% + 1px),
+      rgba(156, 163, 175, 0) 100%
+    );
   }
 }
 
 @layer utilities {
   .drop-shadow-logo {
     filter: drop-shadow(0 4px 4px rgb(0, 0, 0, 0.25));
+  }
+
+  .translate3d-rotate {
+    transform: translate3d(-525%, 0, 0) rotate(35deg);
+  }
+
+  .translate3d-rotate-hover {
+    transform: translate3d(200%, 0, 0) rotate(35deg);
   }
 }

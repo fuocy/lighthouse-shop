@@ -24,7 +24,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/layout/ActiveLink.js"
+    "src/components/layout/ActiveLink.js",
+    "src/components/ProductDetail"
   ],
   "exclude": ["node_modules"]
 }

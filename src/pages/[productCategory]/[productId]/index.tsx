@@ -1,3 +1,5 @@
-export default function ProductDetail() {
-  return <div>Product Detail</div>;
+import ProductDetail from "@/components/ProductDetail/ProductDetail";
+
+export default function ProductDetailPage() {
+  return <ProductDetail />;
 }

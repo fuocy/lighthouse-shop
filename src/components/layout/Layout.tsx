@@ -8,7 +8,9 @@ export default function Layout({ children }: AppProps): JSX.Element {
   return (
     <>
       <Header />
-      <main className="layout-container">{children}</main>
+      <main className="bg-[#fafafa] ">
+        <div className="layout-container ">{children}</div>
+      </main>
       {/* <footer>Footer</footer> */}
     </>
   );
