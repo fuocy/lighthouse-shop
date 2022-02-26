@@ -1,6 +1,7 @@
 import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
+import { HiCheck } from "react-icons/hi";
 const selections = {
   sizes: [
     {
@@ -51,7 +52,7 @@ export default function ClothesSelection() {
           <ul className="flex items-center gap-[5px] text-lg">
             {selections.sizes.map((size) => (
               <li
-                className="uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af] last:crossed"
+                className="uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af] first:bg-primary-color last:crossed"
                 key={size.id}
               >
                 {size.name}
@@ -66,7 +67,12 @@ export default function ClothesSelection() {
           </div>
           <ul className="flex items-center gap-[8px] ">
             {selections.colors.map((color) => (
-              <li className={`h-6 w-6 bg-[${color.color}]`} key={color.id}></li>
+              <li
+                className={`h-6 w-6 bg-[${color.color}] group flex items-center justify-center`}
+                key={color.id}
+              >
+                <HiCheck className="invisible group-first:visible text-xl text-white" />
+              </li>
             ))}
           </ul>
         </div>

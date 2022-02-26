@@ -98,8 +98,8 @@ export default function SimilarProduct() {
             </li>
           ))}
         </ul>
-        <BsChevronLeft className="absolute top-1/2 -translate-y-1/2 -left-12 text-4xl text-gray-300 hover:text-gray-600 transition duration-200" />
-        <BsChevronRight className="absolute top-1/2 -translate-y-1/2 -right-12 text-4xl text-gray-300 hover:text-gray-600 transition duration-200" />
+        <BsChevronLeft className="absolute top-1/2 -translate-y-1/2 -left-12 text-4xl text-gray-300 hover:text-gray-600 transition duration-200 cursor-pointer" />
+        <BsChevronRight className="absolute top-1/2 -translate-y-1/2 -right-12 text-4xl text-gray-300 hover:text-gray-600 transition duration-200 cursor-pointer" />
       </div>
     </div>
   );

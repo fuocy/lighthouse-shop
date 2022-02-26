@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function PathAndRate() {
   return (
-    <div className="flex items-center gap-2 text-sm text-[#4b5563] mb-7">
+    <div className="flex items-center gap-2 text-sm text-[#4b5563] mb-7 pt-[14px]">
       <Link href="/">
         <a>Homepage</a>
       </Link>
