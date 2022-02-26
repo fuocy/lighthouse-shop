@@ -4,7 +4,7 @@ export default function Specifications() {
       <h3 className="text-gray-600 font-semibold text-3xl mb-7">
         Specifications
       </h3>
-      <p className="text-gray-600 leading-loose">
+      <p className="text-zinc-500 leading-loose">
         These men&apos;s flannel shirts have a simple design and are available
         in three colors: moss green, dark lead, and wine. These shirts have long
         sleeves and the collar model of this product is also normal. This

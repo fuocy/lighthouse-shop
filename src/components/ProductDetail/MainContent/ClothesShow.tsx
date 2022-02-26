@@ -17,9 +17,15 @@ export default function ShowClothes() {
         {shirts.map((shirt) => (
           <li
             key={shirt.id}
-            className="w-[473px] h-[473px] bg-background-grayec"
+            className="w-[473px] h-[473px] bg-background-grayec relative group"
           >
-            <Image src={shirt.img} alt="" />
+            <Image src={shirt.img} alt="" priority />
+            <div className="invisible group-first:visible flex items-center gap-1 bg-primary-color py-[15px] pl-[7px] absolute top-[18px] left-[18px] font-semibold ">
+              <p className="text-xl leading-none">25%</p>
+              <p className="uppercase text-[9px] -rotate-90 leading-none ">
+                off
+              </p>
+            </div>
           </li>
         ))}
       </ul>

@@ -7,7 +7,7 @@ export default function Tabbed() {
     <Tabs
       className="text-base"
       defaultIndex={1}
-      selectedTabClassName="bg-[#fff] text-black font-semibold border-b-4 border-primary-color -translate-y-[16%] transition duration-300 text-lg"
+      selectedTabClassName="bg-[#fff] text-black font-semibold border-b-4 border-primary-color -translate-y-[16%] transition duration-300"
     >
       <TabList className="flex gap-[10px] text-gray-400">
         <Tab className="flex-1 h-12 cursor-pointer flex items-center justify-center">

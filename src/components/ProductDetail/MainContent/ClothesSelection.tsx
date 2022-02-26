@@ -1,7 +1,6 @@
 import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
-
 const selections = {
   sizes: [
     {
@@ -89,12 +88,12 @@ export default function ClothesSelection() {
       </div>
       <h3 className="text-right text-[40px] font-bold mb-[30px]">$56.5</h3>
       <div className="flex gap-5">
-        <div className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center">
+        <button className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center hover:-translate-y-[2px] transition-all duration-[250ms] rounded-sm active:translate-y-0 active:scale-[.98]">
           <AiOutlineHeart className="h-7 w-7 text-rede7" />
-        </div>
-        <button className="uppercase flex-1 bg-primary-color font-extrabold text-xl">
+        </button>
+        <button className="uppercase flex-1 bg-primary-color font-extrabold text-xl shadow-md active:shadow-sm active:scale-[.98] transition-all duration-[250ms] rounded-sm active:translate-y-0 hover:bg-[#fecd48] active:bg-[#e5b32f] hover:-translate-y-[2px] z-10 relative overflow-hidden group">
           add to basket
-          {/* <div className="z-50 text-red-500/20 bg-red-500 absolute -top-[50%] -bottom-[50%] w-5 translate3d-rotate group-hover:transition group-hover:duration-[450ms] group-hover:ease-in-out group-hover:translate3d-rotate-hover"></div> */}
+          <div className="-z-10 bg-[#ffffff33] absolute top-[-1000%] bottom-[-375%] w-9 translate3d-rotate group-hover:transition group-hover:duration-[1000ms] group-hover:ease-in-out group-hover:translate3d-rotate-hover"></div>
         </button>
       </div>
     </>

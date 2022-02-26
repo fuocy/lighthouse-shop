@@ -1,11 +1,11 @@
 export default function SizeGuide() {
   return (
-    <div className="grid grid-cols-6 place-items-center pt-[20px] text-black font-medium mb-10">
+    <div className="grid grid-cols-6 place-items-center pt-[20px] text-black font-normal mb-10">
       <div className="col-span-2 h-[46px]"></div>
-      <div>S</div>
-      <div>M</div>
-      <div>L</div>
-      <div>XL</div>
+      <div className="font-medium">S</div>
+      <div className="font-medium">M</div>
+      <div className="font-medium">L</div>
+      <div className="font-medium">XL</div>
       <div className="col-span-2 h-[46px] bg-background-grayfa flex items-center justify-start w-full text-gray-500 font-light">
         Chest
       </div>
