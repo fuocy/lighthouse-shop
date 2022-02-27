@@ -27,12 +27,21 @@ module.exports = {
             backgroundColor: "theme('colors.primary-color')",
           },
         },
+        jelly: {
+          "0%": { transform: "scale(1, 1)" },
+          "100%": { transform: "scale(1, 1)" },
+          "25%": { transform: "scale(0.9, 1.1)" },
+          "50%": { transform: "scale(1.1, 0.9)" },
+          "75%": { transform: "scale(0.95, 1.05)" },
+        },
       },
       animation: {
         "nav-move": "navigation 800ms forwards",
+        "btn-search": "jelly 500ms",
       },
       gridTemplateColumns: {
         "product-detail": "3fr 19fr 23fr",
+        "product-category": "10fr 37fr",
       },
     },
   },

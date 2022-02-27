@@ -35,6 +35,28 @@
     @apply max-w-[1239px] mx-auto xl:px-8;
   }
 
+  .absolute-x-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .absolute-y-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .absolute-center {
+    @apply absolute-x-center absolute-y-center;
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .crossed {
     background: linear-gradient(
       to top left,

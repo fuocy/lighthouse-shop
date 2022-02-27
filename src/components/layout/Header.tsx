@@ -6,8 +6,8 @@ import { HiOutlineUser } from "react-icons/hi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 export default function Header() {
   return (
-    <header className="pt-16 px-24 pb-5">
-      <div className="flex items-center justify-between mb-20 relative">
+    <header className="pt-10 px-24 pb-5">
+      <div className="flex items-center justify-between mb-14 relative">
         <Link href="/login" passHref>
           <a className="flex items-center gap-1">
             <HiOutlineUser className="text-2xl" />

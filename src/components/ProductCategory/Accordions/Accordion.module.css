@@ -1,0 +1,29 @@
+/* .Modal {
+  transition: all 0.3s ease-in;
+} */
+/* 
+.Show {
+  animation: Show 400ms ease-in forwards;
+} */
+/* 
+.Hide {
+  animation: Hide 400ms ease-in forwards;
+} */
+
+/* @keyframes Show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+} */
+/* @keyframes Hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+} */
