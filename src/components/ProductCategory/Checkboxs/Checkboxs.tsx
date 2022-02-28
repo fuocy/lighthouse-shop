@@ -32,7 +32,7 @@ export default function Checkboxs() {
               id={option.title.toLowerCase()}
               name="checkboxs"
               value={option.title.toLowerCase()}
-              className="appearance-none h-[15px] w-[15px] bg-primary-color rounded-md peer transition "
+              className="appearance-none h-[15px] w-[15px] bg-yellow-300 rounded-md peer transition "
             />
 
             <label

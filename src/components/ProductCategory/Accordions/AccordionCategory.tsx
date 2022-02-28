@@ -16,11 +16,11 @@ const categoryOptions = [
     title: "Clothes",
     quantity: 92,
   },
-  {
-    id: 4,
-    title: "Accessories",
-    quantity: 231,
-  },
+  // {
+  //   id: 4,
+  //   title: "Accessories",
+  //   quantity: 231,
+  // },
   {
     id: 5,
     title: "All",
