@@ -42,6 +42,8 @@ module.exports = {
       gridTemplateColumns: {
         "product-detail": "3fr 19fr 23fr",
         "product-category": "10fr 37fr",
+        cart: "163fr 72fr",
+        "cart-item": "29fr 11fr 9fr 9fr",
       },
     },
   },
