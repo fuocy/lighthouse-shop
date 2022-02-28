@@ -18,7 +18,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body className="selection:bg-primary-color selection:text-black">
+        <body className="selection:bg-[#fff700] selection:text-black">
           <Main />
           <NextScript />
         </body>

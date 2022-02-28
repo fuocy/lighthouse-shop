@@ -22,7 +22,7 @@ export default function CartItem({
   return (
     <li
       className="grid grid-cols-cart-item items-center gap-10 justify-items-center
-    py-6
+    py-6 
     shadow-sm"
     >
       <div className="flex items-center gap-8">

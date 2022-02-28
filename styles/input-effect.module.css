@@ -1,0 +1,39 @@
+.input__div-effect {
+  position: relative;
+}
+
+.input__input-effect {
+  /* width: 6.5em; */
+  /* color: white; */
+  /* font-size: inherit; */
+  /* font-family: inherit; */
+  /* background-color: transparent; */
+  /* border: 1px solid transparent; */
+  /* border-bottom-color: hsla(341, 97%, 59%, 0.2); */
+}
+
+.input__input-effect:focus {
+  outline: none;
+}
+
+.input__input-effect::placeholder {
+  /* color: hsla(0, 0%, 100%, 0.6); */
+}
+
+.input__span-effect {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  opacity: 0;
+  background-color: #fec734;
+  transform-origin: center;
+  transform: translate(-50%, 0) scaleX(0);
+  transition: all 0.3s ease;
+}
+
+.input__input-effect:focus ~ .input__span-effect {
+  transform: translate(-50%, 0) scaleX(1);
+  opacity: 1;
+}
