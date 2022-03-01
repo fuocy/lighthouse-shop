@@ -18,8 +18,9 @@ export default function ProductItem({
   tag,
   availability,
 }: AppProps) {
+  // bg-background-grayec
   return (
-    <li className=" bg-background-grayec shadow-md overflow-hidden">
+    <li className="  bg-[#F6F5F3] shadow-md overflow-hidden">
       <div className="relative w-full h-[250px] group ">
         <Image
           src={img}
@@ -30,24 +31,24 @@ export default function ProductItem({
           blurDataURL={img}
           className="object-cover"
         />
-        {tag.preBuy && (
+        {/* {tag.preBuy && (
           <div className="absolute top-2 left-2 text-[#09a677] bg-[#eaf7f3] font-medium h-[32px] w-[72px] flex items-center justify-center">
             Prebuy
           </div>
-        )}
+        )} */}
         {tag.saleOff && (
-          <div className="absolute top-[9px] right-[-47px] text-black bg-primary-color font-medium h-[30px] w-[139px] flex items-center justify-center rotate-[45deg]">
+          <div className="absolute top-[9px] right-[-47px] text-black bg-[#E8E9EB] font-medium h-[30px] w-[139px] flex items-center justify-center rotate-[45deg]">
             <p className="text-sm">25%</p>
             <p className="uppercase text-[9px] font-semibold -rotate-90 ">
               off
             </p>
           </div>
         )}
-        {!tag.preBuy && tag.limited && (
+        {/* {!tag.preBuy && tag.limited && (
           <div className="absolute top-2 left-2 text-rede7 bg-[#fdeeee] font-medium h-[32px] w-[72px] flex items-center justify-center">
             Limited
           </div>
-        )}
+        )} */}
         <div className="absolute opacity-0 transition duration-300 z-10 group-hover:opacity-100 py-2 px-5 border-2 font-normal border-primary-color text-primary-color top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer shadow-md">
           View product
         </div>
@@ -57,25 +58,25 @@ export default function ProductItem({
         <div className="mb-[10px] text-lg font-medium capitalize">{name}</div>
         <div className="flex items-center mb-2 ml-[-5px]">
           <div className="flex items-center">
-            <TiStarburst className="text-2xl text-primary-color" />
+            <TiStarburst className="text-2xl text-[#F6F5F3]" />
             <BsCheck className="text-lg text-black -translate-x-[21px]" />
           </div>
-          <p className="-translate-x-[15px] font-normal text-slate-700">
+          <p className="-translate-x-[15px] font-light text-sm italic text-slate-700">
             Balenciaga
           </p>
         </div>
         {availability && (
-          <div className="text-right text-2xl font-semibold">{`$${price}`}</div>
+          <div className="text-right text-lg font-thin ">{`$${price}`}</div>
         )}
         {!availability && (
-          <div className="text-right text-base text-rede7 font-normal leading-loose">
+          <div className="text-right text-base text-slate-700 italic font-thin leading-loose">
             Unavailable
           </div>
         )}
         <div className="flex items-center gap-2 mt-auto">
-          <AiOutlineHeart className="text-lg text-rede7" />
+          <AiOutlineHeart className="text-lg text-[#19110B]" />
           {/* <AiTwotoneHeart className="text-lg text-rede7" /> */}
-          <p>18</p>
+          <p className="text-sm">18</p>
         </div>
       </div>
     </li>
