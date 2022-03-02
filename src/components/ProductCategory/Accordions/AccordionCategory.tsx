@@ -43,7 +43,7 @@ export default function AccordionCategory() {
               id={option.title.toLowerCase()}
               name="category"
               value={option.title.toLowerCase()}
-              className="appearance-none h-[18px] w-[18px]  rounded-full border-2 border-gray-600  checked:border-primary-color peer transition"
+              className="appearance-none h-[18px] w-[18px]  rounded-full border-2 border-gray-600  checked:border-[#ACADA8] peer transition"
             />
 
             <label
@@ -55,7 +55,7 @@ export default function AccordionCategory() {
               peer-checked:after:w-3
               peer-checked:after:h-3
               peer-checked:after:rounded-full
-              peer-checked:after:bg-primary-color
+              peer-checked:after:bg-black/70
               
               "
             >

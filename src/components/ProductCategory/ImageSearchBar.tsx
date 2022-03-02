@@ -1,6 +1,7 @@
 import { BiSearch } from "react-icons/bi";
 import Image from "next/image";
 import saleOffImg from "assets/saleOff.png";
+import logan from "assets/theRealFinalLogan_2.png";
 
 export default function ImageSearchBar() {
   return (
@@ -35,8 +36,8 @@ export default function ImageSearchBar() {
           <p className="text-xs">SEARCH</p>
         </button>
       </div>
-      <div className="absolute top-[-20px] right-[-100px]">
-        <Image src={saleOffImg} alt="" width={900} />
+      <div className="absolute top-[0px] right-[-70px]">
+        <Image src={saleOffImg} alt="" />
       </div>
     </div>
   );

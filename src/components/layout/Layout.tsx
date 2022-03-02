@@ -10,7 +10,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
       <Header />
       <main className="bg-[#fafafa]">{children}</main>
       {/* will show FOOTER later!!! */}
-      {/* <footer className="h-[38px] bg-[#333333]"></footer> */}
+      <footer className="h-[38px] bg-[#333333]"></footer>
     </>
   );
 }

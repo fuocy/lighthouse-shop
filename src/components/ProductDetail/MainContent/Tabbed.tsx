@@ -1,8 +1,12 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import SizeGuide from "./SizeGuide";
 import Specifications from "./Specifications";
+import Product from "src/model/Product";
 
-export default function Tabbed() {
+interface AppProps {
+  singleProduct: Product;
+}
+export default function Tabbed({ singleProduct }: AppProps) {
   return (
     <Tabs
       className="text-base"
@@ -22,13 +26,18 @@ export default function Tabbed() {
       </TabList>
       <TabPanel className="bg-white ">
         <h2>Some random comments</h2>
+        <ul>
+          {singleProduct.comment.map((comment) => (
+            <li key={comment}>{comment}</li>
+          ))}
+        </ul>
       </TabPanel>
       <TabPanel className="bg-white pb-5">
         <SizeGuide />
-        <Specifications />
+        <Specifications singleProduct={singleProduct} />
       </TabPanel>
       <TabPanel className="bg-white ">
-        <h2>Some specification infomation</h2>
+        <h2>{singleProduct.specification}</h2>
       </TabPanel>
     </Tabs>
   );

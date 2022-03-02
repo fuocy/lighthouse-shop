@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["i.ibb.co"],
   },
+  async redirects() {
+    return [{ source: "/", destination: "/men", permanent: true }];
+  },
 };
 
 module.exports = nextConfig;

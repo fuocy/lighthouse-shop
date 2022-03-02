@@ -34,13 +34,19 @@ const selections = {
   ],
 };
 
+import Product from "src/model/Product";
+
+interface AppProps {
+  singleProduct: Product;
+}
+
 // bg-[#708c63]
 // bg-[#d2b762]
 // bg-[#636363]
 // bg-[#ba5a4d]
 // bg-[#7d5d83]
 // py-[5px] px-[15px]
-export default function ClothesSelection() {
+export default function ClothesSelection({ singleProduct }: AppProps) {
   return (
     <>
       <div>
@@ -50,12 +56,12 @@ export default function ClothesSelection() {
             <p className="font-semibold">Medium</p>
           </div>
           <ul className="flex items-center gap-[5px] text-lg">
-            {selections.sizes.map((size) => (
+            {singleProduct.size.map((size) => (
               <li
                 className="uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af] first:bg-primary-color last:crossed"
-                key={size.id}
+                key={size}
               >
-                {size.name}
+                {size}
               </li>
             ))}
           </ul>
@@ -66,10 +72,10 @@ export default function ClothesSelection() {
             <p className="font-semibold">Moss green</p>
           </div>
           <ul className="flex items-center gap-[8px] ">
-            {selections.colors.map((color) => (
+            {singleProduct.color.map((color) => (
               <li
-                className={`h-6 w-6 bg-[${color.color}] group flex items-center justify-center`}
-                key={color.id}
+                className={`h-6 w-6 bg-[${color}] group flex items-center justify-center`}
+                key={color}
               >
                 <HiCheck className="invisible group-first:visible text-xl text-white" />
               </li>
@@ -79,20 +85,22 @@ export default function ClothesSelection() {
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-5 text-lg">
             <p className="">Qty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className="font-semibold">2</p>
+            <p className="font-semibold">1</p>
           </div>
           <div className="flex items-center gap-[22px] px-[15px] py-[13px] bg-background-grayfa">
             <button>
               <GrFormSubtract className="text-2xl" />
             </button>
-            <div>2</div>
+            <div>1</div>
             <button>
               <GrFormAdd className="text-2xl" />
             </button>
           </div>
         </div>
       </div>
-      <h3 className="text-right text-[40px] font-bold mb-[30px]">$56.5</h3>
+      <h3 className="text-right text-[40px] font-bold mb-[30px]">{`$${Math.round(
+        singleProduct.price
+      )}`}</h3>
       <div className="flex gap-5">
         <button className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center hover:-translate-y-[2px] transition-all duration-[250ms] rounded-sm active:translate-y-0 active:scale-[.98]">
           <AiOutlineHeart className="h-7 w-7 text-rede7" />

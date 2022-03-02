@@ -3,24 +3,24 @@ import { HiCheck } from "react-icons/hi";
 const stylesOptions = [
   {
     id: 1,
-    title: "Modern",
+    title: "Balenciaga",
     quantity: 178,
   },
   {
     id: 2,
-    title: "Sport",
+    title: "Louis Vuitton",
     quantity: 231,
   },
   {
     id: 3,
-    title: "Formal",
+    title: "Gucci",
     quantity: 91,
   },
 ];
 
 export default function Checkboxs() {
   return (
-    <Accordions heading="Product style">
+    <Accordions heading="Brand">
       <div className="p-7">
         {stylesOptions.map((option) => (
           <div
@@ -32,7 +32,7 @@ export default function Checkboxs() {
               id={option.title.toLowerCase()}
               name="checkboxs"
               value={option.title.toLowerCase()}
-              className="appearance-none h-[15px] w-[15px] bg-yellow-300 rounded-md peer transition "
+              className="appearance-none h-[15px] w-[15px] bg-[#ACADA8] rounded-md peer transition "
             />
 
             <label

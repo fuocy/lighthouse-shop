@@ -1,4 +1,5 @@
 import ProductItem from "./ProductItem";
+
 const productLists = [
   {
     id: 1,
@@ -122,17 +123,26 @@ const productLists = [
   },
 ];
 
-export default function ProductList() {
+import Product from "src/model/Product";
+
+interface AppProps {
+  productsList: Product[];
+}
+
+export default function ProductList({ productsList }: AppProps) {
   return (
     <ul className="grid grid-cols-3 gap-x-5 gap-y-[26px]">
-      {productLists.map((product) => (
+      {productsList.map((product) => (
         <ProductItem
           key={product.id}
           availability={product.availability}
-          img={product.img}
+          img={product.image.img1}
           name={product.name}
           price={product.price}
-          tag={product.tag}
+          discount={product.discount}
+          love={product.love}
+          brand={product.brand}
+          id={product.id}
         />
       ))}
     </ul>
