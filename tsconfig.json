@@ -26,7 +26,8 @@
     "**/*.tsx",
     "src/components/layout/ActiveLink.js",
     "src/components/ProductDetail",
-    "src/components/ProductCategory/Accordions"
+    "src/components/ProductCategory/Accordions",
+    "src/components/layout/Navigation.js"
   ],
   "exclude": ["node_modules"]
 }

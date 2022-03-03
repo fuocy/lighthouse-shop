@@ -2,6 +2,8 @@ import CartItem from "./CartItem";
 import classes from "styles/scrollbar.module.css";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+import { useAppSelector } from "src/store/hooks";
+import { useRouter } from "next/router";
 const cartLists = [
   {
     id: 1,
@@ -38,6 +40,13 @@ const cartLists = [
 ];
 
 export default function CartInfo() {
+  const cartState = useAppSelector((state) => state.cart);
+  const router = useRouter();
+
+  const goBackHandler = () => {
+    router.back();
+  };
+
   return (
     <div
       className="bg-white 
@@ -51,7 +60,7 @@ export default function CartInfo() {
         border-b-2 border-primary-color"
       >
         <h1>Shopping Cart</h1>
-        <p className="text-xl text-black/75">3 items</p>
+        <p className="text-xl text-black/75">{cartState.totalQuantity} items</p>
       </div>
       <div className="grid grid-cols-cart-item gap-10 justify-items-center mb-4">
         <div
@@ -68,19 +77,23 @@ export default function CartInfo() {
         <ul
           className={`overflow-y-auto h-[500px] ${classes["custom-scrollbar"]}`}
         >
-          {cartLists.map((cart) => (
-            <CartItem
-              key={cart.id}
-              img={cart.img}
-              name={cart.name}
-              type={cart.type}
-              quantity={cart.quantity}
-              price={cart.price}
-            />
-          ))}
+          {cartState.items.length > 0 &&
+            cartState.items.map((cart) => (
+              <CartItem
+                key={cart.id}
+                id={cart.id}
+                img={cart.img}
+                name={cart.name}
+                brand={cart.brand}
+                quantity={cart.quantity}
+                price={cart.price}
+                totalPrice={cart.totalPrice}
+              />
+            ))}
+          {cartState.items.length === 0 && <p>Add something to your cart</p>}
         </ul>
       </div>
-      <Link href="/men" passHref>
+      <button onClick={goBackHandler} passHref>
         <a className="flex items-center gap-3 pb-8 cursor-pointer pl-5">
           <HiOutlineArrowNarrowLeft className="text-red-500 text-xl -translate-y-[1px]" />
           <p
@@ -90,7 +103,7 @@ export default function CartInfo() {
             Continue Shopping
           </p>
         </a>
-      </Link>
+      </button>
     </div>
   );
 }

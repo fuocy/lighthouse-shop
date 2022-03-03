@@ -1,5 +1,9 @@
+import { useAppSelector } from "src/store/hooks";
 import classes from "styles/input-effect.module.css";
+
 export default function CartSummary() {
+  const cartState = useAppSelector((state) => state.cart);
+
   return (
     <div className="pl-11 pr-4">
       <h2
@@ -11,9 +15,9 @@ export default function CartSummary() {
       </h2>
       <div className="flex-between mb-10">
         <p className="font-medium text-gray-700">
-          ITEMS: <span className="font-bold">3</span>
+          ITEMS: <span className="font-bold">{cartState.totalQuantity}</span>
         </p>
-        <p className="font-semibold text-xl">{`$${457.98}`}</p>
+        <p className="font-semibold text-xl">{`$${cartState.totalAmount}`}</p>
       </div>
       <div
         className="pb-14 border-b-2 border-[#09a677] 
@@ -41,7 +45,7 @@ export default function CartSummary() {
           >
             <option value="standard">Standard Delivery - $4.00</option>
             <option value="standard">Express Delivery - $7.00</option>
-            <option value="standard">I Have No Money 😥</option>
+            <option value="standard">I Have No Money </option>
           </select>
         </div>
         <div>

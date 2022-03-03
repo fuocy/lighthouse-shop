@@ -4,7 +4,10 @@ import Navigation from "@/components/layout/Navigation";
 import Link from "next/link";
 import { HiOutlineUser } from "react-icons/hi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { useAppSelector } from "src/store/hooks";
 export default function Header() {
+  const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
+
   return (
     <header className="pt-10 px-24 pb-5">
       <div className="flex items-center justify-between mb-14 relative">
@@ -36,9 +39,11 @@ export default function Header() {
         <Link href="/cart" passHref>
           <a className="relative">
             <HiOutlineShoppingCart className="text-2xl" />
-            <div className="absolute -top-1 -left-3 h-4 w-5 rounded-lg bg-[#eb5757] flex items-center justify-center text-white">
-              1
-            </div>
+            {totalQuantity > 0 && (
+              <div className="absolute -top-1 -left-3 h-4 w-5 rounded-lg bg-[#eb5757] flex items-center justify-center text-white">
+                {totalQuantity}
+              </div>
+            )}
           </a>
         </Link>
       </div>

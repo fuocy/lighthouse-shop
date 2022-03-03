@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "@types/nprogress": "^0.2.0",
     "@types/react-tabs": "^2.3.4",
     "@types/react-transition-group": "^4.4.4",
@@ -21,7 +22,9 @@
     "react-accessible-accordion": "^4.0.0",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
+    "react-redux": "^7.2.6",
     "react-tabs": "^3.2.3",
+    "react-toastify": "^8.2.0",
     "react-transition-group": "^4.4.2",
     "swr": "^1.2.2",
     "zustand": "^3.7.1"

@@ -5,7 +5,8 @@ import NProgress from "nprogress";
 import "styles/nprogress.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-
+import { Provider } from "react-redux";
+import store from "src/store/store";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -29,9 +30,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 }
 

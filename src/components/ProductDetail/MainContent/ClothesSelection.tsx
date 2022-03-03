@@ -2,110 +2,176 @@ import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiCheck } from "react-icons/hi";
-const selections = {
-  sizes: [
-    {
-      id: 1,
-      name: "XXL",
-    },
-    {
-      id: 2,
-      name: "XL",
-    },
-    {
-      id: 3,
-      name: "L",
-    },
-    {
-      id: 4,
-      name: "M",
-    },
-    {
-      id: 5,
-      name: "S",
-    },
-  ],
-  colors: [
-    { id: 1, color: "#708c63" },
-    { id: 2, color: "#d2b762" },
-    { id: 3, color: "#636363" },
-    { id: 4, color: "#ba5a4d" },
-    { id: 5, color: "#7d5d83" },
-  ],
-};
-
+import classes from "./ClothesSelection.module.css";
+import { useState } from "react";
 import Product from "src/model/Product";
-
+import determineSize from "./SizeAndColor/Size";
+import determineColor from "./SizeAndColor/Color";
+import { useAppDispatch } from "src/store/hooks";
+import { cartActions } from "src/store/cartSlice";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface AppProps {
   singleProduct: Product;
 }
 
-// bg-[#708c63]
-// bg-[#d2b762]
-// bg-[#636363]
-// bg-[#ba5a4d]
-// bg-[#7d5d83]
-// py-[5px] px-[15px]
+////////////////////////////////////////////////////////////
+// THIS COMMENT IS IMPORTANCE, DON'T DELETE IT
+
+// bg-[#000] bg-[#fff]
+// bg-[#30323C]  bg-[#F4F4E8] bg-[#595E7B]
+// bg-[#181A29]
+
+// bg-[#E6B2B8]  bg-[#2D2C2F] bg-[#BFAA80]  bg-[#455851]
+// bg-[#7BB4B5]  bg-[#FAC0C3] bg-[#D1C2AD]
+// bg-[#E3E2DE]  bg-[#FE37A7] bg-[#2A2A2C]
+// bg-[#E9E7E6]
+// bg-[#46302C]
+// bg-[#121629]  bg-[#B1412C]
+// bg-[#272429]  bg-[#3D3D56]
+// bg-[#6C1F31]
+// bg-[#C1C0C9]  bg-[#D9C8B4]
+// bg-[#94815F]  bg-[#406174] bg-[#6A323F]  bg-[#656D6D]
+// bg-[#F0C1CB]
+// bg-[#F6DFA8]  bg-[#F4F4F4] bg-[#EBEBEB]
+// bg-[#C1AA84]
+// bg-[#37313C]
+
+// bg-[#E1DED5]
+
+///////////////////////////////////////////////////////////
+
 export default function ClothesSelection({ singleProduct }: AppProps) {
+  const [counter, setCounter] = useState(1);
+  const [sizeState, setSizeState] = useState<string | undefined>(undefined);
+  const [colorState, setColorState] = useState<string | undefined>(undefined);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const incrementHandler = () => {
+    setCounter((prevCounter) => prevCounter + 1); // NOT MUTATE STATE
+  };
+
+  const decrementHandler = () => {
+    setCounter((prevCounter) => (counter > 1 ? prevCounter - 1 : 1));
+  };
+
+  const updateSizeHandler = (size: string) => {
+    setSizeState(size);
+  };
+
+  const updateColorHandler = (color: string) => {
+    setColorState(color);
+  };
+
+  const addToCartHandler = () => {
+    if (!singleProduct.availability) {
+      toast.error("Add to basket failed! The product is out of stock for now", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      return;
+    }
+
+    const cartItem = {
+      id: router.query.productId as string,
+      name: singleProduct.name,
+      brand: singleProduct.brand,
+      img: singleProduct.image.img1,
+      price: singleProduct.price,
+      quantity: counter,
+      totalPrice: singleProduct.price * counter,
+    };
+    dispatch(cartActions.addItemToCart(cartItem));
+
+    toast.success("Add to basket succeeded! Check out your cart", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <>
       <div>
+        <ToastContainer />
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-5 text-lg">
             <p className="">Size:&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className="font-semibold">Medium</p>
+            <p className="font-semibold">{determineSize(sizeState)}</p>
           </div>
           <ul className="flex items-center gap-[5px] text-lg">
             {singleProduct.size.map((size) => (
-              <li
-                className="uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af] first:bg-primary-color last:crossed"
+              <button
+                onClick={updateSizeHandler.bind(null, size)}
+                className={`uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af]  last:crossed ${
+                  sizeState === size ? classes.selectedSize : ""
+                }`}
                 key={size}
               >
                 {size}
-              </li>
+              </button>
             ))}
           </ul>
         </div>
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-5 text-lg">
             <p className="">Color:</p>
-            <p className="font-semibold">Moss green</p>
+            <p className="font-semibold">{determineColor(colorState)}</p>
           </div>
           <ul className="flex items-center gap-[8px] ">
             {singleProduct.color.map((color) => (
-              <li
+              <button
+                onClick={() => updateColorHandler(color)}
                 className={`h-6 w-6 bg-[${color}] group flex items-center justify-center`}
                 key={color}
               >
-                <HiCheck className="invisible group-first:visible text-xl text-white" />
-              </li>
+                {colorState === color && (
+                  <HiCheck className="text-xl text-white" />
+                )}
+              </button>
             ))}
           </ul>
         </div>
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-5 text-lg">
             <p className="">Qty:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className="font-semibold">1</p>
+            <p className="font-semibold">{counter}</p>
           </div>
           <div className="flex items-center gap-[22px] px-[15px] py-[13px] bg-background-grayfa">
-            <button>
+            <button onClick={decrementHandler}>
               <GrFormSubtract className="text-2xl" />
             </button>
-            <div>1</div>
-            <button>
+            <div>{counter}</div>
+            <button onClick={incrementHandler}>
               <GrFormAdd className="text-2xl" />
             </button>
           </div>
         </div>
       </div>
-      <h3 className="text-right text-[40px] font-bold mb-[30px]">{`$${Math.round(
-        singleProduct.price
-      )}`}</h3>
+      <h3 className="text-right text-[40px] font-bold mb-[30px]">
+        {singleProduct.availability && `$${singleProduct.price}`}
+        {!singleProduct.availability && `Out of stock`}
+      </h3>
       <div className="flex gap-5">
         <button className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center hover:-translate-y-[2px] transition-all duration-[250ms] rounded-sm active:translate-y-0 active:scale-[.98]">
           <AiOutlineHeart className="h-7 w-7 text-rede7" />
         </button>
-        <button className="uppercase flex-1 bg-primary-color font-extrabold text-xl shadow-md active:shadow-sm active:scale-[.98] transition-all duration-[250ms] rounded-sm active:translate-y-0 hover:bg-[#fecd48] active:bg-[#e5b32f] hover:-translate-y-[2px] z-10 relative overflow-hidden group">
+        <button
+          className="uppercase flex-1 bg-primary-color font-extrabold text-xl shadow-md active:shadow-sm active:scale-[.98] transition-all duration-[250ms] rounded-sm active:translate-y-0 hover:bg-[#fecd48] active:bg-[#e5b32f] hover:-translate-y-[2px] z-10 relative overflow-hidden group"
+          onClick={addToCartHandler}
+        >
           add to basket
           <div className="-z-10 bg-[#ffffff33] absolute top-[-1000%] bottom-[-375%] w-9 translate3d-rotate group-hover:transition group-hover:duration-[1000ms] group-hover:ease-in-out group-hover:translate3d-rotate-hover"></div>
         </button>

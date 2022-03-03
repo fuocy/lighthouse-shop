@@ -9,9 +9,20 @@ interface AppProps {
 }
 
 export default function ClothesInfo({ singleProduct }: AppProps) {
+  // before:content-['Limited'] before:top-[35px] before:absolute before:right-[28px] before:text-rede7 before:bg-[#fdeeee] before:px-[18px] before:py-[12px] before:inline-block before:font-semibold
   return (
     <div>
-      <div className="bg-white px-[30px] pt-[37px] pb-[25px] mb-[30px] relative before:content-['Limited'] before:top-[35px] before:absolute before:right-[28px] before:text-rede7 before:bg-[#fdeeee] before:px-[18px] before:py-[12px] before:inline-block before:font-semibold">
+      <div className="bg-white px-[30px] pt-[37px] pb-[25px] mb-[30px] relative ">
+        {singleProduct.status.limited && (
+          <div className="top-[35px] absolute right-[28px] text-rede7 bg-[#fdeeee] px-[18px] py-[12px] inline-block font-semibold">
+            Limited
+          </div>
+        )}
+        {singleProduct.status.prebuy && (
+          <div className="top-[35px] absolute right-[28px] text-[##09a677] bg-[#99fad9] px-[18px] py-[12px] inline-block font-semibold">
+            Prebuy
+          </div>
+        )}
         <h2 className="text-[44px] font-extrabold mb-12">
           {singleProduct.name}
         </h2>
@@ -36,15 +47,6 @@ export default function ClothesInfo({ singleProduct }: AppProps) {
               {singleTag}
             </li>
           ))}
-          {/* <div className="bg-[#fafafa] px-[9px] py-[12px] text-[#4b5563]">
-            Men&apos;s Shirt
-          </div>
-          <div className="bg-[#fafafa] px-[9px] py-[12px] text-[#4b5563]">
-            Shirt
-          </div>
-          <div className="bg-[#fafafa] px-[9px] py-[12px] text-[#4b5563]">
-            Nike
-          </div> */}
         </ul>
         <ClothesSelection singleProduct={singleProduct} />
       </div>

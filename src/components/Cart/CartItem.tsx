@@ -3,22 +3,52 @@ import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { TiStarburst } from "react-icons/ti";
 import { BsCheck } from "react-icons/bs";
+import { useAppDispatch } from "src/store/hooks";
+import { cartActions } from "src/store/cartSlice";
 
 type AppProps = {
   img: string;
   name: string;
-  type: string;
+  brand: string;
   quantity: number;
   price: number;
+  id: string;
+  totalPrice: number;
 };
 
 export default function CartItem({
   img,
   name,
-  type,
+  brand,
   quantity,
   price,
+  id,
+  totalPrice,
 }: AppProps) {
+  const dispatch = useAppDispatch();
+
+  const decrementQuantity = () => {
+    dispatch(cartActions.removeItemFromCart(id));
+  };
+
+  const incrementQuantity = () => {
+    const newSingleItem = {
+      id,
+      name,
+      brand,
+      img,
+      quantity: 1,
+      price,
+      totalPrice: price * 1,
+    };
+    dispatch(cartActions.addItemToCart(newSingleItem));
+  };
+
+  const removeEntireItem = () => {
+    dispatch(cartActions.removeEntireItem(id));
+    console.log(id);
+  };
+
   return (
     <li
       className="grid grid-cols-cart-item items-center gap-10 justify-items-center
@@ -31,7 +61,7 @@ export default function CartItem({
         </div>
         <div className="flex-1">
           <h3
-            className="font-semibold text-xl
+            className="font-semibold text-[14px]
           mb-5"
           >
             {name}
@@ -41,9 +71,13 @@ export default function CartItem({
               <TiStarburst className="text-2xl text-primary-color" />
               <BsCheck className="text-lg text-black -translate-x-[21px]" />
             </div>
-            <p className="-translate-x-[15px] font-medium">{type}</p>
+            <p className="-translate-x-[15px] font-thin capitalize italic text-[14px]">
+              {brand}
+            </p>
           </div>
-          <button className="text-gray-600 text-sm">Remove</button>
+          <button onClick={removeEntireItem} className="text-gray-600 text-sm">
+            Remove
+          </button>
         </div>
       </div>
       <div
@@ -51,16 +85,16 @@ export default function CartItem({
       px-[15px] py-[13px] 
       bg-background-grayfa"
       >
-        <button>
+        <button onClick={decrementQuantity}>
           <GrFormSubtract className="text-2xl" />
         </button>
         <div>{quantity}</div>
-        <button>
+        <button onClick={incrementQuantity}>
           <GrFormAdd className="text-2xl" />
         </button>
       </div>
       <div className="font-semibold text-lg">{`$${price}`}</div>
-      <div className="font-semibold text-lg">{`$${quantity * price}`}</div>
+      <div className="font-semibold text-lg">{`$${totalPrice}`}</div>
     </li>
   );
 }

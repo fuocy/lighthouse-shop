@@ -3,17 +3,20 @@ import MainContent from "./MainContent";
 import Title from "./Title";
 import ImageSearchBar from "./ImageSearchBar";
 import Product from "src/model/Product";
+import { useRouter } from "next/router";
 
 interface AppProps {
   productsList: Product[];
 }
 
 export default function ProductCategory({ productsList }: AppProps) {
+  const router = useRouter();
+
   return (
     <div className="layout-container pb-20">
-      <CurrentPath url1="Men's product" />
+      <CurrentPath url1={`${router.query.productCategory}'s product`} />
       <div className="flex">
-        <Title />
+        <Title productsList={productsList} />
         <ImageSearchBar />
       </div>
       <MainContent productsList={productsList} />

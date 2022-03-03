@@ -36,6 +36,7 @@ export default function DifferentColor({ singleProduct }: AppProps) {
               alt={singleProduct.name}
               layout="fill"
               className="object-cover"
+              priority
             />
           </li>
         ))}
