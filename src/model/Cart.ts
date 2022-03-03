@@ -6,6 +6,8 @@ interface Cart {
   quantity: number;
   price: number;
   totalPrice: number;
+  color: string;
+  size: string;
 }
 
 export default Cart;

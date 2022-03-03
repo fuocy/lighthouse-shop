@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "src/store/store";
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 

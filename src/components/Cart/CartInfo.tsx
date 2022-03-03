@@ -4,40 +4,41 @@ import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { useAppSelector } from "src/store/hooks";
 import { useRouter } from "next/router";
-const cartLists = [
-  {
-    id: 1,
-    img: "https://i.ibb.co/tKt3jb5/shirt1.png",
-    name: "Nike Men's Shirt",
-    type: "Nike",
-    quantity: 3,
-    price: 69,
-  },
-  {
-    id: 2,
-    img: "https://i.ibb.co/rdTrKGL/Untitled-7-removebg-preview.png",
-    name: "Nike Men's Shirt",
-    type: "Nike",
-    quantity: 3,
-    price: 69,
-  },
-  {
-    id: 3,
-    img: "https://i.ibb.co/Mgt3H7C/Untitled-4-removebg-preview.png",
-    name: "Nike Men's Shirt",
-    type: "Nike",
-    quantity: 3,
-    price: 69,
-  },
-  // {
-  //   id: 4,
-  //   img: "https://i.ibb.co/RHhBFw9/Untitled-5-removebg-preview.png",
-  //   name: "Nike Men's Shirt",
-  //   type: "Nike",
-  //   quantity: 3,
-  //   price: 69,
-  // },
-];
+import CartEmpty from "./CartEmpty";
+// const cartLists = [
+//   {
+//     id: 1,
+//     img: "https://i.ibb.co/tKt3jb5/shirt1.png",
+//     name: "Nike Men's Shirt",
+//     type: "Nike",
+//     quantity: 3,
+//     price: 69,
+//   },
+//   {
+//     id: 2,
+//     img: "https://i.ibb.co/rdTrKGL/Untitled-7-removebg-preview.png",
+//     name: "Nike Men's Shirt",
+//     type: "Nike",
+//     quantity: 3,
+//     price: 69,
+//   },
+//   {
+//     id: 3,
+//     img: "https://i.ibb.co/Mgt3H7C/Untitled-4-removebg-preview.png",
+//     name: "Nike Men's Shirt",
+//     type: "Nike",
+//     quantity: 3,
+//     price: 69,
+//   },
+//   // {
+//   //   id: 4,
+//   //   img: "https://i.ibb.co/RHhBFw9/Untitled-5-removebg-preview.png",
+//   //   name: "Nike Men's Shirt",
+//   //   type: "Nike",
+//   //   quantity: 3,
+//   //   price: 69,
+//   // },
+// ];
 
 export default function CartInfo() {
   const cartState = useAppSelector((state) => state.cart);
@@ -62,17 +63,19 @@ export default function CartInfo() {
         <h1>Shopping Cart</h1>
         <p className="text-xl text-black/75">{cartState.totalQuantity} items</p>
       </div>
-      <div className="grid grid-cols-cart-item gap-10 justify-items-center mb-4">
-        <div
-          className="text-gray-700 text-sm 
+      {cartState.totalQuantity !== 0 && (
+        <div className="grid grid-cols-cart-item gap-10 justify-items-center mb-4">
+          <div
+            className="text-gray-700 text-sm 
     justify-self-start pl-5"
-        >
-          PRODUCTS DETAIL
+          >
+            PRODUCTS DETAIL
+          </div>
+          <div className="text-gray-700 text-sm  ">QUANTITY</div>
+          <div className="text-gray-700 text-sm ">PRICE</div>
+          <div className="text-gray-700 text-sm  ">TOTAL</div>
         </div>
-        <div className="text-gray-700 text-sm  ">QUANTITY</div>
-        <div className="text-gray-700 text-sm ">PRICE</div>
-        <div className="text-gray-700 text-sm  ">TOTAL</div>
-      </div>
+      )}
       <div>
         <ul
           className={`overflow-y-auto h-[500px] ${classes["custom-scrollbar"]}`}
@@ -88,12 +91,14 @@ export default function CartInfo() {
                 quantity={cart.quantity}
                 price={cart.price}
                 totalPrice={cart.totalPrice}
+                color={cart.color}
+                size={cart.size}
               />
             ))}
-          {cartState.items.length === 0 && <p>Add something to your cart</p>}
+          {cartState.items.length === 0 && <CartEmpty />}
         </ul>
       </div>
-      <button onClick={goBackHandler} passHref>
+      <button onClick={goBackHandler}>
         <a className="flex items-center gap-3 pb-8 cursor-pointer pl-5">
           <HiOutlineArrowNarrowLeft className="text-red-500 text-xl -translate-y-[1px]" />
           <p

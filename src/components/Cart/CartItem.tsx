@@ -14,7 +14,35 @@ type AppProps = {
   price: number;
   id: string;
   totalPrice: number;
+  color: string;
+  size: string;
 };
+
+////////////////////////////////////////////////////////////
+// THIS COMMENT IS IMPORTANCE, DON'T DELETE IT
+
+// bg-[#000] bg-[#fff]
+// bg-[#30323C]  bg-[#F4F4E8] bg-[#595E7B]
+// bg-[#181A29]
+
+// bg-[#E6B2B8]  bg-[#2D2C2F] bg-[#BFAA80]  bg-[#455851]
+// bg-[#7BB4B5]  bg-[#FAC0C3] bg-[#D1C2AD]
+// bg-[#E3E2DE]  bg-[#FE37A7] bg-[#2A2A2C]
+// bg-[#E9E7E6]
+// bg-[#46302C]
+// bg-[#121629]  bg-[#B1412C]
+// bg-[#272429]  bg-[#3D3D56]
+// bg-[#6C1F31]
+// bg-[#C1C0C9]  bg-[#D9C8B4]
+// bg-[#94815F]  bg-[#406174] bg-[#6A323F]  bg-[#656D6D]
+// bg-[#F0C1CB]
+// bg-[#F6DFA8]  bg-[#F4F4F4] bg-[#EBEBEB]
+// bg-[#C1AA84]
+// bg-[#37313C]
+
+// bg-[#E1DED5]
+
+///////////////////////////////////////////////////////////
 
 export default function CartItem({
   img,
@@ -24,6 +52,8 @@ export default function CartItem({
   price,
   id,
   totalPrice,
+  color,
+  size,
 }: AppProps) {
   const dispatch = useAppDispatch();
 
@@ -40,13 +70,14 @@ export default function CartItem({
       quantity: 1,
       price,
       totalPrice: price * 1,
+      color,
+      size,
     };
     dispatch(cartActions.addItemToCart(newSingleItem));
   };
 
   const removeEntireItem = () => {
     dispatch(cartActions.removeEntireItem(id));
-    console.log(id);
   };
 
   return (
@@ -62,22 +93,31 @@ export default function CartItem({
         <div className="flex-1">
           <h3
             className="font-semibold text-[14px]
-          mb-5"
+          mb-2"
           >
             {name}
           </h3>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-2 gap-2">
             <div className="flex items-center">
-              <TiStarburst className="text-2xl text-primary-color" />
-              <BsCheck className="text-lg text-black -translate-x-[21px]" />
+              <TiStarburst className="text-lg text-primary-color" />
+              <BsCheck className="text-sm text-black -translate-x-[16px]" />
             </div>
             <p className="-translate-x-[15px] font-thin capitalize italic text-[14px]">
               {brand}
             </p>
           </div>
-          <button onClick={removeEntireItem} className="text-gray-600 text-sm">
-            Remove
-          </button>
+          <div className="text-[13px] flex items-center gap-24">
+            <div className="text-[13px] flex items-center gap-2">
+              <p>{size}</p>
+              <div className={`h-3 w-3 bg-[${color}]`}></div>
+            </div>
+            <button
+              onClick={removeEntireItem}
+              className="text-gray-600 text-sm  hover:text-gray-400 transition"
+            >
+              Remove
+            </button>
+          </div>
         </div>
       </div>
       <div

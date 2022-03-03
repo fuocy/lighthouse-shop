@@ -69,7 +69,21 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
     if (!singleProduct.availability) {
       toast.error("Add to basket failed! The product is out of stock for now", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      return;
+    }
+
+    if (colorState === undefined || sizeState === undefined) {
+      toast.error("Please choose a size and a color for your clothes", {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -88,12 +102,14 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
       price: singleProduct.price,
       quantity: counter,
       totalPrice: singleProduct.price * counter,
+      color: colorState,
+      size: sizeState,
     };
     dispatch(cartActions.addItemToCart(cartItem));
 
     toast.success("Add to basket succeeded! Check out your cart", {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
