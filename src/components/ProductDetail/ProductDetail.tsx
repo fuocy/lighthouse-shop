@@ -5,12 +5,20 @@ import Image from "next/image";
 import footerImage from "assets/footer3.jpg";
 import Product from "src/model/Product";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "src/store/hooks";
+import { useEffect } from "react";
+import { imageActions } from "src/store/imageSlice";
 interface AppProps {
   singleProduct: Product;
 }
 
 export default function ProductDetail({ singleProduct }: AppProps) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(imageActions.resetCurrentImage());
+  }, [dispatch]);
 
   return (
     <>

@@ -134,7 +134,9 @@ export default function CartItem({
         </button>
       </div>
       <div className="font-semibold text-lg">{`$${price}`}</div>
-      <div className="font-semibold text-lg">{`$${totalPrice}`}</div>
+      <div className="font-semibold text-lg">{`$${+totalPrice.toFixed(
+        2
+      )}`}</div>
     </li>
   );
 }

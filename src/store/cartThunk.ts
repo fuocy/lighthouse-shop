@@ -29,7 +29,7 @@ export function fetchCartData() {
         })
       );
 
-      console.log(data);
+
     } catch (error: any) {
       console.error(`${error.message} 😢😭`);
     }

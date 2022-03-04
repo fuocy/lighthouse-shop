@@ -47,8 +47,10 @@ export default function ProductItem({
             Prebuy
           </div>
         )} */}
+
+        {/* bg-[#E8E9EB] */}
         {discount > 0 && (
-          <div className="absolute top-[9px] right-[-47px] text-black bg-[#E8E9EB] font-medium h-[30px] w-[139px] flex items-center justify-center rotate-[45deg]">
+          <div className="absolute top-[9px] right-[-47px] text-black  bg-primary-color font-medium h-[30px] w-[139px] flex items-center justify-center rotate-[45deg]">
             <p className="text-sm">{discount}%</p>
             <p className="uppercase text-[9px] font-semibold -rotate-90 ">
               off
@@ -72,7 +74,7 @@ export default function ProductItem({
         <div>
           <div className="flex items-center mb-2 ml-[-5px]">
             <div className="flex items-center">
-              <TiStarburst className="text-2xl text-[#F6F5F3]" />
+              <TiStarburst className="text-2xl  text-[#F6F5F3]" />
               <BsCheck className="text-lg text-black -translate-x-[21px]" />
             </div>
             <p className="-translate-x-[15px] font-light text-sm capitalize italic text-slate-700">
@@ -80,9 +82,7 @@ export default function ProductItem({
             </p>
           </div>
           {availability && (
-            <div className="text-right text-sm font-thin ">{`$${Math.round(
-              price
-            )}`}</div>
+            <div className="text-right text-sm font-thin ">{`$${price}`}</div>
           )}
           {!availability && (
             <div className="text-right text-sm text-slate-700 italic font-thin ">
@@ -90,7 +90,7 @@ export default function ProductItem({
             </div>
           )}
           <div className="flex items-center gap-2 mt-auto">
-            <AiOutlineHeart className="text-sm text-[#19110B]" />
+            <AiOutlineHeart className="text-sm  text-[#19110B]" />
             {/* <AiTwotoneHeart className="text-lg text-rede7" /> */}
             <p className="text-[13px]">{love}</p>
           </div>
