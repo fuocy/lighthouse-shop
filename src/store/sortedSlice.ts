@@ -22,3 +22,5 @@ export const sortSlice = createSlice({
 export const sortActions = sortSlice.actions;
 
 export default sortSlice.reducer;
+
+// THIS IS USELESS. I WILL DELETE THIS FILE LATER

@@ -82,7 +82,10 @@ export default function ProductItem({
             </p>
           </div>
           {availability && (
-            <div className="text-right text-sm font-thin ">{`$${price}`}</div>
+            <div className="text-right text-sm font-thin ">{`$${(
+              price -
+              (price * discount) / 100
+            ).toFixed(2)}`}</div>
           )}
           {!availability && (
             <div className="text-right text-sm text-slate-700 italic font-thin ">

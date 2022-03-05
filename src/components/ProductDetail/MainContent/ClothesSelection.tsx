@@ -3,7 +3,7 @@ import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
 import { HiCheck } from "react-icons/hi";
 import classes from "./ClothesSelection.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "src/model/Product";
 import determineSize from "./SizeAndColor/Size";
 import determineColor from "./SizeAndColor/Color";
@@ -46,6 +46,7 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
   const [counter, setCounter] = useState(1);
   const [sizeState, setSizeState] = useState<string | undefined>(undefined);
   const [colorState, setColorState] = useState<string | undefined>(undefined);
+  const [outOfSize, setOutOfSize] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -80,6 +81,20 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
       return;
     }
 
+    if (sizeState === outOfSize) {
+      toast.error("This size is out of stock for now!", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      return;
+    }
+
     if (colorState === undefined || sizeState === undefined) {
       toast.error("Please choose a size and a color for your clothes", {
         position: "top-right",
@@ -99,9 +114,16 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
       name: singleProduct.name,
       brand: singleProduct.brand,
       img: singleProduct.image.img1,
-      price: singleProduct.price,
+      price: +(
+        singleProduct.price -
+        (singleProduct.price * singleProduct.discount) / 100
+      ).toFixed(2),
       quantity: counter,
-      totalPrice: singleProduct.price * counter,
+      totalPrice:
+        +(
+          singleProduct.price -
+          (singleProduct.price * singleProduct.discount) / 100
+        ).toFixed(2) * counter,
       color: colorState,
       size: sizeState,
     };
@@ -118,6 +140,17 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
     });
   };
 
+  useEffect(() => {
+    if (singleProduct.status.limited) {
+      const outSize =
+        singleProduct.size[
+          Math.floor(Math.random() * singleProduct.size.length - 1) + 1
+        ];
+
+      setOutOfSize(outSize);
+    }
+  }, [singleProduct]);
+
   return (
     <>
       <div>
@@ -128,12 +161,14 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
             <p className="font-semibold">{determineSize(sizeState)}</p>
           </div>
           <ul className="flex items-center gap-[5px] text-lg">
+            {/* last:crossed
+            last:text-[#9ca3af]  */}
             {singleProduct.size.map((size) => (
               <button
                 onClick={updateSizeHandler.bind(null, size)}
-                className={`uppercase leading-none py-[10px] px-[12px] bg-[#fafafa] last:text-[#9ca3af]  last:crossed ${
-                  sizeState === size ? classes.selectedSize : ""
-                }`}
+                className={`uppercase leading-none py-[10px] px-[12px] bg-[#fafafa]  
+                ${outOfSize === size && "crossed text-[#9ca3af]"}
+                ${sizeState === size ? classes.selectedSize : ""}`}
                 key={size}
               >
                 {size}
@@ -176,8 +211,21 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
           </div>
         </div>
       </div>
-      <h3 className="text-right text-[40px] font-bold mb-[30px]">
-        {singleProduct.availability && `$${singleProduct.price}`}
+      <h3 className="text-right text-[40px] font-bold mb-[30px] flex items-center gap-4 justify-end">
+        {singleProduct.discount > 0 && (
+          <p className="text-base text-gray-700 font-thin line-through">
+            {singleProduct.price}
+          </p>
+        )}
+        {singleProduct.availability && (
+          <p>
+            {`$${(
+              singleProduct.price -
+              (singleProduct.price * singleProduct.discount) / 100
+            ).toFixed(2)}
+            `}
+          </p>
+        )}
         {!singleProduct.availability && `Out of stock`}
       </h3>
       <div className="flex gap-5">

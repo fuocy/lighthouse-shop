@@ -32,7 +32,7 @@ export default function Checkboxs() {
               id={option.title.toLowerCase()}
               name="checkboxs"
               value={option.title.toLowerCase()}
-              className="appearance-none h-[15px] w-[15px] bg-primary-color rounded-md peer transition "
+              className="appearance-none h-[15px] w-[15px] bg-slate-200 rounded-md peer transition "
             />
 
             <label
@@ -42,14 +42,14 @@ export default function Checkboxs() {
               peer-checked:font-medium  
               peer-checked:after:absolute 
               peer-checked:after:top-[8.19px] 
-              peer-checked:after:bg-white
+              peer-checked:after:bg-black
               peer-checked:after:left-[-32px]
               peer-checked:after:w-[10px]
               peer-checked:after:h-[2px]
               peer-checked:after:rotate-[128deg]
               peer-checked:before:absolute 
               peer-checked:before:top-[8.19px] 
-              peer-checked:before:bg-white
+              peer-checked:before:bg-black
               peer-checked:before:left-[-34px]
               peer-checked:before:w-[5px]
               peer-checked:before:h-[2px]

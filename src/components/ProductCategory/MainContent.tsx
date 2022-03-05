@@ -2,7 +2,7 @@ import AccordionCategory from "./Accordions/AccordionCategory";
 import Accordion from "./Accordions/fail";
 import Checkboxs from "./Checkboxs/Checkboxs";
 import ProductList from "./ProductList";
-
+// import { PaginatedItems } from "./ProductList";
 import Product from "src/model/Product";
 
 interface AppProps {
@@ -17,6 +17,7 @@ export default function MainContent({ productsList }: AppProps) {
         <Checkboxs />
       </div>
       <ProductList productsList={productsList} />
+      {/* <PaginatedItems itemsPerPage={9} /> */}
     </div>
   );
 }

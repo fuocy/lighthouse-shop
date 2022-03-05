@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import imageReducer from "./imageSlice";
-import sortedReducer from "./sortedSlice";
+import filterTypeReducer from "./filterTypeSlice";
 const store = configureStore({
   reducer: {
     cart: cartReducer,
     image: imageReducer,
-    sorted: sortedReducer,
+    filterType: filterTypeReducer,
   },
 });
 

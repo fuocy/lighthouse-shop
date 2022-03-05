@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { FaSortAmountDown } from "react-icons/fa";
 import Product from "src/model/Product";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { filterTypeActions } from "src/store/filterTypeSlice";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 // import { useAppDispatch } from "src/store/hooks";
 // import { sortActions } from "src/store/sortedSlice";
 
@@ -31,6 +35,13 @@ const sortProducts = (
 
 export default function Title({ productsList }: AppProps) {
   const [btnPress, setBtnPress] = useState("");
+  const filteredProducts = useAppSelector(
+    (state) => state.filterType.filteredProducts
+  );
+  // const filteredProducts = useAppSelector(
+  //   (state) => state.filterType.filteredProducts
+  // );
+  // const dispatch = useAppDispatch();
 
   const router = useRouter();
   // const dispatch = useAppDispatch();
@@ -45,11 +56,41 @@ export default function Title({ productsList }: AppProps) {
     //   })
     // );
 
+    if (filteredProducts.length > 0) {
+      toast.warn(
+        "Sorting can't be done when in filtered mode. Do you know why? I still also don't know why 😐",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
+
     setBtnPress(btnPress);
   };
 
   const sortDescendingHandler = (btnPress: string) => {
     router.push(`${router.query.productCategory}?sort=desc`);
+
+    if (filteredProducts.length > 0) {
+      toast.warn(
+        "Sorting can't be done when in filtered mode. Do you know why? I still also don't know why 😐",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+    }
     // dispatch(
     //   sortActions.handleSort({
     //     products: productsList,
@@ -82,6 +123,7 @@ export default function Title({ productsList }: AppProps) {
 
   return (
     <div>
+      <ToastContainer />
       <div className="mt-[30px] font-bold text-5xl mb-6 capitalize">
         {router.query.productCategory}
         {router.query.productCategory !== "shoes" &&

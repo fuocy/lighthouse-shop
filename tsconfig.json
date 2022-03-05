@@ -27,7 +27,8 @@
     "src/components/layout/ActiveLink.js",
     "src/components/ProductDetail",
     "src/components/ProductCategory/Accordions",
-    "src/components/layout/Navigation.tsx"
+    "src/components/layout/Navigation.tsx",
+    "src/components/ProductCategory/ProductList.js"
   ],
   "exclude": ["node_modules"]
 }
