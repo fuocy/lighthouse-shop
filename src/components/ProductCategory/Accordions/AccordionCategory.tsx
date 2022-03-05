@@ -18,6 +18,7 @@ export default function AccordionCategory() {
   useEffect(() => {
     if (selectedCate === "no filter") {
       dispatch(filterTypeActions.replaceByFilteredProduct([]));
+      return;
     }
 
     const fetchFilteredProducts = async () => {

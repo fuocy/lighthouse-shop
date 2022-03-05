@@ -151,6 +151,11 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
     }
   }, [singleProduct]);
 
+  useEffect(() => {
+    setSizeState("");
+    setColorState("");
+  }, [singleProduct]);
+
   return (
     <>
       <div>

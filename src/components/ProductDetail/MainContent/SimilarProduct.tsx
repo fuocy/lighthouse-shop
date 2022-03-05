@@ -160,6 +160,7 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
       <h4 className="text-2xl font-semibold mb-5 text-gray-700">
         Similar products
       </h4>
+
       <div className="relative swiper">
         <ul className="grid grid-cols-5 gap-x-[17px] swiper-wrapper">
           {similarProducts.map((similar) => (
