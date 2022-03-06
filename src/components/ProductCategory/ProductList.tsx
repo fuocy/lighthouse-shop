@@ -22,13 +22,7 @@ export default function ProductList({ productsList }: AppProps) {
   const filteredProducts = useAppSelector(
     (state) => state.filterType.filteredProducts
   );
-
   // let sortedProducts = useAppSelector((state) => state.sorted.sortedProduct);
-  // console.log(sortedProducts);
-
-  // const displayProducts =
-  //   sortedProducts.length > 0 ? sortedProducts : productsList;
-
   const displayProducts =
     filteredProducts.length > 0 ? filteredProducts : productsList;
 

@@ -1,6 +1,7 @@
-import Link from "next/link";
 import { MdStar } from "react-icons/md";
 import Product from "src/model/Product";
+import { Link } from "react-scroll";
+import useStore from "src/store/store-zustand/useStore";
 interface AppProps {
   singleProduct: Product;
 }
@@ -37,8 +38,10 @@ export default function Rating({ singleProduct }: AppProps) {
         <MdStar className="text-2xl text-primary-color" />
         <MdStar className="text-2xl text-[#bebebe]" /> */}
       </ul>
-      <Link href="/" passHref>
-        <a>(Read all review)</a>
+      <Link to="tab-section" smooth={true} offset={-100}>
+        <a className="hover:text-gray-500 transition cursor-pointer ">
+          (Read all review)
+        </a>
       </Link>
     </div>
   );

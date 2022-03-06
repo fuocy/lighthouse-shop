@@ -81,8 +81,8 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
       return;
     }
 
-    if (sizeState === outOfSize) {
-      toast.error("This size is out of stock for now!", {
+    if (colorState === undefined || sizeState === undefined) {
+      toast.error("Please choose a size and a color", {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -95,8 +95,8 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
       return;
     }
 
-    if (colorState === undefined || sizeState === undefined) {
-      toast.error("Please choose a size and a color for your clothes", {
+    if (sizeState === outOfSize) {
+      toast.error("This size is out of stock for now!", {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -152,8 +152,8 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
   }, [singleProduct]);
 
   useEffect(() => {
-    setSizeState("");
-    setColorState("");
+    setSizeState(undefined);
+    setColorState(undefined);
   }, [singleProduct]);
 
   return (

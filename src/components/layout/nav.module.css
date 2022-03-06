@@ -1,4 +1,4 @@
-.nav {
+/* .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -6,10 +6,10 @@
   width: 100%;
   padding: 0 6rem;
   z-index: 100;
-}
+} */
 
 /* nav and stickly class at the same time */
-.nav.sticky {
+/* .nav.sticky {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.95);
-}
+} */

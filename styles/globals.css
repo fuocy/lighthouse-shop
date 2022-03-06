@@ -87,4 +87,8 @@
   .translate3d-rotate-hover {
     transform: translate3d(2000%, 0, 0) rotate(35deg);
   }
+
+  .shape-outside-round {
+    shape-outside: circle();
+  }
 }

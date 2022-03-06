@@ -28,7 +28,8 @@
     "src/components/ProductDetail",
     "src/components/ProductCategory/Accordions",
     "src/components/layout/Navigation.tsx",
-    "src/components/ProductCategory/ProductList.js"
+    "src/components/ProductCategory/ProductList.js",
+    "src/hooks/useHttp.js"
   ],
   "exclude": ["node_modules"]
 }
