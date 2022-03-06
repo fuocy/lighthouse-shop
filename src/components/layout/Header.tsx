@@ -118,7 +118,7 @@ export default function Header() {
   return (
     <header className={`pt-10 px-24 pb-5 transition duration-300 `}>
       <div className={`flex items-center justify-between  relative mb-14`}>
-        <Link href="/login" passHref>
+        <Link href="/auth" passHref>
           <a className="flex items-center gap-1">
             <HiOutlineUser className="text-2xl" />
             <p className="font-semibold">Login</p>

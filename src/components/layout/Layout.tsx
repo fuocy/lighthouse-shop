@@ -15,7 +15,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
   const cart = useAppSelector((state) => state.cart);
   const router = useRouter();
 
-  const showHeader = router.pathname === "/login" ? false : true;
+  const showHeader = router.pathname === "/auth" ? false : true;
 
   useEffect(() => {
     dispatch(fetchCartData());
