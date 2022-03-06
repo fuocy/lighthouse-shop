@@ -29,7 +29,9 @@
     "src/components/ProductCategory/Accordions",
     "src/components/layout/Navigation.tsx",
     "src/components/ProductCategory/ProductList.js",
-    "src/hooks/useHttp.js"
+    "src/hooks/useHttp.js",
+    "src/components/common/utils.js",
+    "src/components/login/Login.js"
   ],
   "exclude": ["node_modules"]
 }

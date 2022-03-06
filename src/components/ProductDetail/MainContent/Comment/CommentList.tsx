@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RenderStar from "./RenderStar";
+import RenderStar from "@/components/common/RenderStar";
 import classes from "styles/scrollbar.module.css";
 import Comment from "src/model/Comment";
 
@@ -28,7 +28,7 @@ export default function CommentList({ comments }: AppProps) {
           <div>
             <div className="flex-between">
               <div className="font-semibold text-lg">{comment.name}</div>
-              <RenderStar numStar={comment.numStar} />
+              <RenderStar numStar={comment.numStar} sizeStar="text-base" />
             </div>
             <div className="text-gray-600 text-base">{comment.text}</div>
           </div>

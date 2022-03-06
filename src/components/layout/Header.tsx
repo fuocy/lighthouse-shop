@@ -91,6 +91,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useAppSelector } from "src/store/hooks";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+
 export default function Header() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const router = useRouter();

@@ -164,12 +164,9 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
       <div className="relative swiper">
         <ul className="grid grid-cols-5 gap-x-[17px] swiper-wrapper">
           {similarProducts.map((similar) => (
-            <li
-              key={similar.id}
-              className="flex flex-col group relative swiper-slide"
-            >
+            <li key={similar.id} className=" group relative swiper-slide ">
               <Link href={`/${similar.category}/${similar.id}`} passHref>
-                <a>
+                <a className="flex flex-col">
                   <div className="bg-background-grayec relative w-[220px] h-[250px]">
                     <Image
                       src={similar.image.img1}
@@ -178,7 +175,7 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-4 bg-white flex-1 flex flex-col justify-between">
+                  <div className="p-4 bg-white flex-1  flex flex-col justify-between ">
                     <h5 className="mb-6 text-sm font-medium">{similar.name}</h5>
                     <div className="text-base font-semibold relative">
                       {similar.discount > 0 && (
