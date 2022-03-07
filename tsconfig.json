@@ -31,7 +31,8 @@
     "src/components/ProductCategory/ProductList.js",
     "src/hooks/useHttp.js",
     "src/components/common/utils.js",
-    "src/components/login/Auth.js"
+    "src/components/login/Auth.js",
+    "src/components/common/Modal.tsx"
   ],
   "exclude": ["node_modules"]
 }

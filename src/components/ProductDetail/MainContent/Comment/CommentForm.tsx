@@ -8,6 +8,8 @@ import classes from "styles/scrollbar.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { text } from "stream/consumers";
+import useStore from "src/store/store-zustand/useStore";
+import { useRouter } from "next/router";
 
 type AppProps = {
   numStar: number;
@@ -21,13 +23,33 @@ export default function CommentForm({
   productId,
 }: AppProps) {
   const inputTextRef = useRef<HTMLTextAreaElement>(null);
-
+  const isLoggedIn = useStore((state) => !!state.tokenId);
   const { sendRequest, error, status } = useHtttp(sendComment);
-
+  const router = useRouter();
+  const emailUser = useStore((state) => state.email);
+  const avatarUser = useStore((state) => state.avatar);
   const sendCommentHandler = (e: React.FormEvent) => {
     e.preventDefault();
     // We have to put this enteredText INSIDE this function to ensure the INPUT and the REF is correctly CONNECTED and HAVE VALUE (SO WE USE !.value BELOW FOR THIS REASON)
     const enteredText = inputTextRef.current!.value;
+
+    if (!isLoggedIn) {
+      toast.error("You have to log in to comment", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        router.push("/auth");
+      }, 2000);
+
+      return;
+    }
 
     if (!numStar || enteredText.trim().length === 0) {
       toast.error("You have to write something and rate us with 1 - 5 stars", {
@@ -43,13 +65,24 @@ export default function CommentForm({
       return;
     }
 
+    // DATE
+
+    const commentDate = new Date();
+    const formatedCommentDate = commentDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
     sendRequest({
       productId,
       commentData: {
         text: enteredText,
-        avatar: "https://source.unsplash.com/random",
-        name: "Phuoc",
+        avatar: avatarUser,
+        name: emailUser.slice(0, -10),
         numStar,
+        date: formatedCommentDate,
       },
     });
   };
@@ -82,7 +115,7 @@ export default function CommentForm({
       >
         <div className="relative h-[60px] w-[60px] rounded-full overflow-hidden ">
           <Image
-            src="https://source.unsplash.com/user/seteph"
+            src={`${avatarUser || "https://i.ibb.co/CJqGvY6/satthudatinh.jpg"}`}
             alt="avatar people who comments"
             layout="fill"
             className="object-cover"

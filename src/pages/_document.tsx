@@ -20,6 +20,7 @@ class MyDocument extends Document {
         <Head />
         <body className="selection:bg-[#fff700] selection:text-black">
           <Main />
+          <div id="my-portal"></div>
           <NextScript />
         </body>
       </Html>

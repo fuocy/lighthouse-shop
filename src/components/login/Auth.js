@@ -1,9 +1,11 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { useState } from "react";
+import useStore from "src/store/store-zustand/useStore";
 
 export default function Login() {
-  const [isSignIn, setIsSignIn] = useState(true);
+  // const [isSignIn, setIsSignIn] = useState(true);
+  const isSignIn = useStore((state) => state.isSignIn);
 
   return (
     <div className="-z-10 ">
@@ -14,8 +16,8 @@ export default function Login() {
         />
         Your browser does not support the video tag.
       </video>
-      {isSignIn && <SignIn onSetAuth={setIsSignIn} />}
-      {!isSignIn && <SignUp onSetAuth={setIsSignIn} />}
+      {isSignIn && <SignIn />}
+      {!isSignIn && <SignUp />}
     </div>
   );
 }

@@ -91,39 +91,66 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useAppSelector } from "src/store/hooks";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import useStore from "src/store/store-zustand/useStore";
 
 export default function Header() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const router = useRouter();
   const path = router.asPath;
 
-  const [scrolled, setScrolled] = useState(false);
+  // const [scrolled, setScrolled] = useState(false);
 
-  const handleScroll = () => {
-    const offset = window.scrollY;
+  // const handleScroll = () => {
+  //   const offset = window.scrollY;
 
-    if (offset > 200) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
+  //   if (offset > 200) {
+  //     setScrolled(true);
+  //   } else {
+  //     setScrolled(false);
+  //   }
+  // };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  // }, []);
 
   // className={scrolled && "fixed top-0 left-0 bg-slate-400"}
+  const isLoggedIn = useStore((state) => !!state.tokenId);
+  const userEmail = useStore((state) => state.email);
+  const userAvatar = useStore((state) => state.avatar);
 
+  const logout = useStore((state) => state.logout);
   return (
     <header className={`pt-10 px-24 pb-5 transition duration-300 `}>
       <div className={`flex items-center justify-between  relative mb-14`}>
-        <Link href="/auth" passHref>
-          <a className="flex items-center gap-1">
-            <HiOutlineUser className="text-2xl" />
-            <p className="font-semibold">Login</p>
-          </a>
-        </Link>
+        {!isLoggedIn && (
+          <Link href="/auth" passHref>
+            <a className="flex items-center gap-1">
+              <HiOutlineUser className="text-2xl" />
+              <p className="font-semibold">Login</p>
+            </a>
+          </Link>
+        )}
+        {isLoggedIn && (
+          <div className="flex items-center gap-3">
+            <div className="relative h-11 w-11 rounded-full overflow-hidden">
+              <Image
+                src={userAvatar}
+                alt=""
+                layout="fill"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <div className="text-semibold text-base">
+                {userEmail.slice(0, -10)}
+              </div>
+              <button onClick={logout} className="text-gray-500 text-sm">
+                Logout
+              </button>
+            </div>
+          </div>
+        )}
         <Link href="/" passHref>
           <a>
             <div className="text-[27px] relative -translate-x-8">

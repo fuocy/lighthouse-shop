@@ -25,12 +25,15 @@ export default function CommentList({ comments }: AppProps) {
               className="object-cover "
             />
           </div>
-          <div>
+          <div className="flex-1">
             <div className="flex-between">
-              <div className="font-semibold text-lg">{comment.name}</div>
+              <div className="font-medium text-base">{comment.name}</div>
               <RenderStar numStar={comment.numStar} sizeStar="text-base" />
             </div>
             <div className="text-gray-600 text-base">{comment.text}</div>
+            <div className="text-xs text-gray-400 text-right">
+              {comment.date}
+            </div>
           </div>
         </li>
       ))}
