@@ -49,3 +49,28 @@ export const signInAccount = async function (requestData) {
 
   return data;
 };
+
+// export const sendLoveCount = async function (requestData) {
+//   const { data } = await axios.post(
+//     `https://lighthouse-lovecount-default-rtdb.firebaseio.com/loveCount/${requestData.id}.json`,
+//     requestData.loveData
+//   );
+
+//   return data;
+// };
+
+// export const fetchLoveCount = async function (productId) {
+//   const { data } = await axios.get(
+//     `https://lighthouse-lovecount-default-rtdb.firebaseio.com/loveCount/${productId}.json`
+//   );
+
+//   const loadedLoveData = [];
+//   for (const key in data) {
+//     loadedLoveData.push({
+//       id: key,
+//       ...data[key],
+//     });
+//   }
+
+//   return loadedLoveData;
+// };

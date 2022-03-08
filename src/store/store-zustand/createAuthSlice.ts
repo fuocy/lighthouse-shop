@@ -17,6 +17,8 @@ const createAuthSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
   email: "",
   avatar: "",
   login: (token: string) => {
+    if (!token) return;
+
     set({ tokenId: token });
     localStorage.setItem("token", get().tokenId);
   },
@@ -24,12 +26,17 @@ const createAuthSlice = (set: SetState<MyState>, get: GetState<MyState>) => ({
     set({ tokenId: "" });
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("avatar");
   },
   setEmail: (email: string) => {
+    if (!email) return;
+
     set({ email: email });
     localStorage.setItem("email", email);
   },
   setAvatar: (avatar: string) => {
+    if (!avatar) return;
+
     set({ avatar: avatar });
     localStorage.setItem("avatar", avatar);
   },

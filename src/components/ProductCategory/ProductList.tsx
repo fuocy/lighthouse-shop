@@ -19,26 +19,24 @@ const getPageResult = (originalProducts: Product[], pageNum: number) => {
 };
 
 export default function ProductList({ productsList }: AppProps) {
-  const filteredProducts = useAppSelector(
-    (state) => state.filterType.filteredProducts
-  );
+  // const filteredProducts = useAppSelector(
+  //   (state) => state.filterType.filteredProducts
+  // );
   // let sortedProducts = useAppSelector((state) => state.sorted.sortedProduct);
-  const displayProducts =
-    filteredProducts.length > 0 ? filteredProducts : productsList;
+  // const displayProducts =
+  //   filteredProducts.length > 0 ? filteredProducts : productsList;
 
   const [productsRenderedPerPage, setProductsRenderedPerPage] = useState(
-    getPageResult(displayProducts, 1)
+    getPageResult(productsList, 1)
   );
 
   const handlePageClick = (data: { selected: number }) => {
-    setProductsRenderedPerPage(
-      getPageResult(displayProducts, data.selected + 1)
-    );
+    setProductsRenderedPerPage(getPageResult(productsList, data.selected + 1));
   };
 
   useEffect(() => {
-    setProductsRenderedPerPage(getPageResult(displayProducts, 1));
-  }, [displayProducts]);
+    setProductsRenderedPerPage(getPageResult(productsList, 1));
+  }, [productsList]);
 
   return (
     <div>
@@ -62,7 +60,7 @@ export default function ProductList({ productsList }: AppProps) {
           previousLabel={"<"}
           nextLabel={">"}
           breakLabel={"..."}
-          pageCount={Math.ceil(displayProducts.length / PROS_PER_PAGE)}
+          pageCount={Math.ceil(productsList.length / PROS_PER_PAGE)}
           marginPagesDisplayed={2}
           pageRangeDisplayed={3}
           onPageChange={handlePageClick}

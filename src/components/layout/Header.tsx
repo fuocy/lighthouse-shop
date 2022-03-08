@@ -135,7 +135,11 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <div className="relative h-11 w-11 rounded-full overflow-hidden">
               <Image
-                src={userAvatar}
+                src={
+                  userAvatar
+                    ? userAvatar
+                    : "https://i.ibb.co/CJqGvY6/satthudatinh.jpg"
+                }
                 alt=""
                 layout="fill"
                 className="object-cover"

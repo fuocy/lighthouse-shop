@@ -1,6 +1,7 @@
 import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { HiCheck } from "react-icons/hi";
 import classes from "./ClothesSelection.module.css";
 import { useEffect, useState } from "react";
@@ -12,6 +13,7 @@ import { cartActions } from "src/store/cartSlice";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useStore from "src/store/store-zustand/useStore";
 interface AppProps {
   singleProduct: Product;
 }
@@ -49,7 +51,9 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
   const [outOfSize, setOutOfSize] = useState("");
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  const lovedProductIds = useStore((state) => state.lovedProductIds);
+  const setLoveCount = useStore((state) => state.setLoveCount);
+  const isLoggedIn = useStore((state) => !!state.tokenId);
   const incrementHandler = () => {
     setCounter((prevCounter) => prevCounter + 1); // NOT MUTATE STATE
   };
@@ -64,6 +68,28 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
 
   const updateColorHandler = (color: string) => {
     setColorState(color);
+  };
+
+  const handleLove = () => {
+    if (!isLoggedIn) {
+      toast.error("You have to log in to mark love", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        router.push("/auth");
+      }, 2000);
+
+      return;
+    }
+
+    setLoveCount(singleProduct.id);
   };
 
   const addToCartHandler = () => {
@@ -156,6 +182,10 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
     setColorState(undefined);
   }, [singleProduct]);
 
+  const showLoveFill = lovedProductIds.includes(singleProduct.id) && isLoggedIn;
+  const showLoveOutline =
+    !lovedProductIds.includes(singleProduct.id) || !isLoggedIn;
+
   return (
     <>
       <div>
@@ -234,8 +264,12 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
         {!singleProduct.availability && `Out of stock`}
       </h3>
       <div className="flex gap-5">
-        <button className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center hover:-translate-y-[2px] transition-all duration-[250ms] rounded-sm active:translate-y-0 active:scale-[.98]">
-          <AiOutlineHeart className="h-7 w-7 text-rede7" />
+        <button
+          onClick={handleLove}
+          className="h-[70px] w-[70px] bg-background-grayfa flex items-center justify-center hover:-translate-y-[2px] transition-all duration-[250ms] rounded-sm active:translate-y-0 active:scale-[.98]"
+        >
+          {showLoveOutline && <AiOutlineHeart className="h-7 w-7 text-rede7" />}
+          {showLoveFill && <AiFillHeart className="h-7 w-7 text-rede7" />}
         </button>
         <button
           className="uppercase flex-1 bg-primary-color font-extrabold text-xl shadow-md active:shadow-sm active:scale-[.98] transition-all duration-[250ms] rounded-sm active:translate-y-0 hover:bg-[#fecd48] active:bg-[#e5b32f] hover:-translate-y-[2px] z-10 relative overflow-hidden group"

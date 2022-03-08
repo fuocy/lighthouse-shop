@@ -36,9 +36,9 @@ export default function Rating({ singleProduct }: AppProps) {
       <RenderStar numStar={singleProduct.star} sizeStar="text-2xl" />
 
       <Link to="tab-section" smooth={true} offset={-100}>
-        <a className="hover:text-gray-500 transition cursor-pointer ">
+        <p className="hover:text-gray-500 transition cursor-pointer ">
           (Read all review)
-        </a>
+        </p>
       </Link>
     </div>
   );

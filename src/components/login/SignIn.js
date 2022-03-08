@@ -56,6 +56,8 @@ export default function SignIn({ onSetAuth }) {
     const userAvatar =
       avatars[Math.floor(Math.random() * avatars.length - 1) + 0];
 
+    console.log(userAvatar);
+
     if (status === "completed" && !error) {
       login(data.idToken);
       setEmail(data.email);

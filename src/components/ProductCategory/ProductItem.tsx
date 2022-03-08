@@ -1,10 +1,14 @@
 import Image from "next/image";
-import { AiTwotoneHeart } from "react-icons/ai";
+import { AiFillHeart, AiTwotoneHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
 import { TiStarburst } from "react-icons/ti";
 import { BsCheck } from "react-icons/bs";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useStore from "src/store/store-zustand/useStore";
+import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 type AppProps = {
   img: string;
   name: string;
@@ -30,8 +34,39 @@ export default function ProductItem({
   const router = useRouter();
   const category = router.query.productCategory;
 
+  const lovedProductIds = useStore((state) => state.lovedProductIds);
+
+  const setLoveCount = useStore((state) => state.setLoveCount);
+  const isLoggedIn = useStore((state) => !!state.tokenId);
+
+  const handleLove = () => {
+    if (!isLoggedIn) {
+      toast.error("You have to log in to mark love", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        router.push("/auth");
+      }, 2000);
+
+      return;
+    }
+
+    setLoveCount(id);
+  };
+
+  const showLoveFill = lovedProductIds.includes(id) && isLoggedIn;
+  const showLoveOutline = !lovedProductIds.includes(id) || !isLoggedIn;
+
   return (
     <li className=" bg-[#F6F5F3] shadow-md overflow-hidden">
+      <ToastContainer />
       <div className="relative w-full h-[250px] group ">
         <Image
           src={img}
@@ -92,11 +127,18 @@ export default function ProductItem({
               Unavailable
             </div>
           )}
-          <div className="flex items-center gap-2 mt-auto">
-            <AiOutlineHeart className="text-sm  text-[#19110B]" />
-            {/* <AiTwotoneHeart className="text-lg text-rede7" /> */}
-            <p className="text-[13px]">{love}</p>
-          </div>
+          <button
+            onClick={handleLove}
+            className="flex items-center gap-2 mt-auto"
+          >
+            {showLoveFill && (
+              <AiFillHeart className="text-sm  text-[#19110B]" />
+            )}
+            {showLoveOutline && (
+              <AiOutlineHeart className="text-sm  text-[#19110B]" />
+            )}
+            {/* <p className="text-[13px]">{love}</p> */}
+          </button>
         </div>
       </div>
     </li>
