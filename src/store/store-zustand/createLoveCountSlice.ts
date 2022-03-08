@@ -4,7 +4,7 @@ import { MyState } from "./useStore";
 export interface LoveCountSlice {
   lovedProductIds: string[];
   setLoveCount: (productId: string) => void;
-  setLovedProductIds: (productId: string) => void;
+  setLovedProductIds: (productIds: string[]) => void;
 }
 
 const createLoveCountSlice = (
