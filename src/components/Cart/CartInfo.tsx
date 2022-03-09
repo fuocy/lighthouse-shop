@@ -2,7 +2,7 @@ import CartItem from "./CartItem";
 import classes from "styles/scrollbar.module.css";
 import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
-import { useAppSelector } from "src/store/hooks";
+import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import { useRouter } from "next/router";
 import CartEmpty from "./CartEmpty";
 // const cartLists = [
