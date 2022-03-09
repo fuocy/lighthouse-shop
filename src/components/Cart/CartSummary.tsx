@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAppSelector } from "src/store/hooks";
+import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import classes from "styles/input-effect.module.css";
 import { useRef } from "react";
 const PROMOCODE = [
