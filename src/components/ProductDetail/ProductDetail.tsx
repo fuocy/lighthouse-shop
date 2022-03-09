@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { useAppDispatch } from "src/store/redux-toolkit/hooks";
 import { useEffect } from "react";
 import { imageActions } from "src/store/redux-toolkit/imageSlice";
-import useStore from "src/store/zustand/useStore";
 import { viewedActions } from "src/store/redux-toolkit/viewedSlice";
 interface AppProps {
   singleProduct: Product;
@@ -17,7 +16,6 @@ interface AppProps {
 export default function ProductDetail({ singleProduct }: AppProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  // const setRecentlyViewed = useStore((state) => state.setRecentlyViewed);
   useEffect(() => {
     dispatch(imageActions.resetCurrentImage());
   }, [dispatch]);
@@ -25,11 +23,6 @@ export default function ProductDetail({ singleProduct }: AppProps) {
   useEffect(() => {
     dispatch(viewedActions.markAsViewed(singleProduct.id));
   }, [dispatch, singleProduct.id]);
-
-  // useEffect(() => {
-  //   console.log(singleProduct.id);
-  //   setRecentlyViewed(singleProduct.id);
-  // }, [setRecentlyViewed, singleProduct]);
 
   return (
     <>
