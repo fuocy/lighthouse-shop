@@ -48,7 +48,9 @@ export default function RecentlyViewed() {
           );
         });
 
-      setRederedViewedProducts(sortedRecentlyView);
+      const deleteFirstProducts = sortedRecentlyView.slice(1);
+
+      setRederedViewedProducts(deleteFirstProducts);
     }
   }, [allProducts, error, status, viewedProductIds]);
 
@@ -71,12 +73,14 @@ export default function RecentlyViewed() {
     router.push(`/${viewedProduct.category}/${viewedProduct.id}`);
     dispatch(imageActions.resetCurrentImage());
   };
-
+  console.log(rederedViewedProducts);
   return (
     <div className="col-span-full">
-      <h4 className="text-2xl font-semibold mb-5 text-gray-700">
-        Recently Viewed
-      </h4>
+      {rederedViewedProducts.length > 0 && (
+        <h4 className="text-2xl font-semibold mb-5 text-gray-700">
+          Recently Viewed
+        </h4>
+      )}
 
       <div className="relative">
         <ul className="grid grid-cols-5 gap-x-[17px]">
