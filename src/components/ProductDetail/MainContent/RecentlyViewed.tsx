@@ -14,43 +14,80 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { imageActions } from "src/store/redux-toolkit/imageSlice";
 import { useAppSelector } from "src/store/redux-toolkit/hooks";
+import useHtttp from "src/hooks/useHttp";
+import { fetchAllProducts } from "src/hooks/lib/api";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 interface AppProps {
   singleProduct: Product;
 }
 
 export default function RecentlyViewed({ singleProduct }: AppProps) {
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  // const [allProducts, setAllProducts] = useState<Product[]>([]);
   const viewedProductIds = useAppSelector(
     (state) => state.viewed.viewedProductIds
   );
   const router = useRouter();
   const dispatch = useDispatch();
+  const {
+    sendRequest,
+    data: allProducts,
+    error,
+    status,
+  } = useHtttp(fetchAllProducts);
 
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      const { data } = await axios.get(`/api/filter-type/filter-type-all`);
-      const allProducts = data.filteredProducts.map((product: Product) => ({
-        ...product,
-        id: product._id.toString(),
-      }));
-
-      setAllProducts(allProducts);
-    };
-    fetchAllProducts().catch((error) => {
-      console.log(`${error.message} 😥😥😥`);
-    });
-  }, []);
-
-  const recentlyViewedProducts = allProducts.filter((product) =>
-    viewedProductIds.includes(product.id)
+  const [rederedViewedProducts, setRederedViewedProducts] = useState<Product[]>(
+    []
   );
 
-  const sortedRecentlyView = recentlyViewedProducts
-    .slice()
-    .sort(function (a, b) {
-      return viewedProductIds.indexOf(a.id) - viewedProductIds.indexOf(b.id);
-    });
+  useEffect(() => {
+    // const fetchAllProducts = async () => {
+    //   const { data } = await axios.get(`/api/filter-type/filter-type-all`);
+    //   const allProducts = data.filteredProducts.map((product: Product) => ({
+    //     ...product,
+    //     id: product._id.toString(),
+    //   }));
+
+    //   setAllProducts(allProducts);
+    // };
+    // fetchAllProducts().catch((error) => {
+    //   console.log(`${error.message} 😥😥😥`);
+    // });
+    sendRequest();
+  }, [sendRequest]);
+
+  useEffect(() => {
+    if (status === "completed" && !error) {
+      const recentlyViewedProducts = allProducts.filter((product: Product) =>
+        viewedProductIds.includes(product.id)
+      );
+
+      const sortedRecentlyView = recentlyViewedProducts
+        .slice()
+        .sort(function (a: Product, b: Product) {
+          return (
+            viewedProductIds.indexOf(a.id) - viewedProductIds.indexOf(b.id)
+          );
+        });
+
+      setRederedViewedProducts(sortedRecentlyView);
+    }
+  }, [allProducts, error, status, viewedProductIds]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (status === "pending") {
+    return (
+      <div className="col-span-full">
+        <h4 className="text-2xl font-semibold mb-5 text-gray-700">
+          Recently Viewed
+        </h4>
+        <LoadingSpinner />;
+      </div>
+    );
+  }
 
   // useEffect(() => {
   //   const swiper = new Swiper(".swiper", {
@@ -89,7 +126,7 @@ export default function RecentlyViewed({ singleProduct }: AppProps) {
         {/* swiper-wrapper */}
         <ul className="grid grid-cols-5 gap-x-[17px] ">
           {/* swiper-slide */}
-          {sortedRecentlyView.map((viewedProduct) => (
+          {rederedViewedProducts.map((viewedProduct) => (
             <li key={viewedProduct.id} className=" group relative ">
               <button
                 onClick={handleClickSimilarProduct.bind(null, viewedProduct)}

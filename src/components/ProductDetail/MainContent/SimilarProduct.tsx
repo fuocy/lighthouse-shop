@@ -21,6 +21,9 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { imageActions } from "src/store/redux-toolkit/imageSlice";
 import useStore from "src/store/zustand/useStore";
+import { fetchAllProducts, fetchTypeProducts } from "src/hooks/lib/api";
+import useHtttp from "src/hooks/useHttp";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 interface AppProps {
   singleProduct: Product;
@@ -37,24 +40,12 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchSimilaryProducts = async () => {
-      const { data } = await axios.get(
-        `/api/filter-type/filter-type-${singleProduct.type}`
-      );
-      const similarProductsArr = data.filteredProducts.map(
-        (product: Product) => ({
-          ...product,
-          id: product._id.toString(),
-        })
-      );
-
-      setSimilarProducts(similarProductsArr);
-    };
-    fetchSimilaryProducts().catch((error) => {
-      console.log(`${error.message} 😥😥😥`);
-    });
-  }, [singleProduct]);
+  const {
+    sendRequest,
+    data: typeProducts,
+    error,
+    status,
+  } = useHtttp(fetchTypeProducts);
 
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
@@ -105,6 +96,47 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
     //   },
     //   speed: 200,
   }, []);
+
+  useEffect(() => {
+    // const fetchSimilaryProducts = async () => {
+    //   const { data } = await axios.get(
+    //     `/api/filter-type/filter-type-${singleProduct.type}`
+    //   );
+    //   const similarProductsArr = data.filteredProducts.map(
+    //     (product: Product) => ({
+    //       ...product,
+    //       id: product._id.toString(),
+    //     })
+    //   );
+
+    //   setSimilarProducts(similarProductsArr);
+    // };
+    // fetchSimilaryProducts().catch((error) => {
+    //   console.log(`${error.message} 😥😥😥`);
+    // });
+    sendRequest(singleProduct.type);
+  }, [sendRequest, singleProduct.type]);
+
+  useEffect(() => {
+    if (status === "completed" && !error) {
+      setSimilarProducts(typeProducts);
+    }
+  }, [typeProducts, error, status]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (status === "pending") {
+    return (
+      <div className="col-span-full">
+        <h4 className="text-2xl font-semibold mb-5 text-gray-700">
+          Similar products
+        </h4>
+        <LoadingSpinner />;
+      </div>
+    );
+  }
 
   const handleClickSimilarProduct = (similar: Product) => {
     router.push(`/${similar.category}/${similar.id}`);

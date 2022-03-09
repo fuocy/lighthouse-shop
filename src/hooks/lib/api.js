@@ -50,27 +50,24 @@ export const signInAccount = async function (requestData) {
   return data;
 };
 
-// export const sendLoveCount = async function (requestData) {
-//   const { data } = await axios.post(
-//     `https://lighthouse-lovecount-default-rtdb.firebaseio.com/loveCount/${requestData.id}.json`,
-//     requestData.loveData
-//   );
+export const fetchAllProducts = async function () {
+  const { data } = await axios.get(`/api/filter-type/filter-type-all`);
 
-//   return data;
-// };
+  const allProducts = data.filteredProducts.map((product) => ({
+    ...product,
+    id: product._id.toString(),
+  }));
 
-// export const fetchLoveCount = async function (productId) {
-//   const { data } = await axios.get(
-//     `https://lighthouse-lovecount-default-rtdb.firebaseio.com/loveCount/${productId}.json`
-//   );
+  return allProducts;
+};
 
-//   const loadedLoveData = [];
-//   for (const key in data) {
-//     loadedLoveData.push({
-//       id: key,
-//       ...data[key],
-//     });
-//   }
+export const fetchTypeProducts = async function (type) {
+  const { data } = await axios.get(`/api/filter-type/filter-type-${type}`);
 
-//   return loadedLoveData;
-// };
+  const allProducts = data.filteredProducts.map((product) => ({
+    ...product,
+    id: product._id.toString(),
+  }));
+
+  return allProducts;
+};
