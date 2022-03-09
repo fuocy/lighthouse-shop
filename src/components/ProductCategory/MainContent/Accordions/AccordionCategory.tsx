@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Product from "src/model/Product";
-import { filterTypeActions } from "src/store/filterTypeSlice";
-import { useAppDispatch, useAppSelector } from "src/store/hooks";
-import ComponentAccordion from "../Accordions";
+import { filterTypeActions } from "src/store/redux-toolkit/filterTypeSlice";
+import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
+import ComponentAccordion from "./Accordions";
 
 export default function AccordionCategory() {
   const [selectedCate, setSelectedCate] = useState("no filter");

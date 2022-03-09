@@ -5,8 +5,8 @@ import { FaSortAmountDown } from "react-icons/fa";
 import Product from "src/model/Product";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { filterTypeActions } from "src/store/filterTypeSlice";
-import { useAppDispatch, useAppSelector } from "src/store/hooks";
+import { filterTypeActions } from "src/store/redux-toolkit/filterTypeSlice";
+import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
 // import { useAppDispatch } from "src/store/hooks";
 // import { sortActions } from "src/store/sortedSlice";
 

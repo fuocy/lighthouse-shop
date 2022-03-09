@@ -6,11 +6,12 @@ import "styles/nprogress.css";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { Provider } from "react-redux";
-import store from "src/store/store";
+import store from "src/store/redux-toolkit/store";
+import { debounce } from "debounce";
+import { saveState } from "@/components/common/browser-storage";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-
   useEffect(() => {
     const handleStart = (url: string) => {
       NProgress.start();
@@ -29,6 +30,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off("routeChangeError", handleStop);
     };
   }, [router]);
+
+  store.subscribe(
+    debounce(() => {
+      saveState(store.getState());
+    }, 800)
+  );
 
   return (
     <Provider store={store}>

@@ -4,7 +4,7 @@ import Specifications from "./Specifications";
 import Product from "src/model/Product";
 import Comment from "./Comment/Comment";
 import { useCallback, useState } from "react";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 import Warranty from "./Warranty";
 
 interface AppProps {
@@ -12,8 +12,8 @@ interface AppProps {
 }
 export default function Tabbed({ singleProduct }: AppProps) {
   const [numComment, setNumComment] = useState(0);
-  const indexTab = useStore((state) => state.indexTab); // Don't really need, can use internal state of react tab
-  const setIndexTab = useStore((state) => state.setIndexTab); // Don't really need, can use internal state of react tab
+  const indexTab = useStore((state) => state.indexTab);
+  const setIndexTab = useStore((state) => state.setIndexTab);
 
   const numberCommentHandler = useCallback((numberOfComment: number) => {
     setNumComment(numberOfComment);

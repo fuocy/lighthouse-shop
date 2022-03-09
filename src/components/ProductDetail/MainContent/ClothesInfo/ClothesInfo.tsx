@@ -1,7 +1,7 @@
 import { TiStarburst } from "react-icons/ti";
 import { BsCheck } from "react-icons/bs";
 import ClothesSelection from "./ClothesSelection";
-import Tabbed from "./Tabbed";
+import Tabbed from "./Tabbed/Tabbed";
 import Product from "src/model/Product";
 
 interface AppProps {

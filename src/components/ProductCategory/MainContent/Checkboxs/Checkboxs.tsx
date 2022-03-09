@@ -1,4 +1,4 @@
-import Accordions from "@/components/ProductCategory/Accordions";
+import Accordions from "@/components/ProductCategory/MainContent/Accordions/Accordions";
 import { HiCheck } from "react-icons/hi";
 const stylesOptions = [
   {

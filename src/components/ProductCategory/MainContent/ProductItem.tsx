@@ -5,7 +5,7 @@ import { TiStarburst } from "react-icons/ti";
 import { BsCheck } from "react-icons/bs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -3,7 +3,8 @@ import Image from "next/image";
 import success from "assets/success.png";
 import fail from "assets/fail.png";
 import Portal from "./Portal";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
+import React from "react";
 
 type AppProps = {
   type: string;

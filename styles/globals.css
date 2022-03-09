@@ -1,5 +1,5 @@
 @import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/plus-jakarta-display.min.css");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,11 +22,14 @@
   }
 
   input,
-  textarea,
   select,
   button {
     font-family: inherit;
     color: inherit;
+  }
+
+  textarea {
+    font-family: "Roboto", sans-serif !important;
   }
 }
 

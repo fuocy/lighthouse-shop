@@ -26,13 +26,14 @@
     "**/*.tsx",
     "src/components/layout/ActiveLink.js",
     "src/components/ProductDetail",
-    "src/components/ProductCategory/Accordions",
+    "src/components/ProductCategory/MainContent/Accordions",
     "src/components/layout/Navigation.tsx",
     "src/components/ProductCategory/ProductList.js",
     "src/hooks/useHttp.js",
     "src/components/common/utils.js",
     "src/components/login/Auth.js",
-    "src/components/common/Modal.tsx"
+    "src/components/common/Modal.tsx",
+    "src/components/common/SizeAndColor"
   ],
   "exclude": ["node_modules"]
 }

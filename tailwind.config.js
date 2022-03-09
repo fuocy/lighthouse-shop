@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         jakarta: ["Plus Jakarta Display", ...defaultTheme.fontFamily.sans],
+        roboto: ["Roboto", , ...defaultTheme.fontFamily.sans],
       },
       colors: {
         "primary-color": "#fec734",

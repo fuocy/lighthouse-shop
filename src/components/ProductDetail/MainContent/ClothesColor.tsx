@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Product from "src/model/Product";
-import { useAppDispatch, useAppSelector } from "src/store/hooks";
-import { imageActions } from "src/store/imageSlice";
+import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
+import { imageActions } from "src/store/redux-toolkit/imageSlice";
 
 interface AppProps {
   singleProduct: Product;

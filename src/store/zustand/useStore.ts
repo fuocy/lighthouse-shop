@@ -5,12 +5,17 @@ import createShowModalSlice, { ShowModalSlice } from "./createShowModalSlice";
 import createIsSignInSlice, { IsSignInSlice } from "./createIsSignInSlice";
 import createAuthSlice, { AuthSlice } from "./createAuthSlice";
 import createLoveCountSlice, { LoveCountSlice } from "./createLoveCountSlice";
+// import createRecentlyViewedSlice, {
+//   RecentlyViewedSlice,
+// } from "./createRecentlyViewedSlice";
 
 export type MyState = IndexTabSlice &
   ShowModalSlice &
   IsSignInSlice &
   AuthSlice &
   LoveCountSlice;
+// &
+// RecentlyViewedSlice;
 
 const useStore = create<MyState>((set, get) => ({
   ...createIndexTabSlice(set, get),
@@ -18,6 +23,7 @@ const useStore = create<MyState>((set, get) => ({
   ...createIsSignInSlice(set, get),
   ...createAuthSlice(set, get),
   ...createLoveCountSlice(set, get),
+  // ...createRecentlyViewedSlice(set, get),
 }));
 
 export default useStore;

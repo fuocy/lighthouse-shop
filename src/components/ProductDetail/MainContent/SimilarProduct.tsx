@@ -17,74 +17,25 @@ import "swiper/css/pagination";
 
 import Product from "src/model/Product";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { imageActions } from "src/store/redux-toolkit/imageSlice";
+import useStore from "src/store/zustand/useStore";
 
 interface AppProps {
   singleProduct: Product;
 }
 
-// const similarProducts = [
-//   {
-//     img: similar1,
-//     name: "Modern Iranian Lotus Watch...",
-//     id: 1,
-//     price: 5000,
-//     oldPrice: "",
-//     tag: "Limited",
-//   },
-//   {
-//     img: similar2,
-//     name: "Blue short sleeve T-shirt...",
-//     id: 2,
-//     price: 40.7,
-//     oldPrice: "",
-//     tag: "",
-//   },
-//   {
-//     img: similar3,
-//     name: "LX leather handbag, model 007...",
-//     id: 3,
-//     price: 25.2,
-//     oldPrice: 70,
-//     tag: "25% off",
-//   },
-//   {
-//     img: similar4,
-//     name: "Cream and brown hand basket...",
-//     id: 4,
-//     price: 14.8,
-//     oldPrice: "",
-//     tag: "Limited",
-//   },
-//   {
-//     img: similar5,
-//     name: "Red winter blouse...",
-//     id: 5,
-//     price: 20.6,
-//     oldPrice: "",
-//     tag: "Limited",
-//   },
-// ];
-
-// export function LimitedTag() {
+// export function OldPriceTag() {
 //   return (
-
+//     <div className="invisible group-last:visible absolute -top-[2px] left-12 text-[12px] text-gray-500 line-through">{`$ ${70}`}</div>
 //   );
 // }
-
-// export function SaleOffTag() {
-//   return (
-
-//   );
-// }
-
-export function OldPriceTag() {
-  return (
-    <div className="invisible group-last:visible absolute -top-[2px] left-12 text-[12px] text-gray-500 line-through">{`$ ${70}`}</div>
-  );
-}
 
 export default function SimilarProduct({ singleProduct }: AppProps) {
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchSimilaryProducts = async () => {
@@ -155,6 +106,13 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
     //   speed: 200,
   }, []);
 
+  const handleClickSimilarProduct = (similar: Product) => {
+    router.push(`/${similar.category}/${similar.id}`);
+    dispatch(imageActions.resetCurrentImage());
+
+    // setRecentlyViewed(similar.id);
+  };
+
   return (
     <div className="col-span-full">
       <h4 className="text-2xl font-semibold mb-5 text-gray-700">
@@ -165,8 +123,8 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
         <ul className="grid grid-cols-5 gap-x-[17px] swiper-wrapper">
           {similarProducts.map((similar) => (
             <li key={similar.id} className=" group relative swiper-slide ">
-              <Link href={`/${similar.category}/${similar.id}`} passHref>
-                <a className="flex flex-col">
+              <button onClick={handleClickSimilarProduct.bind(null, similar)}>
+                <div className="flex flex-col">
                   <div className="bg-background-grayec relative w-[220px] h-[250px]">
                     <Image
                       src={similar.image.img1}
@@ -202,8 +160,8 @@ export default function SimilarProduct({ singleProduct }: AppProps) {
                       </p>
                     </div>
                   )}
-                </a>
-              </Link>
+                </div>
+              </button>
             </li>
           ))}
         </ul>

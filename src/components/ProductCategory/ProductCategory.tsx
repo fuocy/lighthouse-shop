@@ -1,5 +1,5 @@
 import CurrentPath from "@/components/common/CurrentPath";
-import MainContent from "./MainContent";
+import MainContent from "./MainContent/MainContent";
 import Title from "./Title";
 import ImageSearchBar from "./ImageSearchBar";
 import Product from "src/model/Product";

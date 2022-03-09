@@ -11,7 +11,7 @@ import useHtttp from "src/hooks/useHttp";
 import { signUpAccount } from "src/hooks/lib/api";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Modal from "../common/Modal";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 
 export default function SignUp({ onSetAuth }) {
   const { sendRequest, data, error, status } = useHtttp(signUpAccount);

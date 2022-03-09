@@ -1,7 +1,7 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { useState } from "react";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 
 export default function Login() {
   // const [isSignIn, setIsSignIn] = useState(true);

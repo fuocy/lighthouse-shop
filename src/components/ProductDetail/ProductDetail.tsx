@@ -5,9 +5,11 @@ import Image from "next/image";
 import footerImage from "assets/footer3.jpg";
 import Product from "src/model/Product";
 import { useRouter } from "next/router";
-import { useAppDispatch } from "src/store/hooks";
+import { useAppDispatch } from "src/store/redux-toolkit/hooks";
 import { useEffect } from "react";
-import { imageActions } from "src/store/imageSlice";
+import { imageActions } from "src/store/redux-toolkit/imageSlice";
+import useStore from "src/store/zustand/useStore";
+import { viewedActions } from "src/store/redux-toolkit/viewedSlice";
 interface AppProps {
   singleProduct: Product;
 }
@@ -15,10 +17,19 @@ interface AppProps {
 export default function ProductDetail({ singleProduct }: AppProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
-
+  // const setRecentlyViewed = useStore((state) => state.setRecentlyViewed);
   useEffect(() => {
     dispatch(imageActions.resetCurrentImage());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(viewedActions.markAsViewed(singleProduct.id));
+  }, [dispatch, singleProduct.id]);
+
+  // useEffect(() => {
+  //   console.log(singleProduct.id);
+  //   setRecentlyViewed(singleProduct.id);
+  // }, [setRecentlyViewed, singleProduct]);
 
   return (
     <>
@@ -30,7 +41,7 @@ export default function ProductDetail({ singleProduct }: AppProps) {
         <Rating singleProduct={singleProduct} />
         <MainContent singleProduct={singleProduct} />
       </div>
-      <div className="mt-[70px] translate-y-1">
+      <div className="mt-[70px] translate-y-5">
         <Image src={footerImage} alt="footer image" />
       </div>
     </>

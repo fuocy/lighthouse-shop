@@ -2,7 +2,7 @@ import Auth from "@/components/login/Auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 
 export default function LoginPage() {
   const router = useRouter();

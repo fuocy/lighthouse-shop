@@ -3,8 +3,8 @@ import { GrFormSubtract } from "react-icons/gr";
 import { GrFormAdd } from "react-icons/gr";
 import { TiStarburst } from "react-icons/ti";
 import { BsCheck } from "react-icons/bs";
-import { useAppDispatch } from "src/store/hooks";
-import { cartActions } from "src/store/cartSlice";
+import { useAppDispatch } from "src/store/redux-toolkit/hooks";
+import { cartActions } from "src/store/redux-toolkit/cartSlice";
 
 type AppProps = {
   img: string;

@@ -4,11 +4,11 @@ type AppProps = {
   children: React.ReactNode;
 };
 
-import { useAppDispatch, useAppSelector } from "src/store/hooks";
-import sendCartData, { fetchCartData } from "src/store/cartThunk";
+import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
+import sendCartData, { fetchCartData } from "src/store/redux-toolkit/cartThunk";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 let isInitial = true;
 
 export default function Layout({ children }: AppProps): JSX.Element {

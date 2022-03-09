@@ -1,6 +1,6 @@
 import ProductItem from "./ProductItem";
 import Product from "src/model/Product";
-import { useAppSelector } from "src/store/hooks";
+import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import ReactPaginate from "react-paginate";

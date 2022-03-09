@@ -88,10 +88,10 @@ import Navigation from "@/components/layout/Navigation";
 import Link from "next/link";
 import { HiOutlineUser } from "react-icons/hi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useAppSelector } from "src/store/hooks";
+import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 
 export default function Header() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
@@ -156,18 +156,16 @@ export default function Header() {
           </div>
         )}
         <Link href="/" passHref>
-          <a>
-            <div className="text-[27px] relative -translate-x-8">
-              <span className="font-extrabold">Light</span>
-              <span className="font-normal drop-shadow-logo">house</span>
-              <div className="absolute -top-[3px] right-[31px] -z-10 h-10 w-10">
-                <Image
-                  src={sun}
-                  alt="the sun | cosmestic content"
-                  // layout="fill"
-                  // objectFit="contain"
-                />
-              </div>
+          <a className="text-[27px] relative -translate-x-8">
+            <span className="font-extrabold">Light</span>
+            <span className="font-normal drop-shadow-logo">house</span>
+            <div className="absolute -top-[3px] right-[31px] -z-10 h-10 w-10">
+              <Image
+                src={sun}
+                alt="the sun | cosmestic content"
+                // layout="fill"
+                // objectFit="contain"
+              />
             </div>
           </a>
         </Link>

@@ -5,7 +5,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { BsGoogle } from "react-icons/bs";
 import { GrLinkedinOption } from "react-icons/gr";
 import classes from "styles/input-effect.module.css";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 import { useEffect, useRef } from "react";
 import useHtttp from "src/hooks/useHttp";
 import { signInAccount } from "src/hooks/lib/api";
@@ -55,8 +55,6 @@ export default function SignIn({ onSetAuth }) {
 
     const userAvatar =
       avatars[Math.floor(Math.random() * avatars.length - 1) + 0];
-
-    console.log(userAvatar);
 
     if (status === "completed" && !error) {
       login(data.idToken);

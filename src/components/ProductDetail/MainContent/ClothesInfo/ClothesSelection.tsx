@@ -3,17 +3,17 @@ import { GrFormAdd } from "react-icons/gr";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 import { HiCheck } from "react-icons/hi";
-import classes from "./ClothesSelection.module.css";
+import classes from "styles/ClothesSelection.module.css";
 import { useEffect, useState } from "react";
 import Product from "src/model/Product";
-import determineSize from "./SizeAndColor/Size";
-import determineColor from "./SizeAndColor/Color";
-import { useAppDispatch } from "src/store/hooks";
-import { cartActions } from "src/store/cartSlice";
+import determineSize from "../../../common/SizeAndColor/Size";
+import determineColor from "../../../common/SizeAndColor/Color";
+import { useAppDispatch } from "src/store/redux-toolkit/hooks";
+import { cartActions } from "src/store/redux-toolkit/cartSlice";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useStore from "src/store/store-zustand/useStore";
+import useStore from "src/store/zustand/useStore";
 interface AppProps {
   singleProduct: Product;
 }
