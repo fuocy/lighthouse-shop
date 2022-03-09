@@ -15,7 +15,10 @@ export default function MainContent({ singleProduct, allProducts }: AppProps) {
       <ClothesColor singleProduct={singleProduct} />
       <ClothesShow singleProduct={singleProduct} />
       <ClothesInfo singleProduct={singleProduct} />
-      <SimilarProduct singleProduct={singleProduct} />
+      <SimilarProduct
+        singleProduct={singleProduct}
+        allProductsSSG={allProducts}
+      />
       <RecentlyViewed allProductsSSG={allProducts} />
     </div>
   );
