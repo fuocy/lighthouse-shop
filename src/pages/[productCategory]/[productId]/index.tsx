@@ -5,9 +5,13 @@ import Product from "src/model/Product";
 import Head from "next/head";
 interface AppProps {
   singleProduct: Product;
+  allProducts: Product[];
 }
 
-export default function ProductDetailPage({ singleProduct }: AppProps) {
+export default function ProductDetailPage({
+  singleProduct,
+  allProducts,
+}: AppProps) {
   return (
     <>
       <Head>
@@ -15,7 +19,7 @@ export default function ProductDetailPage({ singleProduct }: AppProps) {
         <link rel="icon" href="/favicon-sun.ico" />
         <meta name="description" content={singleProduct.description} />
       </Head>
-      <ProductDetail singleProduct={singleProduct} />;
+      <ProductDetail singleProduct={singleProduct} allProducts={allProducts} />;
     </>
   );
 }
@@ -53,8 +57,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const singleProduct = await productClt.findOne({
     _id: new ObjectId(productId),
   });
+
+  const allProducts = await productClt.find().toArray();
   client.close();
   const convertedSingleProducts = JSON.parse(JSON.stringify(singleProduct)); // fix weired error
+  const convertedAllProducts = JSON.parse(JSON.stringify(allProducts));
 
   return {
     props: {
@@ -62,6 +69,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
         ...convertedSingleProducts,
         id: convertedSingleProducts!._id.toString(),
       },
+      allProducts: convertedAllProducts.map((product: Product) => ({
+        ...product,
+        id: product._id.toString(),
+      })),
     },
   };
 };

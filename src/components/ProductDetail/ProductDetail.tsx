@@ -11,9 +11,13 @@ import { imageActions } from "src/store/redux-toolkit/imageSlice";
 import { viewedActions } from "src/store/redux-toolkit/viewedSlice";
 interface AppProps {
   singleProduct: Product;
+  allProducts: Product[];
 }
 
-export default function ProductDetail({ singleProduct }: AppProps) {
+export default function ProductDetail({
+  singleProduct,
+  allProducts,
+}: AppProps) {
   const router = useRouter();
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -32,7 +36,7 @@ export default function ProductDetail({ singleProduct }: AppProps) {
           url2={singleProduct.name}
         />
         <Rating singleProduct={singleProduct} />
-        <MainContent singleProduct={singleProduct} />
+        <MainContent singleProduct={singleProduct} allProducts={allProducts} />
       </div>
       <div className="mt-[70px] translate-y-5">
         <Image src={footerImage} alt="footer image" />
