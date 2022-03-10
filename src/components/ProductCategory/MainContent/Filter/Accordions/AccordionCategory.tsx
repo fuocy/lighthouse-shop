@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Product from "src/model/Product";
 import { filterTypeActions } from "src/store/redux-toolkit/filterTypeSlice";
 import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
-import ComponentAccordion from "./Accordions";
+import ComponentAccordion from "./AccordionsGeneral";
 
 export default function AccordionCategory() {
   const [selectedCate, setSelectedCate] = useState("no filter");

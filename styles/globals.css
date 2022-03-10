@@ -26,10 +26,12 @@
   button {
     font-family: inherit;
     color: inherit;
+    outline: none;
   }
 
   textarea {
     font-family: "Roboto", sans-serif !important;
+    outline: none;
   }
 }
 

@@ -54,6 +54,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const correspondingProducts = await productClt
     .find({ category: productCategory })
     .toArray();
+
   client.close();
   const convertedProducts = JSON.parse(JSON.stringify(correspondingProducts)); // fix weired error
 

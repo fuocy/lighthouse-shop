@@ -26,7 +26,7 @@
     "**/*.tsx",
     "src/components/layout/ActiveLink.js",
     "src/components/ProductDetail",
-    "src/components/ProductCategory/MainContent/Accordions",
+    "src/components/ProductCategory/MainContent/Filter/Accordions",
     "src/components/layout/Navigation.tsx",
     "src/components/ProductCategory/ProductList.js",
     "src/hooks/useHttp.js",

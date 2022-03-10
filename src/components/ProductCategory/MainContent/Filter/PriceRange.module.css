@@ -1,0 +1,8 @@
+.sliderThumb::-webkit-slider-thumb {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  background-color: #fec734;
+  border-radius: 50%;
+  pointer-events: auto;
+}

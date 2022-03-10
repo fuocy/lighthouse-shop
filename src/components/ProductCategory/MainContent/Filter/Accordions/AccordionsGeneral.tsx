@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { Transition } from "react-transition-group";
 import "animate.css";
-import classes from "./Accordion.module.css";
+import classes from "styles/Accordion.module.css";
 type AppProps = {
   children: React.ReactNode;
   heading: string;

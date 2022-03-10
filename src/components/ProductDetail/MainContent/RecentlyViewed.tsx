@@ -160,8 +160,6 @@ export default function RecentlyViewed({ allProductsSSG }: AppProps) {
       viewedProductIds.includes(product.id)
     );
 
-    console.log(recentlyViewedProducts);
-
     const sortedRecentlyView = recentlyViewedProducts
       .slice()
       .sort(function (a: Product, b: Product) {
@@ -177,8 +175,6 @@ export default function RecentlyViewed({ allProductsSSG }: AppProps) {
     router.push(`/${viewedProduct.category}/${viewedProduct.id}`);
     dispatch(imageActions.resetCurrentImage());
   };
-
-  console.log(rederedViewedProducts);
 
   return (
     <div className="col-span-full">
