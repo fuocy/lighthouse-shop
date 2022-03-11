@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 export interface FilterPriceState {
   minPrice: number;
   maxPrice: number;
@@ -7,7 +6,7 @@ export interface FilterPriceState {
 
 const initialState = {
   minPrice: 0,
-  maxPrice: 12000,
+  maxPrice: 4000,
 } as FilterPriceState;
 
 export const filterPriceSlice = createSlice({

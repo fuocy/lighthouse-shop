@@ -6,8 +6,8 @@ import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
 import { filterPriceActions } from "src/store/redux-toolkit/filterPrice";
 import useStore from "src/store/zustand/useStore";
 
-const GAP = 1000;
-
+const GAP = 500;
+export const MAX_PRICE = "4000";
 export default function PriceRange() {
   const [minInput, setMinInput] = useState("");
   const [maxInput, setMaxInput] = useState("");
@@ -19,20 +19,20 @@ export default function PriceRange() {
 
   const updateMinAndProgress = (value: any) => {
     setMinInput(value);
-    const percent = (+value / 12000) * 100;
+    const percent = (+value / +MAX_PRICE) * 100;
     progressRef.current!.style.left = percent + "%";
   };
 
   const updateMaxAndProgress = (value: any) => {
     setMaxInput(value);
-    const percent = 100 - (+value / 12000) * 100;
+    const percent = 100 - (+value / +MAX_PRICE) * 100;
     progressRef.current!.style.right = percent + "%";
   };
 
   useEffect(() => {
     // DEFAULT VALUE INPUT
-    const DEFAULT_MIN_VAL = "2500";
-    const DEFAULT_MAX_VAL = "8500";
+    const DEFAULT_MIN_VAL = "500";
+    const DEFAULT_MAX_VAL = "1500";
 
     updateMinAndProgress(fetchedMinPrice ?? DEFAULT_MIN_VAL);
     updateMaxAndProgress(fetchedMaxPrice ?? DEFAULT_MAX_VAL);
@@ -101,7 +101,7 @@ export default function PriceRange() {
             className={`absolute top-[-5px] h-[5px] appearance-none [background:none] w-full pointer-events-none ${classes.sliderThumb}`}
             type="range"
             min="0"
-            max="12000"
+            max={MAX_PRICE}
             step="100"
             name="min-range"
             onChange={handleChangeSlider}
@@ -111,7 +111,7 @@ export default function PriceRange() {
             className={`absolute top-[-5px] h-[5px] appearance-none [background:none] w-full  pointer-events-none ${classes.sliderThumb}`}
             type="range"
             min="0"
-            max="12000"
+            max={MAX_PRICE}
             step="100"
             name="max-range"
             onChange={handleChangeSlider}

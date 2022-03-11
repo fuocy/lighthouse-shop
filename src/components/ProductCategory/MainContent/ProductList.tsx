@@ -119,6 +119,7 @@ import paginationSlice, {
 import { AiOutlineLeft } from "react-icons/ai";
 import { AiOutlineRight } from "react-icons/ai";
 import useStore from "src/store/zustand/useStore";
+import { filterStatusActions } from "src/store/redux-toolkit/filterStatus";
 interface AppProps {
   productsList: Product[];
 }
@@ -154,10 +155,10 @@ export default function ProductList({ productsList }: AppProps) {
     });
     const isAnyBrandSelected = selectedBrands.some((brand) => brand === true);
 
-    const brandFilteredProducts123 = isAnyBrandSelected
+    const brandFilteredProductsCheckFallback = isAnyBrandSelected
       ? filterProducts
       : productsList;
-    setbrandFilteredProducts(brandFilteredProducts123);
+    setbrandFilteredProducts(brandFilteredProductsCheckFallback);
   }, [selectedBrands, productsList]);
   ////////////////////////////////////////////////////////////////////////////////////
   // FILTER BY PRICE
@@ -169,7 +170,9 @@ export default function ProductList({ productsList }: AppProps) {
 
   useEffect(() => {
     const filteredProducts = productsList.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
+      (product) =>
+        product.price - (product.price * product.discount) / 100 >= minPrice &&
+        product.price - (product.price * product.discount) / 100 <= maxPrice
     );
 
     setPriceFilteredProducts(filteredProducts);
@@ -178,7 +181,78 @@ export default function ProductList({ productsList }: AppProps) {
   const setNumFilteredPrice = useStore((state) => state.setNumFilteredPrice);
   setNumFilteredPrice(priceFilteredProducts.length);
   /////////////////////////////////////////////////////////////////////////////////////
+  // FILTER BY STATUS
+  const selectedStatus = useAppSelector(
+    (state) => state.filterStatus.selectedStatus
+  );
+  const isLoggedIn = useStore((state) => !!state.tokenId);
+
+  const lovedProductIds = useStore((state) => state.lovedProductIds);
+
+  const [statusFilteredProducts, setStatusFilteredProducts] =
+    useState(productsList);
+
+  useEffect(() => {
+    let filteredProducts = productsList;
+
+    const saleOffProducts = productsList.filter(
+      (product) => product.discount > 0
+    );
+    dispatch(filterStatusActions.setNumSaleOff(saleOffProducts.length));
+
+    const limitedProducts = productsList.filter(
+      (product) => product.status.limited
+    );
+    dispatch(filterStatusActions.setNumLimited(limitedProducts.length));
+
+    const lovedProducts = isLoggedIn
+      ? productsList.filter((product) => lovedProductIds.includes(product.id))
+      : [];
+    dispatch(filterStatusActions.setNumLoved(lovedProducts.length));
+
+    if (selectedStatus === "sale-off") {
+      filteredProducts = saleOffProducts;
+    } else if (selectedStatus === "limited") {
+      filteredProducts = limitedProducts;
+    } else if (selectedStatus === "loved") {
+      filteredProducts = lovedProducts;
+    } else if (selectedStatus === "no filter") {
+      filteredProducts = productsList;
+    }
+    setStatusFilteredProducts(filteredProducts);
+  }, [lovedProductIds, selectedStatus, productsList, dispatch, isLoggedIn]);
+  /////////////////////////////////////////////////////////////////////////////////////
+  // FILTER BY SEARCH
+  const query = useAppSelector((state) => state.filterSearch.query);
+  const searchParams = useAppSelector(
+    (state) => state.filterSearch.searchParams
+  );
+
+  const [searchFilteredProducts, setSearchFilteredProducts] =
+    useState(productsList);
+
+  useEffect(() => {
+    const filteredProducts = productsList.filter((product: Product) => {
+      return searchParams.some((param: string) => {
+        return (
+          product[param as keyof typeof product]
+            .toString()
+            .toLowerCase()
+            .replaceAll(/\s/g, "")
+            .indexOf(query.toLowerCase().replaceAll(/\s/g, "")) > -1
+        );
+      });
+    });
+
+    const filteredProductsCheckFallback =
+      query.trim().length !== 0 ? filteredProducts : productsList;
+
+    setSearchFilteredProducts(filteredProductsCheckFallback);
+  }, [productsList, query, searchParams]);
+
+  /////////////////////////////////////////////////////////////////////////////////////
   // INTERSECTION BETWEEN FILTER MODE
+
   const brand_priceFilteredProducts = useMemo(
     () =>
       brandFilteredProducts.filter(
@@ -187,21 +261,36 @@ export default function ProductList({ productsList }: AppProps) {
     [brandFilteredProducts, priceFilteredProducts]
   );
 
+  const brand_price_statusFilteredProducts = useMemo(
+    () =>
+      brand_priceFilteredProducts.filter(
+        (product) => statusFilteredProducts.indexOf(product) !== -1
+      ),
+    [brand_priceFilteredProducts, statusFilteredProducts]
+  );
+
+  const brand_price_status_searchFilteredProducts = useMemo(
+    () =>
+      brand_price_statusFilteredProducts.filter(
+        (product) => searchFilteredProducts.indexOf(product) !== -1
+      ),
+    [brand_price_statusFilteredProducts, searchFilteredProducts]
+  );
+
   ///////////////////////////////////////////////////////////////////////////////////
   // PAGINATION
   /////- product lists:
 
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
   const renderedProducts = getPageResult(
-    brand_priceFilteredProducts,
+    brand_price_status_searchFilteredProducts,
     currentPage
   );
 
   useEffect(() => {
     // When switching between different category page and different filtered mode, reset to first page
-    console.log(brand_priceFilteredProducts);
     dispatch(PaginationActions.resetFirstPage());
-  }, [brand_priceFilteredProducts, dispatch]);
+  }, [brand_price_status_searchFilteredProducts, dispatch]);
 
   if (renderedProducts.length === 0) return <ProductEmpty />;
 
@@ -210,7 +299,9 @@ export default function ProductList({ productsList }: AppProps) {
   /////- page number:
 
   const pageNumbers = [];
-  const maxPage = Math.ceil(brand_priceFilteredProducts.length / PROS_PER_PAGE);
+  const maxPage = Math.ceil(
+    brand_price_status_searchFilteredProducts.length / PROS_PER_PAGE
+  );
   for (let i = 1; i <= maxPage; i++) {
     pageNumbers.push(i);
   }
