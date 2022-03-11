@@ -111,7 +111,7 @@
 import ProductItem from "./ProductItem";
 import Product from "src/model/Product";
 import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ProductEmpty from "./ProductEmpty";
 import paginationSlice, {
   PaginationActions,
@@ -120,6 +120,7 @@ import { AiOutlineLeft } from "react-icons/ai";
 import { AiOutlineRight } from "react-icons/ai";
 import useStore from "src/store/zustand/useStore";
 import { filterStatusActions } from "src/store/redux-toolkit/filterStatus";
+import { useRouter } from "next/router";
 interface AppProps {
   productsList: Product[];
 }
@@ -276,21 +277,56 @@ export default function ProductList({ productsList }: AppProps) {
       ),
     [brand_price_statusFilteredProducts, searchFilteredProducts]
   );
+  ///////////////////////////////////////////////////////////////////////////////////
+  // SORTING
+  const router = useRouter();
+  const sortType = router.query.sort;
+  const [sortedProducts, setSortedProducts] = useState(
+    brand_price_status_searchFilteredProducts
+  );
+
+  const sortProductsByPrice = useCallback(
+    (type) => {
+      if (type === "asc") {
+        return brand_price_status_searchFilteredProducts
+          .slice()
+          .sort((productA, productB) =>
+            productA.price - (productA.price * productA.discount) / 100 >
+            productB.price - (productB.price * productB.discount) / 100
+              ? 1
+              : -1
+          );
+      } else if (type === "desc") {
+        return brand_price_status_searchFilteredProducts
+          .slice()
+          .sort((productA, productB) =>
+            productA.price - (productA.price * productA.discount) / 100 <
+            productB.price - (productB.price * productB.discount) / 100
+              ? 1
+              : -1
+          );
+      } else {
+        return brand_price_status_searchFilteredProducts;
+      }
+    },
+    [brand_price_status_searchFilteredProducts]
+  );
+
+  useEffect(() => {
+    setSortedProducts(sortProductsByPrice(sortType));
+  }, [sortProductsByPrice, sortType]);
 
   ///////////////////////////////////////////////////////////////////////////////////
   // PAGINATION
   /////- product lists:
 
   const currentPage = useAppSelector((state) => state.pagination.currentPage);
-  const renderedProducts = getPageResult(
-    brand_price_status_searchFilteredProducts,
-    currentPage
-  );
+  const renderedProducts = getPageResult(sortedProducts, currentPage);
 
   useEffect(() => {
     // When switching between different category page and different filtered mode, reset to first page
     dispatch(PaginationActions.resetFirstPage());
-  }, [brand_price_status_searchFilteredProducts, dispatch]);
+  }, [sortedProducts, dispatch]);
 
   if (renderedProducts.length === 0) return <ProductEmpty />;
 
@@ -299,9 +335,7 @@ export default function ProductList({ productsList }: AppProps) {
   /////- page number:
 
   const pageNumbers = [];
-  const maxPage = Math.ceil(
-    brand_price_status_searchFilteredProducts.length / PROS_PER_PAGE
-  );
+  const maxPage = Math.ceil(sortedProducts.length / PROS_PER_PAGE);
   for (let i = 1; i <= maxPage; i++) {
     pageNumbers.push(i);
   }

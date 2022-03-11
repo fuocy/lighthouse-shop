@@ -3,12 +3,8 @@ import { useEffect, useState } from "react";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { FaSortAmountDown } from "react-icons/fa";
 import Product from "src/model/Product";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { filterTypeActions } from "src/store/redux-toolkit/filterTypeSlice";
-import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
-// import { useAppDispatch } from "src/store/hooks";
-// import { sortActions } from "src/store/sortedSlice";
 
 interface AppProps {
   productsList: Product[];
@@ -35,78 +31,23 @@ const sortProducts = (
 
 export default function Title({ productsList }: AppProps) {
   const [btnPress, setBtnPress] = useState("");
-  const filteredProducts = useAppSelector(
-    (state) => state.filterType.filteredProducts
-  );
-  // const filteredProducts = useAppSelector(
-  //   (state) => state.filterType.filteredProducts
-  // );
-  // const dispatch = useAppDispatch();
-
   const router = useRouter();
-  // const dispatch = useAppDispatch();
 
-  const sortAscendingHandler = (btnPress: string) => {
-    router.push(`${router.query.productCategory}?sort=asc`);
-
-    // dispatch(
-    //   sortActions.handleSort({
-    //     products: productsList,
-    //     type: "asc",
-    //   })
-    // );
-
-    if (filteredProducts.length > 0) {
-      toast.warn(
-        "Sorting can't be done when in filtered mode. Do you know why? I still also don't know why 😐",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+  const sortAscendingHandler = () => {
+    if (router.query.sort === "asc") {
+      router.push(`${router.query.productCategory}`);
+    } else {
+      router.push(`${router.query.productCategory}?sort=asc`);
     }
-
-    setBtnPress(btnPress);
   };
 
-  const sortDescendingHandler = (btnPress: string) => {
-    router.push(`${router.query.productCategory}?sort=desc`);
-
-    if (filteredProducts.length > 0) {
-      toast.warn(
-        "Sorting can't be done when in filtered mode. Do you know why? I still also don't know why 😐",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+  const sortDescendingHandler = () => {
+    if (router.query.sort === "desc") {
+      router.push(`${router.query.productCategory}`);
+    } else {
+      router.push(`${router.query.productCategory}?sort=desc`);
     }
-    // dispatch(
-    //   sortActions.handleSort({
-    //     products: productsList,
-    //     type: "desc",
-    //   })
-    // );
-    setBtnPress(btnPress);
   };
-
-  // I DON'T KNOW WHY IT WORKS
-  // BUT IT WORKS :)
-  sortProducts(productsList, router.query.sort);
-
-  // Oke I got this. Object is reference type. When object is passed as argument or as PROPS. You change the object that you got from PROPS meaning you change THE REAL OBJECT GLOBAL, so other object that got from PROPS all reflex that change
-
-  // BUT I STILL DON'T KNOW WHY IT WON'T WORK WHEN I PUT  sortProducts(productsList, router.query.sort);  IN A USE-EFFECT HOOK ???????????
 
   useEffect(() => {
     setBtnPress(
@@ -117,9 +58,6 @@ export default function Title({ productsList }: AppProps) {
         : ""
     );
   }, [setBtnPress, router.query.sort]);
-
-  // dispatch(sortActions.handleSort(sortedProducts));
-  // console.log(sortedProducts);
 
   return (
     <div>
@@ -145,7 +83,7 @@ export default function Title({ productsList }: AppProps) {
         <p>sorted by:</p>
         <div className="absolute top-[-3px] right-[-90px] flex items-center gap-2">
           <button
-            onClick={sortAscendingHandler.bind(null, "btn1")}
+            onClick={sortAscendingHandler}
             className={`flex-center 
       py-1 px-2 bg-white text-black z-10 transition duration-300 ${
         btnPress === "btn1" && "bg-primary-color"
@@ -154,7 +92,7 @@ export default function Title({ productsList }: AppProps) {
             <FaSortAmountDownAlt className="text-lg" />
           </button>
           <button
-            onClick={sortDescendingHandler.bind(null, "btn2")}
+            onClick={sortDescendingHandler}
             className={`flex-center 
       py-1 px-2 bg-white text-black z-10 transition duration-300 ${
         btnPress === "btn2" && "bg-primary-color"
