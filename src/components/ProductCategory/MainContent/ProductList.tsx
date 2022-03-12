@@ -374,7 +374,8 @@ export default function ProductList({ productsList }: AppProps) {
     <div>
       <ul
         className="grid grid-cols-3 gap-x-5 gap-y-[26px] 
-      md:grid-cols-2"
+      md:grid-cols-2
+      md:gap-x-2"
       >
         {renderedProducts.map((product) => (
           <ProductItem

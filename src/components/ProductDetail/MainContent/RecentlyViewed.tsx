@@ -185,9 +185,12 @@ export default function RecentlyViewed({ allProductsSSG }: AppProps) {
       )}
 
       <div className="relative">
-        <ul className="grid grid-cols-5 gap-x-[17px]">
+        <ul className="grid grid-cols-5 gap-x-[17px] sm:grid-cols-2">
           {rederedViewedProducts.map((viewedProduct) => (
-            <li key={viewedProduct.id} className=" group relative">
+            <li
+              key={viewedProduct.id}
+              className=" group relative sm:last:hidden"
+            >
               <button
                 onClick={handleClickSimilarProduct.bind(null, viewedProduct)}
               >

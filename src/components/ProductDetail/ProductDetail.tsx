@@ -30,7 +30,7 @@ export default function ProductDetail({
 
   return (
     <>
-      <div className="layout-container">
+      <div className="layout-container sm:px-4">
         <CurrentPath
           url1={`${router.query.productCategory}'s Product`}
           url2={singleProduct.name}

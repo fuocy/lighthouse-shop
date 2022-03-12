@@ -21,7 +21,7 @@ export default function ProductCategory({ productsList }: AppProps) {
   }, [dispatch, router.query.productCategory]);
 
   return (
-    <div className="layout-container pb-20 ">
+    <div className="layout-container pb-20 sm:px-4">
       <CurrentPath url1={`${router.query.productCategory}'s product`} />
       <div className="flex xs:flex-col gap-3">
         <Title productsList={productsList} />

@@ -63,7 +63,8 @@ export default function ImageSearchBar() {
           />
           <p
             className="text-xs
-          lg:text-[10px]"
+          lg:text-[10px]
+          sm:text-[8px]"
           >
             SEARCH
           </p>

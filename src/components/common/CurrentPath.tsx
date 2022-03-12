@@ -11,7 +11,10 @@ export default function PathAndRate({ url1, url2 }: AppProps) {
   const router = useRouter();
 
   return (
-    <div className="flex items-center gap-2 text-sm text-[#4b5563] pt-[14px]">
+    <div
+      className="flex items-center gap-2 text-sm text-[#4b5563] pt-[14px] 
+    sm:text-xs"
+    >
       <Link href="/">
         <a>Homepage</a>
       </Link>
@@ -21,7 +24,7 @@ export default function PathAndRate({ url1, url2 }: AppProps) {
       </Link>
       {url2 && (
         <>
-          <HiOutlineChevronRight className="text-base" />
+          <HiOutlineChevronRight className="text-base " />
           <Link
             href={`/${router.query.productCategory}/${router.query.productId}`}
           >

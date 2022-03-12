@@ -126,6 +126,7 @@ export default function Header() {
     px-24 xl:px-6
     pb-5 transition duration-300 
     xs:text-sm
+    sm:pt-6
     `}
     >
       <div className={`flex items-center justify-between  relative mb-14`}>

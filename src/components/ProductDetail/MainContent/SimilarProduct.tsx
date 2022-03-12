@@ -11,6 +11,7 @@ import { imageActions } from "src/store/redux-toolkit/imageSlice";
 import { fetchTypeProducts } from "src/hooks/lib/api";
 import useHtttp from "src/hooks/useHttp";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import useStore from "src/store/zustand/useStore";
 
 // interface AppProps {
 //   singleProduct: Product;
@@ -178,6 +179,40 @@ export default function SimilarProduct({
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const router = useRouter();
   const dispatch = useDispatch();
+  ///////////////////////////////////////////////////
+  // IS MOBILE
+  const [windowSize, setWindowSize] = useState<{
+    width: number | undefined;
+    height: number | undefined;
+  }>({
+    width: undefined,
+    height: undefined,
+  });
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleSize);
+    handleSize();
+
+    return () => window.removeEventListener("resize", handleSize);
+  }, []);
+
+  useEffect(() => {
+    if ((windowSize.width as number) < 630) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [windowSize.width]);
+  ///////////////////////////////////////////////////
 
   const swiper = new Swiper(".swiper", {
     modules: [Navigation, Pagination],
@@ -191,7 +226,7 @@ export default function SimilarProduct({
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    slidesPerView: 5,
+    slidesPerView: isMobile ? 2 : 5,
     speed: 700,
     effect: "flip",
     flipEffect: {
@@ -223,7 +258,7 @@ export default function SimilarProduct({
             <li key={similar.id} className="group relative swiper-slide ">
               <button onClick={handleClickSimilarProduct.bind(null, similar)}>
                 <div className="flex flex-col">
-                  <div className="bg-background-grayec relative w-[230px] h-[250px] ">
+                  <div className="bg-background-grayec relative max-w-[230px] h-[250px] ">
                     <Image
                       src={similar.image.img1}
                       alt=""
