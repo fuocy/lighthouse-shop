@@ -84,16 +84,26 @@ export default function CartItem({
     <li
       className="grid grid-cols-cart-item items-center gap-10 justify-items-center
     py-6 
-    shadow-sm"
+    shadow-sm
+    sm:gap-2"
     >
-      <div className="flex items-center gap-8">
-        <div className="relative h-[100px] w-[100px] bg-background-grayec">
+      <div
+        className="flex items-center gap-8
+      sm:gap-3
+      "
+      >
+        <div
+          className="relative h-[100px] w-[100px] bg-background-grayec
+        sm:h-[50px] sm:w-[50px]"
+        >
           <Image src={img} alt={name} layout="fill" className="object-cover" />
         </div>
         <div className="flex-1">
           <h3
             className="font-semibold text-[14px]
-          mb-2"
+          mb-2
+          sm:text-xs
+          sm:w-[70px]"
           >
             {name}
           </h3>
@@ -102,11 +112,18 @@ export default function CartItem({
               <TiStarburst className="text-lg text-primary-color" />
               <BsCheck className="text-sm text-black -translate-x-[16px]" />
             </div>
-            <p className="-translate-x-[15px] font-thin capitalize italic text-[14px]">
+            <p
+              className="-translate-x-[15px] font-thin capitalize italic text-[14px]
+            sm:w-[70px]
+            sm:text-xs"
+            >
               {brand}
             </p>
           </div>
-          <div className="text-[13px] flex items-center gap-24">
+          <div
+            className="text-[13px] flex items-center gap-24
+          sm:gap-1"
+          >
             <div className="text-[13px] flex items-center gap-2">
               <p>{size}</p>
               <div className={`h-3 w-3 bg-[${color}]`}></div>
@@ -123,20 +140,27 @@ export default function CartItem({
       <div
         className="flex items-center gap-[22px] 
       px-[15px] py-[13px] 
-      bg-background-grayfa"
+      bg-background-grayfa
+      sm:px-[1px]
+      sm:text-sm
+      sm:-translate-x-6"
       >
         <button onClick={decrementQuantity}>
-          <GrFormSubtract className="text-2xl" />
+          <GrFormSubtract className="text-2xl  sm:text-sm" />
         </button>
         <div>{quantity}</div>
         <button onClick={incrementQuantity}>
-          <GrFormAdd className="text-2xl" />
+          <GrFormAdd className="text-2xl  sm:text-sm" />
         </button>
       </div>
-      <div className="font-semibold text-lg">{`$${price}`}</div>
-      <div className="font-semibold text-lg">{`$${+totalPrice.toFixed(
-        2
-      )}`}</div>
+      <div
+        className="font-semibold text-lg
+      sm:text-sm"
+      >{`$${price}`}</div>
+      <div
+        className="font-semibold text-lg
+      sm:text-sm"
+      >{`$${+totalPrice.toFixed(2)}`}</div>
     </li>
   );
 }

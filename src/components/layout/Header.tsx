@@ -121,7 +121,13 @@ export default function Header() {
 
   const logout = useStore((state) => state.logout);
   return (
-    <header className={`pt-10 px-24 pb-5 transition duration-300 `}>
+    <header
+      className={`pt-10 
+    px-24 xl:px-6
+    pb-5 transition duration-300 
+    xs:text-sm
+    `}
+    >
       <div className={`flex items-center justify-between  relative mb-14`}>
         {!isLoggedIn && (
           <Link href="/auth" passHref>
@@ -133,7 +139,10 @@ export default function Header() {
         )}
         {isLoggedIn && (
           <div className="flex items-center gap-3">
-            <div className="relative h-11 w-11 rounded-full overflow-hidden">
+            <div
+              className="relative h-11 w-11 rounded-full overflow-hidden
+            xs:h-7 xs:w-7"
+            >
               <Image
                 src={
                   userAvatar
@@ -146,20 +155,33 @@ export default function Header() {
               />
             </div>
             <div>
-              <div className="text-semibold text-base">
+              <div
+                className="text-semibold text-base
+              xs:text-sm"
+              >
                 {userEmail.slice(0, -10)}
               </div>
-              <button onClick={logout} className="text-gray-500 text-sm">
+              <button
+                onClick={logout}
+                className="text-gray-500 text-sm
+              xs:text-xs"
+              >
                 Logout
               </button>
             </div>
           </div>
         )}
         <Link href="/" passHref>
-          <a className="text-[27px] relative -translate-x-8">
+          <a
+            className="text-[27px] relative -translate-x-8
+          xs:translate-y-5"
+          >
             <span className="font-extrabold">Light</span>
             <span className="font-normal drop-shadow-logo">house</span>
-            <div className="absolute -top-[3px] right-[31px] -z-10 h-10 w-10">
+            <div
+              className="absolute -top-[3px] right-[31px] -z-10 h-10 w-10
+            "
+            >
               <Image
                 src={sun}
                 alt="the sun | cosmestic content"
@@ -172,9 +194,15 @@ export default function Header() {
 
         <Link href="/cart" passHref>
           <a className="relative">
-            <HiOutlineShoppingCart className="text-2xl" />
+            <HiOutlineShoppingCart
+              className="text-2xl
+            xs:text-lg"
+            />
             {totalQuantity > 0 && (
-              <div className="absolute -top-1 -left-3 h-4 w-5 rounded-lg bg-[#eb5757] flex items-center justify-center text-white">
+              <div
+                className="absolute -top-1 -left-3 h-4 w-5 rounded-lg bg-[#eb5757] flex items-center justify-center text-white
+              xs:text-xs xs:h-3 xs:w-4"
+              >
                 {totalQuantity}
               </div>
             )}

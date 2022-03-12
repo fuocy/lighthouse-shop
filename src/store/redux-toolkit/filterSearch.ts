@@ -16,6 +16,10 @@ export const filterSearchSlice = createSlice({
     setQuery: (state, action: PayloadAction<string>) => {
       state.query = action.payload;
     },
+
+    resetQuery: (state) => {
+      state.query = "";
+    },
   },
 });
 

@@ -12,7 +12,11 @@ const navItems = [
 export default function Navigation() {
   return (
     <nav>
-      <ul className="flex gap-8 justify-center">
+      <ul
+        className="flex gap-8 justify-center
+      lg:gap-5 lg:text-sm
+      xs:gap-2 "
+      >
         {navItems.map((navItem) => (
           <li key={navItem.id} className="relative group transition p-1">
             <ActiveLinkImprove

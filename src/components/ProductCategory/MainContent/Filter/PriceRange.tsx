@@ -61,8 +61,14 @@ export default function PriceRange() {
   return (
     <ComponentAccordion heading="Price">
       <div className="px-6 py-3 pb-5 mb-5 shadow-sm">
-        <div className="flex items-center gap-5 mb-8">
-          <div className="flex items-center gap-2">
+        <div
+          className="flex items-center gap-5 mb-8
+        lg:gap-2"
+        >
+          <div
+            className="flex items-center gap-2
+          lg:gap-1"
+          >
             <span className="text-sm">From</span>
             {/* <input
               type="text"
@@ -71,7 +77,10 @@ export default function PriceRange() {
               value={minInput}
               onChange={handleChangeInput}
             /> */}
-            <div className=" text-center select-none font-semibold text-lg w-[66px]">
+            <div
+              className=" text-center select-none font-semibold text-lg max-w-[66px]
+            lg:text-sm"
+            >
               {`$${minInput}`}
             </div>
           </div>
@@ -85,7 +94,10 @@ export default function PriceRange() {
               value={maxInput}
               onChange={handleChangeInput}
             /> */}
-            <div className="text-center select-none font-semibold text-lg w-[66px]">
+            <div
+              className="text-center select-none font-semibold text-lg max-w-[66px]
+            lg:text-sm"
+            >
               {`$${maxInput}`}
             </div>
           </div>
@@ -126,7 +138,7 @@ export default function PriceRange() {
             <p>Apply filter</p>
           </button>
         </div>
-        <div>
+        <div className="lg:text-sm">
           <span className="">Result: </span>
           <span>{numFilteredPrice} products</span>
         </div>

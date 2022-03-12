@@ -78,7 +78,7 @@ export default function CartInfo() {
       )}
       <div>
         <ul
-          className={`overflow-y-auto h-[500px] ${classes["custom-scrollbar"]}`}
+          className={`overflow-y-auto h-[500px] ${classes["custom-scrollbar"]} `}
         >
           {cartState.items.length > 0 &&
             cartState.items.map((cart) => (

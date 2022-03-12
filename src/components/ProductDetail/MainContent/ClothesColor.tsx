@@ -22,7 +22,7 @@ export default function DifferentColor({ singleProduct }: AppProps) {
 
   return (
     <div>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 sm:flex-row">
         {imageEntries.map((imageArr) => (
           <button
             onClick={handleClick.bind(null, imageArr[1])}

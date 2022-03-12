@@ -47,6 +47,23 @@ module.exports = {
         "cart-item": "29fr 11fr 9fr 9fr",
       },
     },
+    screens: {
+      "2xl": { max: "1545px" },
+      // => @media (max-width: 1535px) { ... }
+      xl: { max: "1279px" },
+      // => @media (max-width: 1279px) { ... }
+
+      lg: { max: "1023px" },
+      // => @media (max-width: 1023px) { ... }
+
+      md: { max: "767px" },
+      // => @media (max-width: 767px) { ... }
+
+      sm: { max: "639px" },
+      // => @media (max-width: 639px) { ... }
+      xs: { max: "459px" },
+      // => @media (max-width: 459px) { ... }
+    },
   },
   plugins: [],
 };

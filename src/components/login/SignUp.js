@@ -44,7 +44,10 @@ export default function SignUp({ onSetAuth }) {
         />
       )}
 
-      <div className="absolute top-[30px] right-[30px] bg-white w-[600px] h-[650px] rounded-2xl">
+      <div
+        className="absolute top-[30px] right-[30px] bg-white max-w-[600px] h-[650px] rounded-2xl
+      "
+      >
         <h1 className="font-bold text-5xl text-primary-color text-center mt-[35px] mb-5">
           Create Account
         </h1>

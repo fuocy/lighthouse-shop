@@ -105,25 +105,36 @@ export default function ProductItem({
         <div className="absolute opacity-0 transition duration-500 w-full h-full top-0 left-0 bg-black/60 group-hover:opacity-100"></div>
       </div>
       <div className="py-5 px-5 bg-white h-[156px] flex flex-col justify-between">
-        <div className="mb-[10px] text-sm font-medium uppercase">{name}</div>
+        <div
+          className="mb-[10px] text-sm font-medium uppercase 
+        lg:text-xs"
+        >
+          {name}
+        </div>
         <div>
           <div className="flex items-center mb-2 ml-[-5px]">
             <div className="flex items-center">
               <TiStarburst className="text-2xl  text-[#F6F5F3]" />
               <BsCheck className="text-lg text-black -translate-x-[21px]" />
             </div>
-            <p className="-translate-x-[15px] font-light text-sm capitalize italic text-slate-700">
+            <p
+              className="-translate-x-[15px] font-light text-sm capitalize italic text-slate-700
+            lg:text-xs"
+            >
               {brand}
             </p>
           </div>
           {availability && (
-            <div className="text-right text-sm font-thin ">{`$${(
-              price -
-              (price * discount) / 100
-            ).toFixed(2)}`}</div>
+            <div
+              className="text-right text-sm font-thin 
+            lg:text-xs"
+            >{`$${(price - (price * discount) / 100).toFixed(2)}`}</div>
           )}
           {!availability && (
-            <div className="text-right text-sm text-slate-700 italic font-thin ">
+            <div
+              className="text-right text-sm text-slate-700 italic font-thin 
+            lg:text-xs"
+            >
               Unavailable
             </div>
           )}

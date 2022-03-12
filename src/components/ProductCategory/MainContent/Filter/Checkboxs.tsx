@@ -161,7 +161,8 @@ export default function Checkboxs({ productsList }: AppProps) {
       <div className="p-7">
         {stylesOptions.map((option, position) => (
           <div
-            className="flex items-center gap-x-5 mb-[30px] relative"
+            className="flex items-center gap-x-5 mb-[30px] relative
+            lg:gap-x-3"
             key={option.id}
           >
             <div className="relative">

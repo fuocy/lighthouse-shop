@@ -316,6 +316,9 @@ export default function ProductList({ productsList }: AppProps) {
     setSortedProducts(sortProductsByPrice(sortType));
   }, [sortProductsByPrice, sortType]);
 
+  const setNum = useStore((state) => state.setNum);
+  setNum(sortedProducts.length);
+
   ///////////////////////////////////////////////////////////////////////////////////
   // PAGINATION
   /////- product lists:
@@ -369,7 +372,10 @@ export default function ProductList({ productsList }: AppProps) {
 
   return (
     <div>
-      <ul className="grid grid-cols-3 gap-x-5 gap-y-[26px] ">
+      <ul
+        className="grid grid-cols-3 gap-x-5 gap-y-[26px] 
+      md:grid-cols-2"
+      >
         {renderedProducts.map((product) => (
           <ProductItem
             key={product.id}

@@ -48,7 +48,8 @@ export default function AccordionCategory() {
       <div className="px-6 pt-3 pb-5 mb-5 shadow-sm">
         {categoryOptions.map((option) => (
           <div
-            className="flex items-center gap-x-5 mb-[30px] relative "
+            className="flex items-center gap-x-5 mb-[30px] relative 
+            lg:gap-x-3"
             key={option.id}
           >
             <div className="relative w-[18px] h-[18px]">
@@ -62,10 +63,14 @@ export default function AccordionCategory() {
                   selectedStatus === option.title.toLowerCase()
                     ? "border-primary-color"
                     : "border-gray-600"
-                }`}
+                }
+                lg:h-[15px] lg:w-[15px]`}
               />
               {selectedStatus === option.title.toLowerCase() && (
-                <div className="absolute h-3 w-3 rounded-full bg-primary-color top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                <div
+                  className="absolute h-3 w-3 rounded-full bg-primary-color top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                lg:h-[10px] lg:w-[10px] lg:-translate-x-[6px] lg:-translate-y-[6.5px]"
+                ></div>
               )}
             </div>
 

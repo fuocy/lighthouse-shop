@@ -8,6 +8,7 @@ import createLoveCountSlice, { LoveCountSlice } from "./createLoveCountSlice";
 import createNumFilteredPriceSlice, {
   NumFilteredPriceSlice,
 } from "./createNumFilteredPriceSlice";
+import createNumSlice, { NumSlice } from "./createNumSlice";
 // import createRecentlyViewedSlice, {
 //   RecentlyViewedSlice,
 // } from "./createRecentlyViewedSlice";
@@ -17,7 +18,8 @@ export type MyState = IndexTabSlice &
   IsSignInSlice &
   AuthSlice &
   LoveCountSlice &
-  NumFilteredPriceSlice;
+  NumFilteredPriceSlice &
+  NumSlice;
 // &
 // RecentlyViewedSlice;
 
@@ -28,6 +30,7 @@ const useStore = create<MyState>((set, get) => ({
   ...createAuthSlice(set, get),
   ...createLoveCountSlice(set, get),
   ...createNumFilteredPriceSlice(set, get),
+  ...createNumSlice(set, get),
   // ...createRecentlyViewedSlice(set, get),
 }));
 
