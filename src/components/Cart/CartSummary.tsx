@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import classes from "styles/input-effect.module.css";
 import { useRef } from "react";
+import useStore from "src/store/zustand/useStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Router, { useRouter } from "next/router";
+import thankU from "assets/thankyou2.png";
+import Image from "next/image";
+import { Transition } from "react-transition-group";
+import "animate.css";
 const PROMOCODE = [
   "111",
   "222",
@@ -19,6 +27,7 @@ export default function CartSummary() {
   const [shippingState, setShippingState] = useState("standard");
   const [promo, setPromo] = useState("");
   const inputPromoRef = useRef<HTMLInputElement>(null);
+  const nodeRef = useRef(null);
 
   const ShippingHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setShippingState(e.target.value);
@@ -47,8 +56,38 @@ export default function CartSummary() {
   // DEDRIVING STATE
   const finalPrice = cartState.totalAmount + shippingFee - promoFee;
 
+  const isLoggedIn = useStore((state) => !!state.tokenId);
+  const router = useRouter();
+  const [showThankU, setShowThankU] = useState(false);
+  const handleCheckout = () => {
+    if (!isLoggedIn) {
+      toast.error("You have to log in to checkout!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setTimeout(() => {
+        router.push("/auth");
+      }, 2000);
+
+      return;
+    }
+
+    setShowThankU(true);
+  };
+
+  const closeBackdrop = () => {
+    setShowThankU(false);
+  };
+
   return (
     <div className="pl-11 pr-4">
+      <ToastContainer />
       <h2
         className="text-2xl font-semibold
       pb-12 mb-[40px] mt-[44px]
@@ -151,6 +190,7 @@ export default function CartSummary() {
         </p>
       </div>
       <button
+        onClick={handleCheckout}
         className="uppercase  bg-primary-color font-extrabold text-xl 
         shadow-md rounded-sm
         active:shadow-sm active:scale-[.98] active:translate-y-0 
@@ -169,6 +209,36 @@ export default function CartSummary() {
         translate3d-rotate group-hover:transition group-hover:duration-[1000ms] group-hover:ease-in-out group-hover:translate3d-rotate-hover"
         ></div>
       </button>
+      <Transition
+        in={showThankU}
+        timeout={1000}
+        mountOnEnter
+        unmountOnExit
+        nodeRef={nodeRef}
+      >
+        {(state) => {
+          return (
+            <div
+              ref={nodeRef}
+              className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ${
+                state === "entering"
+                  ? "animate__animated animate__zoomIn"
+                  : state === "exiting"
+                  ? "animate__animated animate__zoomOut"
+                  : " "
+              }`}
+            >
+              <Image src={thankU} alt="" className="" />
+            </div>
+          );
+        }}
+      </Transition>
+      {showThankU && (
+        <div
+          onClick={closeBackdrop}
+          className="fixed top-0 left-0 w-full h-full bg-black/70 z-40"
+        ></div>
+      )}
     </div>
   );
 }

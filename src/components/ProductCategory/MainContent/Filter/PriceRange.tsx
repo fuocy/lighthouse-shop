@@ -62,21 +62,14 @@ export default function PriceRange() {
     <ComponentAccordion heading="Price">
       <div className="px-6 py-3 pb-5 mb-5 shadow-sm">
         <div
-          className="flex items-center gap-5 mb-8
-        lg:gap-2"
+          className="flex items-center flex-between mb-8
+        "
         >
           <div
             className="flex items-center gap-2
           lg:gap-1"
           >
             <span className="text-sm">From</span>
-            {/* <input
-              type="text"
-              className=" w-16 py-2 px-2 outline-none border border-gray-500 rounded-md text-sm text-center"
-              name="min-input"
-              value={minInput}
-              onChange={handleChangeInput}
-            /> */}
             <div
               className=" text-center select-none font-semibold text-lg max-w-[66px]
             lg:text-sm"
@@ -84,16 +77,9 @@ export default function PriceRange() {
               {`$${minInput}`}
             </div>
           </div>
-          {/* <GrSubtract className="text-base" /> */}
           <div className="flex items-center gap-2">
             <span className="text-sm">To</span>
-            {/* <input
-              type="text"
-              className=" w-16 py-2 px-2 outline-none border border-gray-500 rounded-md text-sm text-center"
-              name="max-input"
-              value={maxInput}
-              onChange={handleChangeInput}
-            /> */}
+
             <div
               className="text-center select-none font-semibold text-lg max-w-[66px]
             lg:text-sm"

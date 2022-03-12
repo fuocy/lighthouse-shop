@@ -65,5 +65,13 @@ export default function determineColor(colorState: string | undefined) {
     ? "Dark Brown"
     : colorState === "#E1DED5"
     ? "Light Brown"
+    : colorState === "#2A346B"
+    ? "Blue"
+    : colorState === "#ddd"
+    ? "Gray"
+    : colorState === "#00FF00"
+    ? "Green"
+    : colorState === "#ffd500"
+    ? "Yellow"
     : "Choose a color";
 }

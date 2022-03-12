@@ -121,21 +121,56 @@ import { AiOutlineRight } from "react-icons/ai";
 import useStore from "src/store/zustand/useStore";
 import { filterStatusActions } from "src/store/redux-toolkit/filterStatus";
 import { useRouter } from "next/router";
+
 interface AppProps {
   productsList: Product[];
 }
 
-const PROS_PER_PAGE = 9;
-
-const getPageResult = (originalProducts: Product[], pageNum: number) => {
-  const start = (pageNum - 1) * PROS_PER_PAGE;
-  const end = pageNum * PROS_PER_PAGE;
-
-  return originalProducts.slice(start, end);
-};
-
 export default function ProductList({ productsList }: AppProps) {
   const dispatch = useAppDispatch();
+
+  ///////////////////////////////////////////////////
+  // IS MOBILE
+  const [windowSize, setWindowSize] = useState<{
+    width: number | undefined;
+    height: number | undefined;
+  }>({
+    width: undefined,
+    height: undefined,
+  });
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleSize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleSize);
+    handleSize();
+
+    return () => window.removeEventListener("resize", handleSize);
+  }, []);
+
+  useEffect(() => {
+    if ((windowSize.width as number) < 630) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [windowSize.width]);
+  ///////////////////////////////////////////////////
+  const PROS_PER_PAGE = isMobile ? 8 : 9;
+
+  const getPageResult = (originalProducts: Product[], pageNum: number) => {
+    const start = (pageNum - 1) * PROS_PER_PAGE;
+    const end = pageNum * PROS_PER_PAGE;
+
+    return originalProducts.slice(start, end);
+  };
 
   ////////////////////////////////////////////////////////////////////////////////////
   // FILTER BY BRAND

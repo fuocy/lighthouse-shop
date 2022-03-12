@@ -82,6 +82,7 @@ export default function SignIn({ onSetAuth }) {
       )}
       <div
         className="absolute top-[30px] right-[30px] bg-white max-w-[600px] h-[650px] rounded-2xl
+      px-12
       sm:px-4
       "
       >

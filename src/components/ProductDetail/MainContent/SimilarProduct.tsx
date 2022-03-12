@@ -252,7 +252,7 @@ export default function SimilarProduct({
         Similar products
       </h4>
 
-      <div className="relative swiper">
+      <div className="relative swiper ">
         <ul className="grid grid-cols-5 gap-x-[17px] swiper-wrapper">
           {similarProducts.map((similar) => (
             <li key={similar.id} className="group relative swiper-slide ">

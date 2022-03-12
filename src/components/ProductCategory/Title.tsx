@@ -97,7 +97,8 @@ export default function Title({ productsList }: AppProps) {
           className="absolute top-[-3px] right-[-90px] flex items-center gap-2
         md:right-[-50px]
         sm:right-[-80px]
-        xs:right-[180px]"
+        xs:right-[180px]
+        "
         >
           <button
             onClick={sortAscendingHandler}

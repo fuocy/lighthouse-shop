@@ -65,7 +65,7 @@ export default function ProductItem({
   const showLoveOutline = !lovedProductIds.includes(id) || !isLoggedIn;
 
   return (
-    <li className=" bg-[#F6F5F3] shadow-md overflow-hidden md:last:hidden">
+    <li className=" bg-[#F6F5F3] shadow-md overflow-hidden ">
       <ToastContainer />
       <div className="relative w-full h-[250px] group ">
         <Image
