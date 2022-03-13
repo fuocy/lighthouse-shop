@@ -13,14 +13,14 @@ const createLoveCountSlice = (
 ) => ({
   lovedProductIds: [],
   setLoveCount: (productId: string) =>
-    set((state) => {
+    set((state: any) => {
       let updatedLovedProductIds: string[];
 
       if (!state.lovedProductIds.includes(productId)) {
         updatedLovedProductIds = state.lovedProductIds.concat(productId);
       } else {
         updatedLovedProductIds = state.lovedProductIds.filter(
-          (lovedProductId) => lovedProductId !== productId
+          (lovedProductId: any) => lovedProductId !== productId
         );
       }
 

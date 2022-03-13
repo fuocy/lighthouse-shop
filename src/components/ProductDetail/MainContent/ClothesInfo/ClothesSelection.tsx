@@ -203,8 +203,6 @@ export default function ClothesSelection({ singleProduct }: AppProps) {
             className="flex items-center gap-[5px] text-lg 
           sm:grid sm:grid-cols-3 sm:gap-x-7"
           >
-            {/* last:crossed
-            last:text-[#9ca3af]  */}
             {singleProduct.size.map((size) => (
               <button
                 onClick={updateSizeHandler.bind(null, size)}

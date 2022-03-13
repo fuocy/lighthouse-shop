@@ -17,10 +17,6 @@ export const viewedSlice = createSlice({
       state.viewedProductIds = Array.from(new Set(state.viewedProductIds));
       state.viewedProductIds = state.viewedProductIds.slice(0, 6);
     },
-
-    // resetCurrentViewed: (state) => {
-    //   state.currentViewed = "";
-    // },
   },
 });
 

@@ -9,7 +9,6 @@ interface AppProps {
 }
 
 export default function ClothesInfo({ singleProduct }: AppProps) {
-  // before:content-['Limited'] before:top-[35px] before:absolute before:right-[28px] before:text-rede7 before:bg-[#fdeeee] before:px-[18px] before:py-[12px] before:inline-block before:font-semibold
   return (
     <div>
       <div className="bg-white px-[30px] pt-[37px] pb-[25px] mb-[30px] relative ">

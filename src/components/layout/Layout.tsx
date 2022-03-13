@@ -196,6 +196,7 @@ import classes from "styles/scrollbar.module.css";
 import "animate.css";
 import { Transition } from "react-transition-group";
 import hangerEmpty from "assets/hangerEmpty.png";
+
 let isInitial = true;
 
 export default function Layout({ children }: AppProps): JSX.Element {
@@ -210,6 +211,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
   const showHeader = router.pathname === "/auth" ? false : true;
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const cartItems = useAppSelector((state) => state.cart.items);
+
   const nodeRef = useRef(null);
 
   useEffect(() => {
@@ -258,7 +260,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
   return (
     <>
       {showHeader && <Header />}
-      <main className="bg-[#fafafa] ">
+      <main className=" bg-[#fafafa] dark:bg-[#191919] dark:text-[#DDDDDD]">
         {children}
 
         <Transition

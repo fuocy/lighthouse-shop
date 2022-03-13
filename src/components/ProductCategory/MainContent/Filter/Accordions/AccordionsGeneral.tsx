@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { Transition } from "react-transition-group";
 import "animate.css";
-import classes from "styles/Accordion.module.css";
 type AppProps = {
   children: React.ReactNode;
   heading: string;
@@ -15,7 +14,6 @@ export default function ComponentAccordion({ children, heading }: AppProps) {
   const toggleContent = () => {
     setIsOpen((prevState) => !prevState);
   };
-  // transition duration-200
   return (
     <div className="overflow-y-hidden shadow-sm">
       <button
@@ -23,7 +21,6 @@ export default function ComponentAccordion({ children, heading }: AppProps) {
         onClick={toggleContent}
       >
         <p className="font-medium z-10 ">{heading}</p>
-        {/* <BsChevronUp /> */}
         {!isOpen && <BsChevronDown className="z-10" />}
         {isOpen && <BsChevronUp className="z-10" />}
       </button>

@@ -10,25 +10,6 @@ interface AppProps {
   productsList: Product[];
 }
 
-const sortProducts = (
-  products: Product[],
-  type: string | string[] | undefined
-) => {
-  if (type === "asc") {
-    return products.sort((productA, productB) =>
-      productA.price > productB.price ? 1 : -1
-    );
-  }
-
-  if (type === "desc") {
-    return products.sort((productA, productB) =>
-      productA.price < productB.price ? 1 : -1
-    );
-  }
-
-  return products;
-};
-
 export default function Title({ productsList }: AppProps) {
   const [btnPress, setBtnPress] = useState("");
   const router = useRouter();
@@ -68,7 +49,8 @@ export default function Title({ productsList }: AppProps) {
       md:text-4xl
       md:mb-4
       xs:mt-[15px]
-      xs:mb-2"
+      xs:mb-2
+      dark:text-white"
       >
         {router.query.productCategory}
         {router.query.productCategory !== "shoes" &&
@@ -81,7 +63,8 @@ export default function Title({ productsList }: AppProps) {
         className="text-slate-600  text-base mb-[61px] font-medium
       md:text-sm md:mb-[20px]
       lg:mb-[20px]
-      xs:text-xs"
+      xs:text-xs
+      dark:text-white"
       >
         {` Showing ${numProducts} products
         out of ${productsList.length} products`}
@@ -90,7 +73,8 @@ export default function Title({ productsList }: AppProps) {
         className="text-right text-sm font-semibold uppercase relative
         md:text-xs
         sm:text-right
-        xs:text-left"
+        xs:text-left
+        dark:text-white"
       >
         <p>sorted by:</p>
         <div

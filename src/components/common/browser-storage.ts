@@ -10,7 +10,6 @@ export function loadState() {
   }
 }
 
-// async function
 export function saveState(state: any) {
   try {
     const serializedState = JSON.stringify(state);

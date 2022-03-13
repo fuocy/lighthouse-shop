@@ -12,7 +12,8 @@ export default function PathAndRate({ url1, url2 }: AppProps) {
 
   return (
     <div
-      className="flex items-center gap-2 text-sm text-[#4b5563] pt-[14px] 
+      className="flex items-center gap-2 text-sm text-[#4b5563] pt-[14px]
+      dark:text-white 
     sm:text-xs"
     >
       <Link href="/">

@@ -1,5 +1,4 @@
 import ProductList from "./ProductList";
-// import { PaginatedItems } from "./ProductList";
 import Product from "src/model/Product";
 import Filter from "./Filter/Filter";
 

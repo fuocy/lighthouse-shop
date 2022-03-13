@@ -1,7 +1,6 @@
 import { BiSearch } from "react-icons/bi";
 import Image from "next/image";
 import saleOffImg from "assets/saleOff.png";
-import logan from "assets/theRealFinalLogan_2.png";
 import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
 import React from "react";
 import { filterSearchActions } from "src/store/redux-toolkit/filterSearch";

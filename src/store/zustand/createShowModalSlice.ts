@@ -11,7 +11,8 @@ const createShowModalSlice = (
   get: GetState<MyState>
 ) => ({
   isShowModal: false,
-  setShowModal: () => set((state) => ({ isShowModal: !state.isShowModal })),
+  setShowModal: () =>
+    set((state: any) => ({ isShowModal: !state.isShowModal })),
 });
 
 export default createShowModalSlice;

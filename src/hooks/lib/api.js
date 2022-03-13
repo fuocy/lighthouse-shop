@@ -49,25 +49,3 @@ export const signInAccount = async function (requestData) {
 
   return data;
 };
-
-export const fetchAllProducts = async function () {
-  const { data } = await axios.get(`/api/filter-type/filter-type-all`);
-
-  const allProducts = data.filteredProducts.map((product) => ({
-    ...product,
-    id: product._id.toString(),
-  }));
-
-  return allProducts;
-};
-
-export const fetchTypeProducts = async function (type) {
-  const { data } = await axios.get(`/api/filter-type/filter-type-${type}`);
-
-  const allProducts = data.filteredProducts.map((product) => ({
-    ...product,
-    id: product._id.toString(),
-  }));
-
-  return allProducts;
-};

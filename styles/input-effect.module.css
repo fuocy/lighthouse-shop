@@ -2,22 +2,8 @@
   position: relative;
 }
 
-.input__input-effect {
-  /* width: 6.5em; */
-  /* color: white; */
-  /* font-size: inherit; */
-  /* font-family: inherit; */
-  /* background-color: transparent; */
-  /* border: 1px solid transparent; */
-  /* border-bottom-color: hsla(341, 97%, 59%, 0.2); */
-}
-
 .input__input-effect:focus {
   outline: none;
-}
-
-.input__input-effect::placeholder {
-  /* color: hsla(0, 0%, 100%, 0.6); */
 }
 
 .input__span-effect {

@@ -1,11 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
-import Product from "src/model/Product";
+import React, { useMemo } from "react";
 import { filterStatusActions } from "src/store/redux-toolkit/filterStatus";
-import { filterTypeActions } from "src/store/redux-toolkit/filterTypeSlice";
 import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
 import ComponentAccordion from "./AccordionsGeneral";
-import classes from "./FilterStatus.module.css";
 export default function AccordionCategory() {
   const dispatch = useAppDispatch();
   const selectedStatus = useAppSelector(

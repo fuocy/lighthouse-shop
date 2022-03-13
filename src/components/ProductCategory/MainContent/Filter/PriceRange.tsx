@@ -1,6 +1,5 @@
 import ComponentAccordion from "./Accordions/AccordionsGeneral";
-import { GrSubtract } from "react-icons/gr";
-import classes from "./PriceRange.module.css";
+import classes from "styles/PriceRange.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "src/store/redux-toolkit/hooks";
 import { filterPriceActions } from "src/store/redux-toolkit/filterPrice";
@@ -37,8 +36,6 @@ export default function PriceRange() {
     updateMinAndProgress(fetchedMinPrice ?? DEFAULT_MIN_VAL);
     updateMaxAndProgress(fetchedMaxPrice ?? DEFAULT_MAX_VAL);
   }, [fetchedMinPrice, fetchedMaxPrice]);
-
-  // const handleChangeInput = (e: any) => {};
 
   const handleChangeSlider = (e: any) => {
     if (e.target.name === "min-range") {

@@ -1,5 +1,4 @@
 import ActiveLinkImprove from "./ActiveLinkImprove";
-
 import { NavData } from "src/model/NavData";
 const navItems = [
   new NavData("Men"),

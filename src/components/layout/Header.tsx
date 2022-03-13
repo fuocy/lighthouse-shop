@@ -89,37 +89,20 @@ import Link from "next/link";
 import { HiOutlineUser } from "react-icons/hi";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useAppSelector } from "src/store/redux-toolkit/hooks";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { BsFillSunFill } from "react-icons/bs";
+import { BsFillMoonFill } from "react-icons/bs";
+import useDarkMode from "src/hooks/useDarkMode";
 import useStore from "src/store/zustand/useStore";
 
 export default function Header() {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
-  const router = useRouter();
-  const path = router.asPath;
-
-  // const [scrolled, setScrolled] = useState(false);
-
-  // const handleScroll = () => {
-  //   const offset = window.scrollY;
-
-  //   if (offset > 200) {
-  //     setScrolled(true);
-  //   } else {
-  //     setScrolled(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  // }, []);
-
-  // className={scrolled && "fixed top-0 left-0 bg-slate-400"}
   const isLoggedIn = useStore((state) => !!state.tokenId);
   const userEmail = useStore((state) => state.email);
   const userAvatar = useStore((state) => state.avatar);
-
   const logout = useStore((state) => state.logout);
+  // const [isDarkMode, toggleDarkMode] = useDarkMode();
+
   return (
     <header
       className={`pt-10 
@@ -129,6 +112,18 @@ export default function Header() {
     sm:pt-6
     `}
     >
+      {/* {isDarkMode && (
+        <BsFillSunFill
+          onClick={toggleDarkMode}
+          className="absolute top-3 right-3 text-2xl text-primary-color select-none cursor-pointer"
+        />
+      )}
+      {!isDarkMode && (
+        <BsFillMoonFill
+          onClick={toggleDarkMode}
+          className="absolute top-3 right-3 text-2xl text-primary-color select-none cursor-pointer"
+        />
+      )} */}
       <div className={`flex items-center justify-between  relative mb-14`}>
         {!isLoggedIn && (
           <Link href="/auth" passHref>
@@ -183,12 +178,7 @@ export default function Header() {
               className="absolute -top-[3px] right-[31px] -z-10 h-10 w-10
             "
             >
-              <Image
-                src={sun}
-                alt="the sun | cosmestic content"
-                // layout="fill"
-                // objectFit="contain"
-              />
+              <Image src={sun} alt="the sun | cosmestic content" />
             </div>
           </a>
         </Link>

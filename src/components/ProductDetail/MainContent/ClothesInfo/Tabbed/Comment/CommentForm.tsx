@@ -7,7 +7,6 @@ import useHtttp from "src/hooks/useHttp";
 import classes from "styles/scrollbar.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { text } from "stream/consumers";
 import useStore from "src/store/zustand/useStore";
 import { useRouter } from "next/router";
 

@@ -1,4 +1,3 @@
-import { HiOutlineUser } from "react-icons/hi";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaFacebookF } from "react-icons/fa";
@@ -13,7 +12,7 @@ import Modal from "../common/Modal";
 import LoadingSpinner from "../common/LoadingSpinner";
 import { useRouter } from "next/router";
 
-export default function SignIn({ onSetAuth }) {
+export default function SignIn() {
   const setIsSignIn = useStore((state) => state.setIsSignIn);
   const { sendRequest, data, error, status } = useHtttp(signInAccount);
   const isShowModal = useStore((state) => state.isShowModal);

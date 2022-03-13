@@ -1,45 +1,9 @@
 import CartItem from "./CartItem";
 import classes from "styles/scrollbar.module.css";
-import Link from "next/link";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import { useRouter } from "next/router";
 import CartEmpty from "./CartEmpty";
-// const cartLists = [
-//   {
-//     id: 1,
-//     img: "https://i.ibb.co/tKt3jb5/shirt1.png",
-//     name: "Nike Men's Shirt",
-//     type: "Nike",
-//     quantity: 3,
-//     price: 69,
-//   },
-//   {
-//     id: 2,
-//     img: "https://i.ibb.co/rdTrKGL/Untitled-7-removebg-preview.png",
-//     name: "Nike Men's Shirt",
-//     type: "Nike",
-//     quantity: 3,
-//     price: 69,
-//   },
-//   {
-//     id: 3,
-//     img: "https://i.ibb.co/Mgt3H7C/Untitled-4-removebg-preview.png",
-//     name: "Nike Men's Shirt",
-//     type: "Nike",
-//     quantity: 3,
-//     price: 69,
-//   },
-//   // {
-//   //   id: 4,
-//   //   img: "https://i.ibb.co/RHhBFw9/Untitled-5-removebg-preview.png",
-//   //   name: "Nike Men's Shirt",
-//   //   type: "Nike",
-//   //   quantity: 3,
-//   //   price: 69,
-//   // },
-// ];
-
 export default function CartInfo() {
   const cartState = useAppSelector((state) => state.cart);
   const router = useRouter();

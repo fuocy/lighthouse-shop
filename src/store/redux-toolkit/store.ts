@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartReducer from "./cartSlice";
 import imageReducer from "./imageSlice";
-import filterTypeReducer from "./filterTypeSlice";
 import viewedReducer from "./viewedSlice";
 import { loadState } from "@/components/common/browser-storage";
 import filterBrandReducer from "./filterBrand";
@@ -13,7 +12,6 @@ const store = configureStore({
   reducer: {
     cart: cartReducer,
     image: imageReducer,
-    filterType: filterTypeReducer,
     filterPrice: filterPriceReducer,
     filterStatus: filterStatusReducer,
     filterSearch: filterSearchReducer,

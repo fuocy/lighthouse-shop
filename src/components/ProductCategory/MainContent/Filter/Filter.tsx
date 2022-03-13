@@ -1,12 +1,10 @@
 import Product from "src/model/Product";
 import PriceRange from "./PriceRange";
 import Checkboxs from "./Checkboxs";
-// import AccordionCategory from "./Accordions/AccordionCategory";
 import FilterStatus from "./Accordions/FilterStatus";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import useStore from "src/store/zustand/useStore";
 
 type AppProps = {
   productsList: Product[];
@@ -64,7 +62,6 @@ export default function Filter({ productsList }: AppProps) {
           "sm:top-[420px] sm:left-0 sm:z-10 shadow-lg bg-white text-sm w-[230px]"
         }`}
       >
-        {/* <AccordionCategory /> */}
         <PriceRange />
         <FilterStatus />
         <Checkboxs productsList={productsList} />
