@@ -74,7 +74,7 @@ export default function AccordionCategory() {
               htmlFor={option.title.toLowerCase()}
               className={`flex-1 flex items-center justify-between text-gray-600 transition relative ${
                 selectedStatus === option.title.toLowerCase() &&
-                "text-black font-medium"
+                "!text-black !font-medium"
               }`}
             >
               <p>{option.title}</p>
