@@ -51,3 +51,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+// async redirects() {
+//   return [{ source: "/", destination: "/men", permanent: false }];
+// },

@@ -18,7 +18,7 @@ export default async function ProductCategory(
 ) {
   if (req.method === "GET") {
     const client = await MongoClient.connect(
-      "mongodb+srv://iydiwky9:zoro6533@cluster0.usy78.mongodb.net/lighthouse-ecommerce?retryWrites=true&w=majority"
+      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.usy78.mongodb.net/lighthouse-ecommerce?retryWrites=true&w=majority`
     );
 
     const db = client.db();
