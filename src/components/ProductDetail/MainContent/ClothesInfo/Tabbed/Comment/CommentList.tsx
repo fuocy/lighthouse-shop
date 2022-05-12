@@ -7,6 +7,28 @@ interface AppProps {
   comments: Comment[];
 }
 
+const calculateTimeCreated = (time: number) => {
+  const periods = {
+    year: 12 * 30 * 24 * 60 * 60 * 1000,
+    month: 30 * 24 * 60 * 60 * 1000,
+    week: 7 * 24 * 60 * 60 * 1000,
+    day: 24 * 60 * 60 * 1000,
+    hour: 60 * 60 * 1000,
+    minute: 60 * 1000,
+  };
+
+  const diff = Date.now() - time;
+
+  for (const key in periods) {
+    if (diff > periods[key as keyof typeof periods]) {
+      const result = Math.floor(diff / periods[key as keyof typeof periods]);
+      return `${result} ${result === 1 ? key : key + "s"} ago`;
+    }
+  }
+
+  return "Just now";
+};
+
 export default function CommentList({ comments }: AppProps) {
   return (
     <ul
@@ -34,7 +56,8 @@ export default function CommentList({ comments }: AppProps) {
               {comment.text}
             </div>
             <div className="text-xs text-gray-400 text-right">
-              {comment.date}
+              {calculateTimeCreated(new Date(comment.date).getTime())}
+              {/* {comment.date} */}
             </div>
           </div>
         </li>

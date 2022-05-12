@@ -196,6 +196,8 @@ import classes from "styles/scrollbar.module.css";
 import "animate.css";
 import { Transition } from "react-transition-group";
 import hangerEmpty from "assets/hangerEmpty.png";
+import { AiFillGithub } from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
 
 let isInitial = true;
 
@@ -375,7 +377,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
         </button>
 
         <div className="fixed right-0 top-[60vh] bg-[#666] py-3 px-2 flex flex-col gap-3 z-30">
-          <Link href="https://www.facebook.com/pH1109ji" passHref>
+          <Link href="https://www.facebook.com/fuocy" passHref>
             <a target="_blank">
               <FaFacebookF className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
             </a>
@@ -392,7 +394,30 @@ export default function Layout({ children }: AppProps): JSX.Element {
           </Link>
         </div>
       </main>
-      {showHeader && <footer className="h-[38px] bg-[#333333]"></footer>}
+      {showHeader && (
+        <footer className="h-[38px] bg-[#333333] flex items-center px-10 justify-between">
+          <p className="text-white">Copyright Fuocy © 2022</p>
+          <div className="flex gap-4 items-center">
+            <p className="text-white">Contact me: </p>
+            <Link href="https://www.facebook.com/fuocy">
+              <a>
+                <BsFacebook
+                  size={22}
+                  className="text-white hover:text-blue-500 transition duration-300"
+                />
+              </a>
+            </Link>
+            <Link href="https://github.com/fuocy">
+              <a>
+                <AiFillGithub
+                  size={25}
+                  className="text-white hover:text-blue-500 transition duration-300"
+                />
+              </a>
+            </Link>
+          </div>
+        </footer>
+      )}
     </>
   );
 }
