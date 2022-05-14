@@ -14,6 +14,7 @@ import quayMat from "assets/quayMat.jpg";
 import shirtLanding from "assets/Shirt-landing.png";
 import shoeLanding from "assets/Shoe-landing.png";
 import sunglassesLanding from "assets/Sunglasses-landing.png";
+import Head from "next/head";
 const navItems = [
   new NavData("Men"),
   new NavData("Women"),
@@ -27,6 +28,15 @@ const navItems = [
 const HomePage = () => {
   return (
     <>
+      <Head>
+        <title>Lighthouse | Won&apos;t let you down </title>
+        <link rel="icon" href="/favicon-sun.ico" />
+        <meta
+          name="description"
+          content="Lighthouse used to be my everything."
+        />
+      </Head>
+
       <div className="max-w-[1290px] mx-auto pt-[50px] ">
         <div className="flex justify-between md:flex-col">
           <nav>
@@ -55,7 +65,7 @@ const HomePage = () => {
             >
               <span className="font-extrabold">Light</span>
               <span className="font-normal drop-shadow-logo">house</span>
-              <div className="absolute top-[2px] right-[43px] -z-10 h-14 w-14 md:right-[365px] md:top-[-2px]">
+              <div className="absolute top-[-3px] right-[49px] -z-10 h-14 w-14 md:right-[365px] md:top-[-2px]">
                 <Image src={sun} alt="the sun | cosmestic content" />
               </div>
             </a>

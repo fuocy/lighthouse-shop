@@ -11,7 +11,7 @@ export default function ProductCategoryPage({ products }: AppProps) {
   return (
     <>
       <Head>
-        <title>Lighthouse | Won&apos;t let you down </title>
+        <title>Lighthouse | Category </title>
         <link rel="icon" href="/favicon-sun.ico" />
         <meta name="description" content="Lighthouse were my everything." />
       </Head>
