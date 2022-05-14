@@ -91,7 +91,7 @@ const HomePage = () => {
               <p className="whitespace-nowrap">DRESSES TO</p>
               <p className="whitespace-nowrap">BE NOTICED</p>
             </p>
-            <p className="text-medium border-l-4 border-gray-200 pl-5 bg-white leading-loose text-lg max-w-[500px]">
+            <p className="text-medium border-l-4 border-gray-200 pl-5 bg-white leading-loose text-lg !max-w-[500px]">
               Fashion is part of the daily air and it changes all the time, with
               all the events
             </p>
@@ -149,8 +149,8 @@ const HomePage = () => {
             <p className="font-semibold tracking-wider text-2xl">FEATURED</p>
           </div>
           <div className="bg-black rounded-tl-3xl py-[17px] px-12">
-            <ul className="flex gap-[90px] md:flex-col md:gap-5">
-              <li className="flex items-center gap-3 ">
+            <ul className="flex  md:flex-col md:gap-5">
+              <li className="flex items-center gap-3 pr-[45px]">
                 <div className="w-36 h-36 relative">
                   <Image
                     src={shirtLanding}
@@ -168,7 +168,7 @@ const HomePage = () => {
                   </Link>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 px-[45px] border-x-2 border-slate-700">
                 <div className="w-36 h-36 relative">
                   <Image
                     src={shoeLanding}
@@ -186,7 +186,7 @@ const HomePage = () => {
                   </Link>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 pl-[45px]">
                 <div className="w-36 h-36 relative">
                   <Image
                     src={sunglassesLanding}
