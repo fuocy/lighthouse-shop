@@ -18,6 +18,7 @@ const calculateTimeCreated = (time: number) => {
   };
 
   const diff = Date.now() - time;
+  console.log(new Date(Date.now()), new Date(time), diff);
 
   for (const key in periods) {
     if (diff > periods[key as keyof typeof periods]) {

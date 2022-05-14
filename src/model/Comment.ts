@@ -5,7 +5,7 @@ interface Comment {
   avatar: string;
   numStar: number;
   name: string;
-  date: string;
+  date: number | string;
 }
 
 export default Comment;

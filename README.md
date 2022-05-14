@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Live demo:
 
-## Getting Started
+www.mylighthouse.vercel.app
 
-First, run the development server:
+## Main Features:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Searching, sorting and filtering.
+- Bookmark products
+- Comment
+- Recently viewed and similar products,
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technology used:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- NextJS + TypeScript + TailwindCSS
+- MongoDB + Firebase
+- Redux Toolkit + Zustand
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## API
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+I mock my own API
 
-## Learn More
+## Cloning this project
 
-To learn more about Next.js, take a look at the following resources:
+- Download this and run "npm run i"
+- Set enviroment variable for DB_USER and DB_PASSWORD for MongoDB
+- Connect Firebase, MongoDB and ... to be honest, I don't even know.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When I wrote this code, only god and I knew how it worked.
+Now, only god knows it!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Copyright
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Developer: Fuocy
+- Designer: Hamid R Mousazade (but I improved landing page and category page)

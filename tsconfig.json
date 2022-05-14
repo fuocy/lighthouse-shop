@@ -33,7 +33,8 @@
     "src/components/common/utils.js",
     "src/components/login/Auth.js",
     "src/components/common/Modal.tsx",
-    "src/components/common/SizeAndColor"
+    "src/components/common/SizeAndColor",
+    "src/pages/index.js"
   ],
   "exclude": ["node_modules"]
 }

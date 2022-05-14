@@ -66,13 +66,13 @@ export default function CommentForm({
 
     // DATE
 
-    const commentDate = new Date();
-    const formatedCommentDate = commentDate.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    const commentTime = new Date().getTime();
+    // const formatedCommentDate = commentDate.toLocaleDateString("en-US", {
+    //   weekday: "long",
+    //   year: "numeric",
+    //   month: "long",
+    //   day: "numeric",
+    // });
 
     sendRequest({
       productId,
@@ -81,7 +81,7 @@ export default function CommentForm({
         avatar: avatarUser,
         name: emailUser.slice(0, -10),
         numStar,
-        date: formatedCommentDate,
+        date: commentTime,
       },
     });
   };

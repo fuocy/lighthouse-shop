@@ -210,7 +210,9 @@ export default function Layout({ children }: AppProps): JSX.Element {
   const setAvatar = useStore((state) => state.setAvatar);
   const isLoggedIn = useStore((state) => !!state.tokenId);
   const setLovedProductIds = useStore((state) => state.setLovedProductIds);
-  const showHeader = router.pathname === "/auth" ? false : true;
+  const showHeader =
+    router.pathname === "/auth" || router.pathname === "/" ? false : true;
+  // This showHeader variable is used to decide whether or not to show not only HEADER but also FOOTER, LABELS
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const cartItems = useAppSelector((state) => state.cart.items);
 
@@ -258,6 +260,10 @@ export default function Layout({ children }: AppProps): JSX.Element {
   const handleClickLabel = () => {
     setIsOpenLabel((prev) => !prev);
   };
+
+  useEffect(() => {
+    setIsOpenLabel(false);
+  }, [router.pathname]);
 
   return (
     <>
@@ -368,31 +374,35 @@ export default function Layout({ children }: AppProps): JSX.Element {
             );
           }}
         </Transition>
-        <button
-          onClick={handleClickLabel}
-          className="fixed right-0 top-[45vh] bg-primary-color py-3 px-2 flex flex-col items-center gap-1 z-30"
-        >
-          <p className="text-xl font-semibold">{totalQuantity}</p>
-          <GrSun className="text-xl font-semibold hover:text-[#eee] transition cursor-pointer" />
-        </button>
+        {showHeader && (
+          <button
+            onClick={handleClickLabel}
+            className="fixed right-0 top-[45vh] bg-primary-color py-3 px-2 flex flex-col items-center gap-1 z-30"
+          >
+            <p className="text-xl font-semibold">{totalQuantity}</p>
+            <GrSun className="text-xl font-semibold hover:text-[#eee] transition cursor-pointer" />
+          </button>
+        )}
 
-        <div className="fixed right-0 top-[60vh] bg-[#666] py-3 px-2 flex flex-col gap-3 z-30">
-          <Link href="https://www.facebook.com/fuocy" passHref>
-            <a target="_blank">
-              <FaFacebookF className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
-            </a>
-          </Link>
-          <Link href="https://www.youtube.com/watch?v=s5YjHRWba5A" passHref>
-            <a target="_blank">
-              <BsYoutube className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
-            </a>
-          </Link>
-          <Link href="https://www.instagram.com/h2.huu_huan/" passHref>
-            <a target="_blank">
-              <BsInstagram className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
-            </a>
-          </Link>
-        </div>
+        {showHeader && (
+          <div className="fixed right-0 top-[60vh] bg-[#666] py-3 px-2 flex flex-col gap-3 z-30">
+            <Link href="https://www.facebook.com/fuocy" passHref>
+              <a target="_blank">
+                <FaFacebookF className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
+              </a>
+            </Link>
+            <Link href="https://www.youtube.com/watch?v=s5YjHRWba5A" passHref>
+              <a target="_blank">
+                <BsYoutube className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
+              </a>
+            </Link>
+            <Link href="https://www.instagram.com/h2.huu_huan/" passHref>
+              <a target="_blank">
+                <BsInstagram className="text-xl text-[#999] hover:text-[#eee] transition cursor-pointer" />
+              </a>
+            </Link>
+          </div>
+        )}
       </main>
       {showHeader && (
         <footer className="h-[38px] bg-[#333333] flex items-center px-10 justify-between">
