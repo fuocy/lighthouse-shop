@@ -91,10 +91,10 @@ const HomePage = () => {
               <p className="whitespace-nowrap">DRESSES TO</p>
               <p className="whitespace-nowrap">BE NOTICED</p>
             </p>
-            <p className="text-medium border-l-4 border-gray-200 pl-5 bg-white leading-loose text-lg !max-w-[500px]">
+            <div className="!text-medium !border-l-4 !border-gray-200 !pl-5 !bg-white !leading-loose !text-lg !max-w-[500px]">
               Fashion is part of the daily air and it changes all the time, with
               all the events
-            </p>
+            </div>
             <div className="mt-9 flex items-center gap-5">
               <Link href="/men">
                 <a
