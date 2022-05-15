@@ -168,7 +168,7 @@ const HomePage = () => {
                   </Link>
                 </div>
               </li>
-              <li className="flex items-center gap-3 px-[45px] border-x-2 border-slate-700">
+              <li className="flex items-center gap-3 px-[45px] md:border-x-2 md:border-slate-700">
                 <div className="w-36 h-36 relative">
                   <Image
                     src={shoeLanding}

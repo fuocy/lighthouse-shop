@@ -7,7 +7,7 @@ www.mylighthouse.vercel.app
 - Searching, sorting and filtering.
 - Bookmark products
 - Comment
-- Recently viewed and similar products,
+- Recently viewed and similar products
 
 ## Technology used:
 
