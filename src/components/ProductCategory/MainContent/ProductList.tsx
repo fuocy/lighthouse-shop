@@ -282,7 +282,7 @@ export default function ProductList({ productsList }: AppProps) {
     <li key={number}>
       <button
         className={`py-3 px-5 bg-white shadow-sm rounded-sm ${
-          currentPage === number && "bg-primary-color"
+          currentPage === number && "!bg-primary-color"
         }`}
         onClick={handleClickPagination.bind(null, number)}
       >

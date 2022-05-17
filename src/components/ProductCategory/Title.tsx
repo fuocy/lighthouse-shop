@@ -88,7 +88,7 @@ export default function Title({ productsList }: AppProps) {
             onClick={sortAscendingHandler}
             className={`flex-center 
       py-1 px-2 bg-white text-black z-10 transition duration-300 ${
-        btnPress === "btn1" && "bg-primary-color"
+        btnPress === "btn1" && "!bg-primary-color"
       }`}
           >
             <FaSortAmountDownAlt
@@ -100,7 +100,7 @@ export default function Title({ productsList }: AppProps) {
             onClick={sortDescendingHandler}
             className={`flex-center 
       py-1 px-2 bg-white text-black z-10 transition duration-300 ${
-        btnPress === "btn2" && "bg-primary-color"
+        btnPress === "btn2" && "!bg-primary-color"
       }`}
           >
             <FaSortAmountDown
