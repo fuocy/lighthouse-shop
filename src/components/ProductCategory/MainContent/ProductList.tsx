@@ -254,6 +254,10 @@ export default function ProductList({ productsList }: AppProps) {
     dispatch(PaginationActions.resetFirstPage());
   }, [sortedProducts, dispatch]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage, router.pathname]);
+
   if (renderedProducts.length === 0) return <ProductEmpty />;
 
   //////////////////////////////////////////////////////
