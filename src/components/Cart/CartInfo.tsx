@@ -4,7 +4,10 @@ import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { useAppSelector } from "src/store/redux-toolkit/hooks";
 import { useRouter } from "next/router";
 import CartEmpty from "./CartEmpty";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 export default function CartInfo() {
+  const [parent] = useAutoAnimate();
+
   const cartState = useAppSelector((state) => state.cart);
   const router = useRouter();
 
@@ -42,6 +45,8 @@ export default function CartInfo() {
       )}
       <div>
         <ul
+          // @ts-ignore
+          ref={parent}
           className={`overflow-y-auto h-[500px] ${classes["custom-scrollbar"]} `}
         >
           {cartState.items.length > 0 &&

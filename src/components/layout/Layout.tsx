@@ -198,10 +198,11 @@ import { Transition } from "react-transition-group";
 import hangerEmpty from "assets/hangerEmpty.png";
 import { AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 let isInitial = true;
 
 export default function Layout({ children }: AppProps): JSX.Element {
+  const [parent] = useAutoAnimate();
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart);
   const router = useRouter();
@@ -297,7 +298,10 @@ export default function Layout({ children }: AppProps): JSX.Element {
                   className={`h-[250px] overflow-auto ${classes["custom-scrollbar"]} mb-3`}
                 >
                   {cartItems.length > 0 && (
-                    <ul>
+                    <ul
+                      // @ts-ignore
+                      ref={parent}
+                    >
                       {cartItems.map((cartItem) => (
                         <li
                           key={cartItem.id}

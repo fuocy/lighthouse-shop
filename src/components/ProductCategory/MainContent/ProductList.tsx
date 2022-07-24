@@ -9,14 +9,14 @@ import { AiOutlineRight } from "react-icons/ai";
 import useStore from "src/store/zustand/useStore";
 import { filterStatusActions } from "src/store/redux-toolkit/filterStatus";
 import { useRouter } from "next/router";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 interface AppProps {
   productsList: Product[];
 }
 
 export default function ProductList({ productsList }: AppProps) {
   const dispatch = useAppDispatch();
-
+  const [parent] = useAutoAnimate();
   ///////////////////////////////////////////////////
   // IS MOBILE
   const [windowSize, setWindowSize] = useState<{
@@ -303,6 +303,8 @@ export default function ProductList({ productsList }: AppProps) {
         className="grid grid-cols-3 gap-x-5 gap-y-[26px] 
       md:grid-cols-2
       md:gap-x-2"
+        // @ts-ignore
+        ref={parent}
       >
         {renderedProducts.map((product) => (
           <ProductItem

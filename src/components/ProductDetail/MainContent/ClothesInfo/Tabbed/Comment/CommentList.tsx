@@ -2,6 +2,7 @@ import Image from "next/image";
 import RenderStar from "@/components/common/RenderStar";
 import classes from "styles/scrollbar.module.css";
 import Comment from "src/model/Comment";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 interface AppProps {
   comments: Comment[];
@@ -31,8 +32,11 @@ const calculateTimeCreated = (time: number) => {
 };
 
 export default function CommentList({ comments }: AppProps) {
+  const [parent] = useAutoAnimate();
   return (
     <ul
+      // @ts-ignore
+      ref={parent}
       className={`overflow-y-auto h-[320px] flex flex-col gap-4 ${classes["custom-scrollbar"]}`}
     >
       {comments.map((comment) => (
