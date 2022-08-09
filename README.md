@@ -1,23 +1,27 @@
+# Lighthouse shop
+
+Top Brand Clothes Selling Website
+
 ## Live demo:
 
-www.mylighthouse.vercel.app
+Official website: [https://lighthouse-shop.vercel.app/](https://lighthouse-shop.vercel.app/)
 
-## Main Features:
+## API
 
-- Searching, sorting and filtering.
-- Bookmark products
-- Comment
-- Recently viewed and similar products
+I mock my own API
 
-## Technology used:
+## Main technology used:
 
 - NextJS + TypeScript + TailwindCSS
 - MongoDB + Firebase
 - Redux Toolkit + Zustand
 
-## API
+## Features:
 
-I mock my own API
+- Searching, sorting and filtering.
+- Bookmark products
+- Comment
+- Recently viewed and similar products
 
 ## Cloning this project
 
@@ -28,7 +32,18 @@ I mock my own API
 When I wrote this code, only god and I knew how it worked.
 Now, only god knows it!
 
-## Copyright
+## Screenshots, Preview
 
-- Developer: Fuocy
-- Designer: Hamid R Mousazade (but I improved landing page and category page)
+![Screenshot 1](https://i.ibb.co/kHhgtBt/home1.jpg)
+![Screenshot 2](https://i.ibb.co/wd28Sf0/home2.jpg)
+![Screenshot 3](https://i.ibb.co/dkVnFYv/detail1.jpg)
+![Screenshot 4](https://i.ibb.co/rvpT6w9/detail2.jpg)
+![Screenshot 5](https://i.ibb.co/WkFxmYP/detail3.jpg)
+![Screenshot 6](https://i.ibb.co/BBpNbLC/cart.jpg)
+![Screenshot 7](https://i.ibb.co/wBJ1nF8/landing.jpg)
+
+## Start
+
+From February 23, 2022 to Match 12, 2022
+
+### 👉 If you like this project, give it a star ✨ and share 👨🏻‍💻 it to your friends 👈
