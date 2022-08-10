@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { MongoClient, ObjectId } from "mongodb";
 import Product from "src/model/Product";
 import Head from "next/head";
+import Meta from "@/components/common/Meta";
 interface AppProps {
   singleProduct: Product;
   allProducts: Product[];
@@ -14,11 +15,11 @@ export default function ProductDetailPage({
 }: AppProps) {
   return (
     <>
-      <Head>
-        <title> {`${singleProduct.name} | LIGHTHOUSE`} </title>
-        <link rel="icon" href="/favicon-sun.ico" />
-        <meta name="description" content={singleProduct.description} />
-      </Head>
+      <Meta
+        title={`${singleProduct.name} | LIGHTHOUSE`}
+        description={singleProduct.description}
+        image="/preview.png"
+      />
       <ProductDetail singleProduct={singleProduct} allProducts={allProducts} />;
     </>
   );

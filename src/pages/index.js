@@ -15,6 +15,7 @@ import shirtLanding from "assets/Shirt-landing.png";
 import shoeLanding from "assets/Shoe-landing.png";
 import sunglassesLanding from "assets/Sunglasses-landing.png";
 import Head from "next/head";
+import Meta from "@/components/common/Meta";
 const navItems = [
   new NavData("Men"),
   new NavData("Women"),
@@ -28,14 +29,11 @@ const navItems = [
 const HomePage = () => {
   return (
     <>
-      <Head>
-        <title>Lighthouse | Won&apos;t let you down </title>
-        <link rel="icon" href="/favicon-sun.ico" />
-        <meta
-          name="description"
-          content="Lighthouse used to be my everything."
-        />
-      </Head>
+      <Meta
+        title="Lighthouse | Won't let you down"
+        description="Lighthouse used to be my everything."
+        image="/preview.png"
+      />
 
       <div className="max-w-[1290px] mx-auto pt-[50px] ">
         <div className="flex justify-between md:flex-col">

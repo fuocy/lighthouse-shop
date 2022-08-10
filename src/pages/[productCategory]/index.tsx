@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Product from "src/model/Product";
 import Head from "next/head";
+import Meta from "@/components/common/Meta";
 type AppProps = {
   products: Product[];
 };
@@ -10,11 +11,11 @@ type AppProps = {
 export default function ProductCategoryPage({ products }: AppProps) {
   return (
     <>
-      <Head>
-        <title>Lighthouse | Category </title>
-        <link rel="icon" href="/favicon-sun.ico" />
-        <meta name="description" content="Lighthouse were my everything." />
-      </Head>
+      <Meta
+        title="Lighthouse | Category"
+        description="Lighthouse were my everything."
+        image="/preview.png"
+      />
       <ProductCategory productsList={products} />;
     </>
   );

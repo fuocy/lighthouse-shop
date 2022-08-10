@@ -1,3 +1,4 @@
+import Meta from "@/components/common/Meta";
 import Auth from "@/components/login/Auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -16,11 +17,11 @@ export default function LoginPage() {
 
   return (
     <>
-      <Head>
-        <title>Lighthouse | Authentication </title>
-        <link rel="icon" href="/favicon-sun.ico" />
-        <meta name="description" content="Lighthouse were my everything." />
-      </Head>
+      <Meta
+        title="Lighthouse | Authentication"
+        description="Lighthouse were my everything."
+        image="/preview.png"
+      />
       <Auth />;
     </>
   );

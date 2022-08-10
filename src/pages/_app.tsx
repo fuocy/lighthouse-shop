@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "src/store/redux-toolkit/store";
 import { debounce } from "debounce";
 import { saveState } from "@/components/common/browser-storage";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   //////////////////////////////////////////////////////////////////////
@@ -42,11 +43,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 
   return (
-    <Provider store={store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon-sun.ico" type="image/x-icon" />
+      </Head>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </>
   );
 }
 

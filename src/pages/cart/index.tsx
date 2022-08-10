@@ -1,14 +1,15 @@
 import Cart from "@/components/Cart/Cart";
+import Meta from "@/components/common/Meta";
 import Head from "next/head";
 
 export default function CartPage() {
   return (
     <>
-      <Head>
-        <title>Your cart</title>
-        <link rel="icon" href="/favicon-sun.ico" />
-        <meta name="description" content="Your cart is here. Buy now" />
-      </Head>
+      <Meta
+        title="Your cart"
+        description="Your cart is here. Buy now"
+        image="/cart.jpg"
+      />
       <Cart />;
     </>
   );

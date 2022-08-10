@@ -269,6 +269,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
   return (
     <>
       {showHeader && <Header />}
+
       <main className=" bg-[#fafafa] dark:bg-[#191919] dark:text-[#DDDDDD]">
         {children}
 
@@ -378,6 +379,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
             );
           }}
         </Transition>
+
         {showHeader && (
           <button
             onClick={handleClickLabel}
@@ -387,7 +389,6 @@ export default function Layout({ children }: AppProps): JSX.Element {
             <GrSun className="text-xl font-semibold hover:text-[#eee] transition cursor-pointer" />
           </button>
         )}
-
         {showHeader && (
           <div className="fixed right-0 top-[60vh] bg-[#666] py-3 px-2 flex flex-col gap-3 z-30">
             <Link href="https://www.facebook.com/fuocy" passHref>
@@ -408,6 +409,7 @@ export default function Layout({ children }: AppProps): JSX.Element {
           </div>
         )}
       </main>
+
       {showHeader && (
         <footer className="h-[38px] bg-[#333333] flex items-center px-10 justify-between">
           <p className="text-white">Copyright Fuocy © 2022</p>
