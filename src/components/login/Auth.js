@@ -7,7 +7,13 @@ export default function Login() {
 
   return (
     <div className="-z-10 ">
-      <video loop autoPlay muted width={1600} className="lg:hidden">
+      <video
+        loop
+        autoPlay
+        muted
+        width={1600}
+        className="lg:hidden fixed object-cover"
+      >
         <source
           src="https://raw.githubusercontent.com/ph1109ji/video/master/IntroLighthouse.mp4"
           type="video/mp4"
