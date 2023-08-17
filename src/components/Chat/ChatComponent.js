@@ -12,11 +12,13 @@ import {
   IconRobot,
   IconSend,
   IconTrash,
-} from "./Chat/Icon";
-import ClientSide from "./Chat/ClientSide";
-import AnimateChats from "./Chat/AnimateChats";
+} from "./Icon";
+import ClientSide from "./ClientSide";
+import AnimateChats from "./AnimateChats";
 import { Dialog } from "@headlessui/react";
 import { Toaster } from "react-hot-toast";
+
+
 
 export default function ChatComponent() {
   // store chats
@@ -74,10 +76,11 @@ export default function ChatComponent() {
       <Head>
         <title>NextJS Chat OpenAI</title>
       </Head>
-      <div className="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 md:p-10">
+      {/*<div className="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 md:p-10">*/}
+      <div className="fixed bottom-5 left-5 w-80 h-120sen max-w-full p-2 md:p-2 bg-gray-500 rounded-lg z-50"> 
         <div className="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
           {/* header */}
-          <div className="bg-white border-b shadow p-2 md:p-4 fixed top-0 w-full max-w-xl z-20">
+          <div className="bg-white border-b shadow p-2 md:p-4 top-0 w-full max-w-xl z-20">
             <div className="relative flex justify-between">
               <div className="flex items-center space-x-4">
                 <div className="relative">
@@ -149,7 +152,7 @@ export default function ChatComponent() {
           </div>
 
           {/* chats */}
-          <div className="flex flex-col flex-grow h-0 p-4 overflow-auto py-20 md:py-10">
+          <div className="flex flex-col flex-grow h-80 p-4 overflow-auto py-20 md:py-10">
             <>
               {chats?.length === 0 && (
                 <div
@@ -278,7 +281,7 @@ export default function ChatComponent() {
           </div>
 
           {/* input chat */}
-          <div className="bg-gray-200 shadow border-t p-2 fixed bottom-0 w-full max-w-xl">
+          <div className="bg-gray-200 shadow border-t p-2 bottom-0 w-full max-w-xl">
             <div className="relative">
               <form onSubmit={handlerSubmitChat}>
                 <input
