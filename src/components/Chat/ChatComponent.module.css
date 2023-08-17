@@ -1,0 +1,29 @@
+.togglButton {
+  display: inline-block;
+  padding: 0;
+  background-color: #007BFF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 200px;
+  width: 200px;
+  height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+
+.toggleButton:hover {
+  background-color: #0056b3;
+}
+
+
+.toggleButtonIcon {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+}

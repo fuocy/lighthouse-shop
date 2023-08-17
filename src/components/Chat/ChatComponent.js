@@ -17,6 +17,7 @@ import ClientSide from "./ClientSide";
 import AnimateChats from "./AnimateChats";
 import { Dialog } from "@headlessui/react";
 import { Toaster } from "react-hot-toast";
+import styles from './ChatComponent.module.css';
 
 
 
@@ -24,6 +25,9 @@ export default function ChatComponent() {
   // store chats
   const { chats, chat, addChat, loading, removeAllChat, removeOneChat } =
     ChatStore((state) => state);
+
+  // chat visibility toggle
+  const [isChatVisible, setIsChatVisible] = useState(false);
 
   // state text
   const [text, setText] = useState("");
@@ -76,8 +80,11 @@ export default function ChatComponent() {
       <Head>
         <title>NextJS Chat OpenAI</title>
       </Head>
+      
       {/*<div className="flex flex-col items-center justify-center w-screen min-h-screen bg-gray-100 text-gray-800 md:p-10">*/}
-      <div className="fixed bottom-5 left-5 w-80 h-120sen max-w-full p-2 md:p-2 bg-gray-500 rounded-lg z-50"> 
+      
+      <div className="fixed bottom-5 left-5 w-80 h-120sen max-w-full p-2 md:p-2 bg-gray-300 rounded-lg z-50"> 
+        {isChatVisible && (
         <div className="flex flex-col flex-grow w-full max-w-xl bg-white shadow-xl rounded-lg overflow-hidden">
           {/* header */}
           <div className="bg-white border-b shadow p-2 md:p-4 top-0 w-full max-w-xl z-20">
@@ -299,8 +306,14 @@ export default function ChatComponent() {
               </form>
             </div>
           </div>
-        </div>
-      </div>
+        </div> )}
+        <button
+          onClick={() =>setIsChatVisible(!isChatVisible)}
+          className={styles.toggleButton}
+        >
+        <IconRobot className={styles.toggleButtonIcon} />
+        </button>
+      </div> 
     </ClientSide>
   );
 }
