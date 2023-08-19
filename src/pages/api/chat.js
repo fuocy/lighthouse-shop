@@ -21,10 +21,27 @@ export default async function handler(req, res) {
       const response = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{role: "user", content: chat}],
+        functions: [
+          {
+            name: "search-product",
+            description: "Search product",
+            parameters: {
+              type: "object",
+              properties: {
+                product_name: {
+                  type: "string",
+                  description: "product name",
+                },
+              },
+              required: ["product_name"],
+            },
+          }
+        ],
+
       });
       // if get data from openai send json
       if (response.data?.choices) {
-        res.json(response.data.choices[0].message.content);
+        res.json(response.data.choices[0].message);
         // if can't get data from openai send error
       } else {
         res.status(500).send("Oops, Something went wrong!!");

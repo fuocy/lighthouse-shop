@@ -199,6 +199,8 @@ import hangerEmpty from "assets/hangerEmpty.png";
 import { AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+import ChatComponent from "@/components/Chat/ChatComponent";
 let isInitial = true;
 
 export default function Layout({ children }: AppProps): JSX.Element {
@@ -216,6 +218,8 @@ export default function Layout({ children }: AppProps): JSX.Element {
   // This showHeader variable is used to decide whether or not to show not only HEADER but also FOOTER, LABELS
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const cartItems = useAppSelector((state) => state.cart.items);
+
+  const [showChat, setShowChat] = useState(false);
 
   const nodeRef = useRef(null);
 
@@ -389,6 +393,18 @@ export default function Layout({ children }: AppProps): JSX.Element {
             <GrSun className="text-xl font-semibold hover:text-[#eee] transition cursor-pointer" />
           </button>
         )}
+
+        {showChat && <ChatComponent />}
+
+        {showHeader && (
+          <button
+            onClick={() => setShowChat((prev) => !prev)}
+            className="fixed left-0 bottom-0 bg-primary-color py-3 px-2 z-30"
+          >
+            Open Chat
+          </button>
+        )}
+
         {showHeader && (
           <div className="fixed right-0 top-[60vh] bg-[#666] py-3 px-2 flex flex-col gap-3 z-30">
             <Link href="https://www.facebook.com/fuocy" passHref>

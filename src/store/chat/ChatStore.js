@@ -3,6 +3,11 @@ import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+import  store  from "src/store/redux-toolkit/store";
+import { filterSearchActions } from "src/store/redux-toolkit/filterSearch";
+
+
+
 // initial chat store
 export const ChatStore = create(
   persist(
@@ -23,7 +28,31 @@ export const ChatStore = create(
           // post data input to api
           const { data } = await axios.post("/api/chat", {
             chat: inputChat,
-          });
+          });  
+
+          ;
+
+        if(data.function_call === undefined) {
+            data = data.content;
+            
+        } else if (data.function_call !== undefined) {
+          const fnName = data.function_call.name;
+          const args = data.function_call.arguments;
+
+          const product_name = JSON.parse(args).product_name;
+
+
+
+        // Directly dispatch an action to the Redux store
+        store.dispatch(filterSearchActions.setQuery(product_name));
+                  
+          data = "🚀 IN ACTION 🚀";
+        }
+        else {
+          data = "ERROR"
+        }
+
+
           // data chat object
           const dataChat = {
             // input chat
@@ -33,6 +62,8 @@ export const ChatStore = create(
             // current date
             date: new Date(),
           };
+        
+
           // set default latest chat
           set(() => ({ chat: {} }));
           // set new data chat from api to new array

@@ -9,6 +9,7 @@ type AppProps = {
 };
 
 export default function ProductCategoryPage({ products }: AppProps) {
+  console.log(products);
   return (
     <>
       <Meta
